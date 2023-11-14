@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'poppins-regular';
+  src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+@font-face {
+  font-family: 'poppins-medium';
+  src: url('./assets/fonts/Poppins-Medium.ttf');
+}
+@font-face {
+  font-family: 'poppins-bold';
+  src: url('./assets/fonts/Poppins-Bold.ttf');
+}
+
+:root{
+  --title-fs : 48.8px;
+  --title-3-fs : 31.3px;
+  --subtitle-fs : 25px;
+  --lead-fs :  20px;
+  --body-fs : 16px;
+  --link-fs : 12.8px;
+
+  --bg-primary : #C1071E;
+  --bg-secondary : #131834;
+  --bg-tertiary : #171928;
+  --text-primary : #ffffff;
+  --text-secondary : #DEDEDE;
+  --text-tertiary : #777777;
+  --yellow : #CD9019;
+  background-color: var(--bg-secondary) ;
+}
+
+/**color**/
+/* ._primary-bg{background-color: var(--bg-primary);}
+._secondary-bg{background-color: var(--bg-secondary);} */
+/* ._tertiary-bg{background-color: var(--bg-tertiary);}
+._primary-text{color: var(--text-primary);}
+._secondary-text{color: var(--text-secondary);}
+._tertiary-text{color: var(--text-tertiary);}
+._yellow{color: var(--yellow);} */
+
+/**font**/
+._title{font-size: var(--title-fs); font-family: 'poppins-bold';}
+._title-3{font-size: var(--title-3-fs);  font-family: 'poppins-bold';}
+._subtitle{font-size: var(--subtitle-fs); font-family: 'poppins-bold';}
+._lead{font-size: var(--lead-fs);  font-family: 'poppins-regular';}
+._body{font-size: var(--body-fs);  font-family: 'poppins-regular';}
+._button{font-size: var(--body-fs); font-family: 'poppins-medium';}
+._link{font-size: var(--link-fs); font-family: 'poppins-regular';}
+
+
+/**other**/
+
+._btn i{
+  font-size: 24px;
+}
+._shadow{box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);}
+
+
+
+/**base**/
+*{
+  font-family: 'poppins-medium';
+}
+
+._searchInput{
+  background-color: transparent;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  color: var(--text-tertiary);
+  font-size: var(--body-fs);
+
+}
+
+._searchIcon{
+  font-size: 16px;
+}
+
+._searchInput::placeholder{
+  color: var(--text-tertiary);
+}
+
+._userProfile{
+  cursor: pointer;
+  width:  64px;
+  height:   64px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage{
+  width: 100%;
+  height: 90vh;
+  object-fit:cover;
+  object-position: top;
+}
+
+.imageFade{
+  position: absolute;
+  top: 0;
+  background-color: var(--bg-secondary);
+  opacity: 60%;
+  width: 100%;
+  height: 90vh;
+}
+
+.hero{
+  background-color: var(--bg-secondary);
+  border: 0;
+}
+
+._navbar{
+  position: fixed;
+  /* width: fit-content; */
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  border-radius: 64px;
+  align-items: center;
+}
+
+

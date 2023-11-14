@@ -1,0 +1,65 @@
+// Default variable overrides
+$primary : #C1071E;
+$secondary : #131834;
+$light : #fff;
+$warning : #CD9019;
+$gray : #777777;
+
+//button
+    //large
+$btn-border-radius-lg: 32px;
+$btn-padding-y-lg:16px; 
+$btn-padding-x-lg: 16px; 
+    //medium
+$btn-border-radius: 32px;
+$btn-padding-y:8px; 
+$btn-padding-x: 8px; 
+
+
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  8 : 0.5rem,
+  16 : 1rem,
+  24 : 1.5rem,
+  32 : 2rem,
+  40 : 2.5rem,
+  48 : 3rem,
+  56 : 3.5rem,
+  64 : 4rem,
+  72 : 4.5rem,
+  80 : 5rem,
+  128 : 8rem,
+  156 : 9.75rem,
+  160 : 10rem,
+  256 : 16rem
+);
+
+//theme colors
+$custom-colors: (
+  "tertiary": #171928,
+  "altlight" : #DEDEDE
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+
+// Required
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
+
+
