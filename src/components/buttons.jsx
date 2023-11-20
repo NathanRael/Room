@@ -8,9 +8,14 @@ export function Button ({name, icon, color}){
     )
 }
 
-export function NavButton ({icon, active = false}){
+export function NavButton ({icon, active,handleClick}){
+
     return (
-        <button className={`btn text-light rounded-5 p-16 ${active ? 'btn-primary' : ''}`} style={{width : '64px', height : '64px'}}>
+        <button 
+        className={`btn text-light rounded-5 p-8 ${active ? 'btn-primary' : ''}`} 
+        style={{width : '52px', height : '52px'}}
+        onClick={handleClick}
+        >
             <i className={`${icon} d-flex justify-content-center aling-item-center`} style={{fontSize : '24px'}} ></i>
         </button>
     )

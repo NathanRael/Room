@@ -29,14 +29,6 @@
   background-color: var(--bg-secondary) ;
 }
 
-/**color**/
-/* ._primary-bg{background-color: var(--bg-primary);}
-._secondary-bg{background-color: var(--bg-secondary);} */
-/* ._tertiary-bg{background-color: var(--bg-tertiary);}
-._primary-text{color: var(--text-primary);}
-._secondary-text{color: var(--text-secondary);}
-._tertiary-text{color: var(--text-tertiary);}
-._yellow{color: var(--yellow);} */
 
 /**font**/
 ._title{font-size: var(--title-fs); font-family: 'poppins-bold';}
@@ -114,11 +106,25 @@
 ._navbar{
   position: fixed;
   /* width: fit-content; */
-  top: 50%;
-  left: 32px;
-  transform: translateY(-50%);
+  top: 112px;
+  left: 50px;
+  /* transform: translateY(-50%); */
   border-radius: 64px;
   align-items: center;
+}
+
+._movieFilter{
+  position: relative;
+}
+
+._movieFilter::before{
+  overflow: hidden;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 1px;
+  bottom: 8px;
+  background-color: var(--text-primary);
 }
 
 

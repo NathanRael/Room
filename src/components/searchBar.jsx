@@ -1,13 +1,13 @@
 import logo from '../assets/logo.png'
 
-export default function SearchBar (porps){
+export default function SearchBar ({is_fixed}){
     const logoStyle = {
         width : '88px',
         height : '47px'
     }
    return (
     <>
-        <nav className="navbar navbar-expand-lg position-fixed mt-16 px-32" style={{width : '100%'}}>
+        <nav className={`navbar navbar-expand-lg ${is_fixed ? 'position-fixed' : 'position-absolute'} mt-8 px-32`} style={{width : '100%', zIndex : '3'}}>
             <div className="container-fluid">
                 
                 <button 
@@ -16,7 +16,7 @@ export default function SearchBar (porps){
                     data-bs-toggle="collapse"
                     data-bs-target="#canCollapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                    >
+                >
                         <span class="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse ms-auto d-flex justify-content-between align-item-center" id='canCollapse'>
