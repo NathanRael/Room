@@ -29,6 +29,9 @@
   background-color: var(--bg-secondary) ;
 }
 
+body{
+  background-color: var(--bg-secondary);
+}
 
 /**font**/
 ._title{font-size: var(--title-fs); font-family: 'poppins-bold';}
@@ -125,6 +128,44 @@
   height: 1px;
   bottom: 8px;
   background-color: var(--text-primary);
+}
+
+._movieCard{
+  max-width: 1120px;
+  max-height: 332px;
+  
+}
+
+._MovieCardImage{
+  background-size: contain;
+}
+
+._playList{
+  width: 596px;
+}
+
+._movieLine{
+  position: relative;
+}
+
+._movieLine::before{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  overflow: hidden;
+  background-color: var(--text-primary);
+  width: 100%;
+  height: 1px;
+}
+
+._movieListContainer{
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+._movieListContainer::-webkit-scrollbar{
+  width: 0;
 }
 
 

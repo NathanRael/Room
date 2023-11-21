@@ -4,7 +4,6 @@ import demonSlayer from '../assets/demonSlayer.jfif';
 import Rate from './rate';
 
 const cardImageStyle = {
-    borderRadius : '32px 32px 0 0',
     height : '224px',
     objectFit: 'cover',
 }
@@ -17,8 +16,8 @@ export default function Card({srcImage,title, sinopsis, date, rate}){
     }
 
     return (
-        <div className="card rounded-5 bg-tertiary m-0 _shadow" style={{width : '280px'}}>
-            <img src={demonSlayer} alt=""  className='img-top ' style={cardImageStyle}/>
+        <div className="card rounded-4 bg-tertiary m-0 _shadow" style={{width : '280px'}}>
+            <img src={demonSlayer} alt=""  className='img-top rounded-top-4' style={cardImageStyle} />
             <div className="card-body  p-16 text-light">
                 <h1 className="card-title _lead " type="button">{title}</h1>
                 <h2 className="card-text _link text-altlight">{sinopsis}</h2>
