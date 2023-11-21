@@ -10,6 +10,7 @@ export default function WatchMovieSection(){
                 size='32px'
             />
             <VideoScreen/>
+            
             <PlayList/>
         </section>
     )
