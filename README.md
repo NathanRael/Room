@@ -1,8 +1,18 @@
-# React + Vite
+# Room
+A simple movie website of which uses React js.In this website you can : search a specific movie (only anime), filter it by popularity, trend ..., add to watch list and even download it.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Intallation
+To install the project, you need to follow these few steps :
+  1. Clone the project `git clone`
+  2. Move to the project folder
+  3. Add dependencies `npm install`
+  4. Run `npm run dev`
+     
+## Features
+  Comming soon...
+  
+## Contribution
+Your return and your help would be appreciated
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Design
+Here is the associated [figma design](https://www.figma.com/file/pEIjBURXq2Ca0ZBesatiut/Room?type=design&node-id=25%3A142&mode=design&t=S3ZJPADml2cx9L0C-1)
