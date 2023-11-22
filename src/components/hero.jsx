@@ -1,5 +1,5 @@
-import {Button} from  './buttons';
-import Rate from './rate';
+import {Button} from  './Buttons';
+import Rate from './Rate';
 
 
 export default function Hero(props){

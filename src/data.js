@@ -1,22 +1,6 @@
 import popularMovieImage from './assets/spyxfamily.webp';
 
-export const navItemData = [
-    {
-        id : 0,
-        icon : 'bi bi-house',
-        active : true
-    },
-    {
-        id : 1,
-        icon : 'bi bi-camera-reels',
-        active : false
-    },
-    {
-        id : 2,
-        icon : 'bi bi-collection-play',
-        active : false
-    },
-]
+
 
 export const popularMovie = {
     title : 'Spy X family',

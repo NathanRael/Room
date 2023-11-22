@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import demonSlayer from '../assets/demonSlayer.jfif';
-import Rate from './rate';
+import Rate from './Rate';
 
 const cardImageStyle = {
     height : '224px',

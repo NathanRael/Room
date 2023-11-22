@@ -1,5 +1,5 @@
-import MovieFilter from "./moviFilter";
-import Card from "./card";
+import MovieFilter from "./MoviFilter";
+import Card from "./Card";
 import { movieData } from "../data";
 import { useEffect } from "react";
 const colStyle = {

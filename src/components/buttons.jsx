@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 export function Button ({name, icon, color, size}){
     return(
@@ -16,17 +17,21 @@ export function ButtonMd ({name, icon, color, size}){
     )
 }
 
-export function NavButton ({icon, active,handleClick}){
+export function NavButton ({icon, active,handleClick, link}){
 
     return (
-        <i 
-        className={`btn text-light rounded-5 p-8 d-flex justify-content-center align-items-center ${active ? 'btn-primary' : ''} ${icon}`} 
-        style={{width : '52px', height : '52px', fontSize : '24px'}}
-        onClick={handleClick}
-        >
-        </i>
+        <Link to={link} style={{textDecoration : 'none'}}>
+            <i 
+            className={`btn text-light rounded-5 p-8 d-flex justify-content-center align-items-center ${active ? 'btn-primary' : ''} ${icon}`} 
+            style={{width : '52px', height : '52px', fontSize : '24px'}}
+            onClick={handleClick}
+            >
+            </i>
+        </Link>
     )
 }
+
+
 export function ShortButton ({icon, color, size = '24px'}){
 
     return (

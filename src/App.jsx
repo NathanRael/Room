@@ -1,31 +1,30 @@
 import '../css/custom.css';//bootsrtap sass
 
-import { popularMovie } from './data';
 
-import Hero from './components/hero';
-import SearchBar from './components/searchBar';
 import Navbar from './components/navBar';
-import MovieCardContainer from './components/movieCardContainer';
-import MovieSection from './components/movieSection';
-import WatchListSection from './components/watchListSection';
-import WatchMovieSection from './components/watchMovieSection';
+import Home from './pages/Home';
+import Movies from './pages/Movies';
+import WatchLists from './pages/WatchLists';
+import WatchMovie from './pages/WatchMovie';
+import NoPage from './pages/NoPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 export default function App() {
 
   return (
     <>
-      <SearchBar is_fixed={false}/>
-      <Navbar/>
-      <Hero
-        image = {popularMovie.srcImage}
-        title = {popularMovie.title}
-        rate = {popularMovie.rate}
-        sinopsis = {popularMovie.sinopsis}
-      />
-      <MovieCardContainer/>
-      <MovieSection/>
-      <WatchListSection/>
-      <WatchMovieSection/>
+
+      <Router>
+        <Navbar/>
+        <Routes >
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/Movie' element={<Movies/>}></Route>
+          <Route path='/WatchList' element={<WatchLists/>}></Route>
+          <Route path='/Watch' element={<WatchMovie/>}></Route>
+          <Route path='*' element={<NoPage/>}></Route>
+        </Routes>
+      </Router>
     </> 
 
   );

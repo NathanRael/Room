@@ -1,5 +1,5 @@
 import {movieData} from '../data.js';
-import { ButtonMd, NavButton } from './buttons.jsx';
+import { ButtonMd, NavButton } from './Buttons.jsx';
 
 export default function WatchList(){
     return (

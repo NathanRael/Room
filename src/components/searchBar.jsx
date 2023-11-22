@@ -1,6 +1,6 @@
 import logo from '../assets/logo.png'
 
-export default function SearchBar ({is_fixed}){
+export default function SearchBar ({is_fixed, showSearchBar = true, title}){
     const logoStyle = {
         width : '88px',
         height : '47px'
@@ -23,10 +23,14 @@ export default function SearchBar ({is_fixed}){
                     <a href="" className="navbar-brand">
                         <img src={logo} alt="" style={logoStyle}/>
                     </a>
-                    <div className="text-light d-flex bg-tertiary rounded-5 justify-content-between shadow px-32 py-16" style={{width : '915px'}}>
-                        <input type="text" placeholder='search your movie ...' className='_searchInput' />
-                        <i className="bi bi-search text-light _searchIcon" type="button"></i>
-                    </div>
+                    { showSearchBar ? (
+                        <div className="text-light d-flex bg-tertiary rounded-5 justify-content-between shadow px-32 py-16" style={{width : '915px'}}>
+                            <input type="text" placeholder='search your movie ...' className='_searchInput' />
+                            <i className="bi bi-search text-light _searchIcon" type="button"></i>
+                        </div>
+                    ) : (
+                        <h1 className="title-3 text-light">{title}</h1>
+                    )}
                     <div className="bg-tertiary _lead text-light _userProfile _shadow" >R</div>
                 </div>
             </div>

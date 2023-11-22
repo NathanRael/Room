@@ -1,6 +1,6 @@
 import {movieData} from '../data.js';
-import Rate from './rate.jsx';
-import { ButtonMd, NavButton } from './buttons.jsx';
+import Rate from './Rate.jsx';
+import { ButtonMd, NavButton } from './Buttons.jsx';
 
 export default function MovieDetails (){
     return (

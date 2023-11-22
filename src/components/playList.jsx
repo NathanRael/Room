@@ -1,4 +1,4 @@
-import {ShortButton} from './buttons';
+import {ShortButton} from './Buttons';
 
 export default function PlayList(){
     return(
