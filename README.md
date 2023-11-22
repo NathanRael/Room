@@ -9,7 +9,7 @@ To install the project, you need to follow these few steps :
   4. Run `npm run dev`
      
 ## Features
-  Comming soon...
+  - Router
   
 ## Contribution
 Your return and your help would be appreciated
