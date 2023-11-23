@@ -9,10 +9,10 @@ export default function MovieDetails (){
                 <div className="col-12 col-lg-4">
                     <img src={movieData[0].srcImage} className="img-fluid h-100 w-100  _MovieCardImage"  />
                 </div>
-                <div class="col-12 col-lg-8">
-                    <div class="card-body text-light">
-                      <h5 class="card-title _subtitle">Card title</h5>
-                      <p class="card-text text-altlight _body">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div className="col-12 col-lg-8">
+                    <div className="card-body text-light">
+                      <h5 className="card-title _subtitle">Card title</h5>
+                      <p className="card-text text-altlight _body">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                     <div className="card-body d-flex gap-32 text-light">
                         <p className="card-text _link text-light">2016</p>

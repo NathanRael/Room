@@ -3,6 +3,7 @@ import { popularMovie } from '../data';
 import Hero from '../components/Hero';
 import SearchBar from '../components/SearchBar';
 import MovieCardContainer from '../components/MovieCardContainer';
+import Footer from '../components/Footer';
 
 export default function Home(){
     return(
@@ -15,6 +16,7 @@ export default function Home(){
                 sinopsis = {popularMovie.sinopsis}
             />
             <MovieCardContainer/>
+            <Footer></Footer>
         </section>
     )
 }

@@ -1,7 +1,6 @@
 import MovieFilter from "./MoviFilter";
 import Card from "./Card";
 import { movieData } from "../data";
-import { useEffect } from "react";
 const colStyle = {
     width : 'max-content'
 }
@@ -10,7 +9,7 @@ export default function MovieCardContainer(){
     const movies = movieData.map( movie => 
         <div className="col-3" style={colStyle}>
             <Card
-                key={movie}
+                key={movie.id}
                 title={movie.title}
                 sinopsis={movie.sinopsis}
                 date={movie.date}
@@ -26,7 +25,6 @@ export default function MovieCardContainer(){
                 <div className="row  justify-content-center align-item-center gap-24">
                     {movies}
                 </div>
-                
             </div>
         </section>
     )

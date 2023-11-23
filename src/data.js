@@ -13,6 +13,7 @@ export const popularMovie = {
 
 export const movieData = [
     {
+        id : 0,
         title : 'Spy X family',
         sinopsis : `The series follows master spy Twilight, who must disguise himself as psychiatrist
          Loid Forger and build a mock family in order to investigate political leader Donovan Desmond
@@ -22,6 +23,7 @@ export const movieData = [
         date : '2023'
     },
     {
+        id : 1,
         title : 'Jujustu kaizen',
         sinopsis : `The series follows master spy Twilight, who must disguise himself as psychiatrist
          Loid Forger and build a mock family in order to investigate political leader Donovan Desmond
@@ -31,6 +33,7 @@ export const movieData = [
         date : '2023'
     },
     {
+        id : 2,
         title : 'Demon slayer',
         sinopsis : `The series follows master spy Twilight, who must disguise himself as psychiatrist
          Loid Forger and build a mock family in order to investigate political leader Donovan Desmond
@@ -40,6 +43,7 @@ export const movieData = [
         date : '2021'
     },
     {
+        id : 3,
         title : 'chainsaw man',
         sinopsis : `The series follows master spy Twilight, who must disguise himself as psychiatrist
          Loid Forger and build a mock family in order to investigate political leader Donovan Desmond
@@ -49,6 +53,7 @@ export const movieData = [
         date : '2022'
     },
     {
+        id : 4,
         title : 'Spy X family',
         sinopsis : `The series follows master spy Twilight, who must disguise himself as psychiatrist
          Loid Forger and build a mock family in order to investigate political leader Donovan Desmond

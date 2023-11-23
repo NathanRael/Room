@@ -1,5 +1,6 @@
 import WatchList from "../components/WatchList";
 import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer';
 
 export default function WatchLists(){
     return(
@@ -10,6 +11,7 @@ export default function WatchLists(){
                 <WatchList/>
                 <WatchList/>
             </div>
+            <Footer></Footer>
         </div>
 
     )

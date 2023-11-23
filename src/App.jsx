@@ -9,7 +9,6 @@ import WatchMovie from './pages/WatchMovie';
 import NoPage from './pages/NoPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
 export default function App() {
 
   return (
@@ -18,7 +17,7 @@ export default function App() {
       <Router>
         <Navbar/>
         <Routes >
-          <Route path='/' element={<Home/>}></Route>
+          <Route path='/'  element={<Home/>}></Route>
           <Route path='/Movie' element={<Movies/>}></Route>
           <Route path='/WatchList' element={<WatchLists/>}></Route>
           <Route path='/Watch' element={<WatchMovie/>}></Route>

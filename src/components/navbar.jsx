@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavButton } from "./Buttons";
 
 export default function Navbar() {
@@ -24,16 +23,15 @@ export default function Navbar() {
     },
   ]);
 
-  function toggleActive(id) {
+  function toggleActive(path) {
     setNavItem((prevActive) => {
       return prevActive.map((item) => {
-        return item.id === id
+        return item.link === path
           ? { ...item, active: true }
           : { ...item, active: false };
       });
     });
   }
-  
 
   let navItemElement = navItems.map((nav) => (
     <NavButton
@@ -41,7 +39,7 @@ export default function Navbar() {
       icon={nav.icon}
       link={nav.link}
       active={nav.active}
-      handleClick={() => toggleActive(nav.id)}
+      handleClick={() => toggleActive(nav.link)}
     />
   ));
 

@@ -1,5 +1,6 @@
 import MovieDetails from "../components/MovieDetails";
 import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer';
 
 export default function Movies(){
     return(
@@ -10,6 +11,7 @@ export default function Movies(){
                 <MovieDetails/>
                 <MovieDetails/>
             </div>
+            <Footer></Footer>
         </section>
     )
 }
