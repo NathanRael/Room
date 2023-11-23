@@ -6,7 +6,7 @@ import MovieCardContainer from '../components/MovieCardContainer';
 
 export default function Home(){
     return(
-        <section  className="container-fluid p-0">
+        <section  className="container-fluid p-0 w-100">
             <SearchBar is_fixed={false}/>
             <Hero
                 image = {popularMovie.srcImage}

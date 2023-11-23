@@ -20,7 +20,7 @@ export default function MovieCardContainer(){
 
     )
     return (
-        <section className="container-fluid ps-156 pe-32 bg-secondary pt-40">
+        <section className="container-fluid ps-lg-156 pe-32 bg-secondary pt-40">
             <MovieFilter/>
             <div className="container-fluid p-16">
                 <div className="row  justify-content-center align-item-center gap-24">

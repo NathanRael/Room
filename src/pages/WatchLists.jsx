@@ -4,8 +4,8 @@ import SearchBar from '../components/SearchBar';
 export default function WatchLists(){
     return(
         <div className="container-fluid p-0">
-                <SearchBar is_fixed={true} showSearchBar={false} title='WatchList' />
-            <div className="d-flex flex-column row-gap-32 justify-content-center ps-156 pe-32 py-128">
+                <SearchBar is_fixed={false} showSearchBar={false} title='WatchList' />
+            <div className="d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-128 py-md-128">
                 <WatchList/>
                 <WatchList/>
                 <WatchList/>

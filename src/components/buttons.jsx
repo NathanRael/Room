@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export function Button ({name, icon, color, size}){
     return(
-        <button className={`btn  d-inline-flex text-light align-items-center btn-lg _button  px-32 py-16 _shadow ${color}`}>
+        <button className={`btn  d-inline-flex text-light align-items-center  justify-content-center justify-content-md-start btn-md-lg _button  px-sm-32 py-sm-16 _shadow ${color}`}>
             <i className={`${icon} me-2`}  style={{fontSize : '24px'}}></i>
             {name}
         </button>
@@ -10,7 +10,7 @@ export function Button ({name, icon, color, size}){
 }
 export function ButtonMd ({name, icon, color, size}){
     return(
-        <button className={`btn  px-16  d-flex text-light align-items-center  _body _shadow ${color}`} >
+        <button className={`btn  px-16  d-flex text-light align-items-center justify-content-center justify-content-md-start  _body _shadow ${color}`} >
             <i className={`${icon} me-2`} ></i>
             {name}
         </button>

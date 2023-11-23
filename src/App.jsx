@@ -1,7 +1,7 @@
 import '../css/custom.css';//bootsrtap sass
 
 
-import Navbar from './components/navBar';
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import WatchLists from './pages/WatchLists';

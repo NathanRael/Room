@@ -11,13 +11,14 @@
   src: url('./assets/fonts/Poppins-Bold.ttf');
 }
 
+
 :root{
-  --title-fs : 48.8px;
-  --title-3-fs : 31.3px;
-  --subtitle-fs : 25px;
-  --lead-fs :  20px;
-  --body-fs : 16px;
-  --link-fs : 12.8px;
+  --title-fs : 3.05rem;
+  --title-3-fs : 1.956rem;
+  --subtitle-fs : 1.563rem;
+  --lead-fs :  1.25rem;
+  --body-fs : 1rem;
+  --link-fs : 0.8rem;
 
   --bg-primary : #C1071E;
   --bg-secondary : #131834;
@@ -27,6 +28,8 @@
   --text-tertiary : #777777;
   --yellow : #CD9019;
   background-color: var(--bg-secondary) ;
+
+  font-size: var(--body-fs);
 }
 
 body{
@@ -57,6 +60,15 @@ body{
   font-family: 'poppins-medium';
 }
 
+._searchBar{
+  width: 915px;
+
+}
+
+._searchNav{
+  background-color: transparent;
+}
+
 ._searchInput{
   background-color: transparent;
   width: 100%;
@@ -85,12 +97,6 @@ body{
   align-items: center;
 }
 
-.heroImage{
-  width: 100%;
-  height: 90vh;
-  object-fit:cover;
-  object-position: top;
-}
 
 .imageFade{
   position: absolute;
@@ -101,19 +107,24 @@ body{
   height: 90vh;
 }
 
-.hero{
-  background-color: var(--bg-secondary);
-  border: 0;
+._hero{
+  background-position : 80px -80px;
+  width : 100%;
+  height : 90vh;
+  row-gap : 40px;
+}
+
+._heroBtnContainer{
+  width: 446px;
 }
 
 ._navbar{
   position: fixed;
-  /* width: fit-content; */
   top: 112px;
   left: 50px;
-  /* transform: translateY(-50%); */
   border-radius: 64px;
   align-items: center;
+  z-index: 4;
 }
 
 ._movieFilter{
@@ -138,6 +149,7 @@ body{
 
 ._MovieCardImage{
   background-size: contain;
+  border-radius: 1rem 0 0 1rem;
 }
 
 ._playList{
@@ -168,4 +180,91 @@ body{
   width: 0;
 }
 
+
+@media screen  and (max-width: 1200px){
+  ._searchBar{
+    max-width: 760px;
+  }
+
+  
+}
+@media screen  and (max-width: 1024px){
+  :root{
+    --body-fs : 14px;
+  }
+  ._searchBar{
+    max-width: 720px;
+  }
+
+  ._navbar{
+    top: 96px;
+  }
+  
+}
+
+@media screen and (max-width : 992px) {
+  ._navbar{
+    top: 128px;
+    left: 8px;
+  }
+
+  ._searchBar{
+    max-width: 512px;
+  }
+
+  ._hero{
+    height: 100vh;
+  }
+  ._movieCard{
+    max-width: 640px;
+    max-height: max-content;
+  }
+  
+  ._MovieCardImage{
+    border-radius: 1rem 1rem 0 0;
+  }
+}
+
+@media screen and (max-width : 768px) {
+  ._hero{
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width : 698px) {
+  ._searchBar{
+    max-width: 412px;
+  }
+}
+@media screen and (max-width : 595px) {
+  ._searchBar{
+    max-width: 350px;
+  }
+}
+
+
+@media screen and (max-width : 576px) {
+  :root{
+    --body-fs : 14px;
+  }
+  ._heroBtnContainer{
+    width: 100%;
+  }
+  ._hero{
+    height: 100vh;
+  }
+  ._searchNav{
+    background-color: var(--bg-tertiary);
+  }
+
+  ._navbar{
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    border-radius: 0;
+  }
+
+}
 
