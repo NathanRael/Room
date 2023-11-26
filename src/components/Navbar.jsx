@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavButton } from "./Buttons";
 
 export default function Navbar() {
+  const pathName = window.location.pathname;
   const [navItems, setNavItem] = useState([
     {
       id: 0,
@@ -22,11 +23,15 @@ export default function Navbar() {
       active: false,
     },
   ]);
+  
+  useEffect(()=>{
+    toggleActive(pathName);
+  }, [pathName] );
 
-  function toggleActive(path) {
+  function toggleActive(id) {
     setNavItem((prevActive) => {
       return prevActive.map((item) => {
-        return item.link === path
+        return item.link === id
           ? { ...item, active: true }
           : { ...item, active: false };
       });

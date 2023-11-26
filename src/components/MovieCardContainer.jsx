@@ -1,10 +1,9 @@
 import MovieFilter from "./MoviFilter";
 import Card from "./Card";
-import { animeList } from "../data";
 const colStyle = {
     width : 'max-content'
 }
-export default function MovieCardContainer(){
+export default function MovieCardContainer({animeList}){
     
     const movies = animeList.map( movie => 
         <div className="col-3" style={colStyle}>

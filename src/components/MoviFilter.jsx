@@ -9,7 +9,7 @@ export default function MovieFilter(){
             <div className=" ps-8">
                 <select name="" id="" type="button" className="form-select bg-tertiary text-light  rounded-5 px-32 _shadow _body" style={{width : 'max-content'}}>
                     <option value="T">Trends</option>
-                    <option value="P">Popularity</option>
+                    <option value="P">Adventures</option>
                     <option value="R">Recent</option>
                 </select>
             </div>

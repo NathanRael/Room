@@ -1,28 +1,14 @@
 import Rate from './Rate';
 import { ButtonMd, IconButton } from './Buttons';
 import { useState } from 'react';
+import redirect from './Redirect';
 
-export default function MovieDetails ({srcImage, title, sinopsis, date, rate, episode}){
-    const [clickedIcon, setClickedIcon] = useState({
-        isFavorite : false,
-        watchedList : false
-    })
+export default function MovieDetails ({id, srcImage, title, sinopsis, date, rate, episode, addToWatchList}){
+    const [addedToWatchList, setAddedToWatchList] = useState(false);
 
-    function toggleFavorite(){
-        setClickedIcon((prevIcon) =>{
-            return {
-                isFavorite : !prevIcon.isFavorite,
-                watchedList : prevIcon.watchedList
-            }
-        })
-    }
-    function addWatchedList(){
-        setClickedIcon((prevIcon) =>{
-            return {
-                isFavorite : prevIcon.isFavorite,
-                watchedList : true
-            }
-        })
+    function handleButtonClick(){
+        addToWatchList();
+        setAddedToWatchList(true);
     }
     return (
         <div className="card bg-tertiary rounded-4 text-light  _movieCard _shadow">
@@ -45,38 +31,27 @@ export default function MovieDetails ({srcImage, title, sinopsis, date, rate, ep
                         <p className="card-text _link text-light">Episode {episode}</p>
                     </div>
                     <div className="card-body row  align-items-center justify-content-evenly justify-content-lg-start row-gap-24 pb-24">
-                        <div className="col-md-4" style={{width : 'max-content'}}>
-                            <IconButton 
-                                icon="bi bi-heart"
-                                active={clickedIcon.isFavorite}
-                                handleClick={toggleFavorite}
-                            />
-                        </div>
-                        <div className="col-md-4" style={{width : 'max-content'}}>
+                        <div className="col-md-6" style={{width : 'max-content'}}>
                             
                             <ButtonMd
                                 name="Watch"
                                 icon="bi bi-play"
                                 color="bg-primary"
+                                handleclick={ () => redirect(id)}
                             />
                         </div>
-                        <div className="col-md-4" style={{width : 'max-content'}}>
+                        {/* <div className="col-md-4" style={{width : 'max-content'}}>
                             <ButtonMd
                                 name="Download all"
                                 icon="bi bi-cloud-download"
                                 color="bg-secondary" 
                             />
-                        </div>
-                        <div className="col-md-4" style={{width : 'max-content'}}>
-                            {/* <ButtonMd
-                                name="Watchlist"
-                                icon="bi bi-collection-play"
-                                color="bg-secondary" 
-                            /> */}
+                        </div> */}
+                        <div className="col-md-6" style={{width : 'max-content'}}>
                             <IconButton
                                 icon='bi bi-collection-play'
-                                active={clickedIcon.watchedList}
-                                handleClick={addWatchedList}
+                                active={addedToWatchList}
+                                handleClick={handleButtonClick}
                             />
                         </div>
 

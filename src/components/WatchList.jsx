@@ -19,11 +19,11 @@ export default function WatchList({ srcImage, title, handleclick }) {
           </div>
           <div className="card-body d-flex flex-column flex-md-row gap-16 gap-md-64">
             <ButtonMd name="Watch" icon="bi bi-play" color="bg-primary" />
-            <ButtonMd
+            {/* <ButtonMd
               name="Download all"
               icon="bi bi-cloud-download"
               color="bg-secondary"
-            />
+            /> */}
             <ButtonMd
               name="Remove"
               icon="bi bi-trash"

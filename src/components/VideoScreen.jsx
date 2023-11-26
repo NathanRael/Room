@@ -1,7 +1,11 @@
 export function VideoScreen(){
     return(
-        <video controls width="680">
-            <source src="../test/video.mkv" type="video/webm" />
-        </video>
+        <iframe
+        width="560"
+        height="315"
+        src="../test/video.mkv"
+        allowFullscreen
+        ></iframe>
+      
     )
 }

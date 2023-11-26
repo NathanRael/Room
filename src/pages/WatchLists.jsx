@@ -1,18 +1,15 @@
-import { animeWatchList } from "../data";
 import WatchList from "../components/WatchList";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import { useState } from "react";
 
-export default function WatchLists({ srcImage, title }) {
+export default function WatchLists({animeWatchList}) {
+
   const [watchedList, setWatchedList] = useState(animeWatchList);
 
   function removeList(id) {
     setWatchedList((prevWatchedList) => {
-      let newWatchedList = [];
-      prevWatchedList.map((movie) => {
-        return id === movie.id ? null : newWatchedList.push(movie);
-      });
+      let newWatchedList = prevWatchedList.filter((movie) => id != movie.id);
       return newWatchedList;
     });
   }
@@ -32,9 +29,7 @@ export default function WatchLists({ srcImage, title }) {
         {watchedList.length > 0 ? (
           [animeWatchListItem]
         ) : (
-          <p className="_lead  text-primary text-center">
-            You don't have any watch List yet{" "}
-          </p>
+          <p className="_lead  text-primary text-center">Empty watch list</p>
         )}
       </div>
       <Footer></Footer>
