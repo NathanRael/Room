@@ -1,5 +1,5 @@
-import Rate from './Rate.js';
-import { ButtonMd, IconButton } from './Buttons.jsx';
+import Rate from './Rate';
+import { ButtonMd, IconButton } from './Buttons';
 import { useState } from 'react';
 
 export default function MovieDetails ({srcImage, title, sinopsis, date, rate, episode}){
