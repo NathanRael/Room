@@ -3,8 +3,10 @@ import MovieDetails from "../components/MovieDetails";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import addToWatchList from "../components/AddToWatchList";
-
-export default function Movies({animeWatchList}) {
+import saveMovieInfo from "../components/SaveMovieInfo";
+import { useNavigate } from "react-router-dom";
+export default function Movies({ animeWatchList }) {
+  const navigate = useNavigate();
   return (
     <section className="container-fluid p-0 bg-secondary text-light ">
       <SearchBar is_fixed={true} />
@@ -19,7 +21,11 @@ export default function Movies({animeWatchList}) {
           rate={animeList[1].rate}
           date={animeList[1].date}
           episode={animeList[1].episode}
-          addToWatchList={ () => {addToWatchList(animeList[1], animeWatchList)}}
+          addToWatchList={() => { addToWatchList(animeList[1], animeWatchList) }}
+          onWatch={() => {
+            saveMovieInfo(animeList[1].id);
+            navigate('/Watch');
+          }}
         />
       </div>
       <Footer></Footer>

@@ -1,9 +1,11 @@
 import { VideoScreen } from "../components/VideoScreen";
 import {NavButton, ShortButton} from '../components/Buttons';
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function WatchMovie(){
     let currentMovieId;
+    const navigate = useNavigate();
     useEffect(() =>{
         currentMovieId = localStorage.getItem('currentMoviePlayed') || null;
     }, [])
@@ -15,6 +17,7 @@ export default function WatchMovie(){
                 <NavButton
                     icon='bi bi-arrow-left'
                     link='/Movie'
+                    handleClick={ () => navigate(-1)}
                 />
             </div>
             <div className="container-fluid d-flex justify-content-center ">

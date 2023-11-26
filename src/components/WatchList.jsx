@@ -1,6 +1,6 @@
 import { ButtonMd } from "./Buttons";
 
-export default function WatchList({ srcImage, title, handleclick }) {
+export default function WatchList({ srcImage, title, handleclick, onWatch }) {
   return (
     <div className="card bg-tertiary rounded-4 text-light  _movieCard _shadow">
       <div className="row g-0">
@@ -18,12 +18,7 @@ export default function WatchList({ srcImage, title, handleclick }) {
             </h5>
           </div>
           <div className="card-body d-flex flex-column flex-md-row gap-16 gap-md-64">
-            <ButtonMd name="Watch" icon="bi bi-play" color="bg-primary" />
-            {/* <ButtonMd
-              name="Download all"
-              icon="bi bi-cloud-download"
-              color="bg-secondary"
-            /> */}
+            <ButtonMd name="Watch" icon="bi bi-play" color="bg-primary" handleclick={onWatch} />
             <ButtonMd
               name="Remove"
               icon="bi bi-trash"
