@@ -1,5 +1,5 @@
 import { useState } from "react";
-import demonSlayer from "../assets/demonSlayer.jfif";
+import { Link } from "react-router-dom";
 import Rate from "./Rate";
 
 const cardImageStyle = {
@@ -7,7 +7,7 @@ const cardImageStyle = {
   objectFit: "cover",
 };
 
-export default function Card({ srcImage, title, sinopsis, date, rate }) {
+export default function Card({ id, srcImage, title, sinopsis, date, rate }) {
   const [favorite, setFavorite] = useState(false);
 
   function toggleFavorite() {
@@ -28,10 +28,10 @@ export default function Card({ srcImage, title, sinopsis, date, rate }) {
         style={cardImageStyle}
       />
       <div className="card-body  p-16 text-light">
-        <h1 className="card-title _lead " type="button">
+        <Link to=''  className="card-title _lead">
           {title}
-        </h1>
-        <h2 className="card-text _link text-altlight">{splitedSinopsis}</h2>
+        </Link>
+        <h2 className="card-text _link text-altlight mt-16">{splitedSinopsis}</h2>
       </div>
       <div className="card-footer border-0  d-flex justify-content-between align-item-center text-light _link p-16 pt-0">
         <p>{date}</p>

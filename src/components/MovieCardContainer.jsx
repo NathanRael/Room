@@ -9,6 +9,7 @@ export default function MovieCardContainer({animeList}){
         <div className="col-3" style={colStyle}>
             <Card
                 key={movie.id}
+                id={movie.id}
                 srcImage={movie.srcImage}
                 title={movie.title}
                 sinopsis={movie.sinopsis}
