@@ -14,13 +14,15 @@ export default function Card({ srcImage, title, sinopsis, date, rate }) {
     setFavorite((prevFav) => !prevFav);
   }
 
+  let splitedSinopsis = sinopsis.length > 180 ? sinopsis.slice(0,180) + ' . . .' : sinopsis;
+
   return (
     <div
       className="card rounded-4 bg-tertiary m-0 _shadow"
       style={{ width: "280px" }}
     >
       <img
-        src={demonSlayer}
+        src={srcImage}
         alt=""
         className="img-top rounded-top-4"
         style={cardImageStyle}
@@ -29,7 +31,7 @@ export default function Card({ srcImage, title, sinopsis, date, rate }) {
         <h1 className="card-title _lead " type="button">
           {title}
         </h1>
-        <h2 className="card-text _link text-altlight">{sinopsis}</h2>
+        <h2 className="card-text _link text-altlight">{splitedSinopsis}</h2>
       </div>
       <div className="card-footer border-0  d-flex justify-content-between align-item-center text-light _link p-16 pt-0">
         <p>{date}</p>

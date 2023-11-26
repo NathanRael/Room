@@ -34,6 +34,11 @@
 
 body{
   background-color: var(--bg-secondary);
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar{
+  width: 0;
 }
 
 /**font**/
@@ -109,6 +114,8 @@ body{
 
 ._hero{
   background-position : 80px -80px;
+  background-size: cover;
+  background-repeat: no-repeat;
   width : 100%;
   height : 90vh;
   row-gap : 40px;
@@ -128,7 +135,10 @@ body{
 }
 
 ._movieFilter{
-  position: relative;
+  position: sticky;
+  top: -16px;
+  z-index: 2;
+
 }
 
 ._movieFilter::before{
@@ -149,6 +159,7 @@ body{
 
 ._MovieCardImage{
   background-size: contain;
+  overflow: hidden;
   border-radius: 1rem 0 0 1rem;
 }
 

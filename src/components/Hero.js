@@ -10,6 +10,7 @@ export default function Hero(props) {
   const heroStyle = {
     background: `linear-gradient(rgba(19, 24, 52,0.8), rgba(19, 24, 52,0.8)),  url(${props.image})`,
     backgroundSize: "cover",
+    backgroundRepeat : 'no-repeat'
   };
   return (
     <div
