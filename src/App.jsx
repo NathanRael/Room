@@ -1,12 +1,5 @@
 import "../css/custom.css"; //bootsrtap sass
 
-//images
-import chainsawMan from './assets/chainsawMan.jfif';
-import demonSlayer from './assets/demonSlayer.jfif';
-import jujutsu from './assets/jujutsu.jfif';
-import mashle from './assets/mashle.webp';
-import spyxfamily from './assets/spyxfamily.webp';
-
 import { animeList } from './data.js';
 
 import Navbar from "./components/Navbar";
@@ -20,40 +13,70 @@ import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [selectedCategorie, setSelectedCategorie] = useState('Shonen');
+  const [selectedCategorie, setSelectedCategorie] = useState( loadMovie('selected') || 'Shonen');
+  const [filteredAnimeList, setfilteredAnimeList ]= useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
 
-  function handleCategorieSelected(e){
-    setSelectedCategorie(e.target.value);
+  function handleCategorieSelected(category){
+    setSelectedCategorie(category);
+    saveMovie('selected', category );
   }
-  useEffect(() => { 
-    async function getSelectedAnime() {
-      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
-      const requestOption = {
-        method : 'GET',
-        headers : {
-          'Accept' : 'application/vnd.api+json',
-          'Content-Type' : 'application/vnd.api+json'
-        }
-      }
-      const response = await fetch(API_URL, requestOption);
 
-      const anime = await response.json();
-      console.log(anime);
+  useEffect(() => {
+    async function getSelectedAnime() {
+      try {
+        setLoading(true);
+        setError(null);
+        const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json'
+          }
+        };
+
+        const response = await fetch(API_URL, requestOptions);
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
+        }
+
+        const anime = await response.json();
+        setfilteredAnimeList(anime);
+
+      } catch (error) {
+        setError(error.message);
+        console.error('Error fetching anime data:', error);
+      }finally {
+        setLoading(false);
+      }
     }
 
     getSelectedAnime();
-  }, [selectedCategorie])
+  }, [selectedCategorie]);
+
   let animeWatchList = loadMovie('watchList') || [];
+
   //Pages
-  const HomePage = <Home 
-    animeWatchList={animeWatchList} 
-    animeList={animeList} 
-    handleCategorie={handleCategorieSelected}
-    selectedCategorie={selectedCategorie}
-  />;
+  const HomePage = (
+    <>
+      {loading && <p className="text-light _lead text-center position-absolute top-50 start-50 _loader">Loading...</p>}
+      {!loading && !error && (
+        <Home 
+          animeWatchList={animeWatchList} 
+          animeList={filteredAnimeList} 
+          handleCategorie={handleCategorieSelected}
+          selectedCategorie={selectedCategorie}
+        />
+      )}
+      {error && <p className="text-danger text-center">{error}</p>}
+    </>
+  );
   const MoviePage = <Movies  animeWatchList={animeWatchList}/>;
-  const WatchListPage = <WatchLists  animeWatchList={animeWatchList}/>;
-  const WatchMoviePage = <WatchMovie  animeList={animeList}/>;
+  const WatchListPage = <WatchLists  animeWatchList={filteredAnimeList}/>;
+  const WatchMoviePage = <WatchMovie  animeList={filteredAnimeList}/>;
 
   return (
     <>

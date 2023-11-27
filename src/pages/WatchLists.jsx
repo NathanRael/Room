@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function WatchLists({ animeWatchList }) {
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
-
+  let animeWatchListItem
   function removeList(id) {
     setWatchedList((prevWatchedList) => {
       let newWatchedList = prevWatchedList.filter((movie) => id != movie.id);
@@ -16,19 +16,28 @@ export default function WatchLists({ animeWatchList }) {
       return newWatchedList;
     });
   }
-  
-  let animeWatchListItem = watchedList.map((anime) => (
-    <WatchList
-      key={anime.id}
-      srcImage={anime.srcImage}
-      title={anime.title}
-      handleclick={() => removeList(anime.id)}
-      onWatch={() => {
-        saveMovie(anime.id);
-        navigate("/Watch");
-      }}
-    />
-  ));
+  // key={movie.id}
+  // id={movie.id}
+  // srcImage={movie.attributes.posterImage.large}
+  // title={movie.attributes.canonicalTitle}
+  // sinopsis={movie.attributes.description}
+  // date={movie.attributes.createdAt.slice(0,4)}
+  // rate={movie.attributes.averageRating}
+  if (watchedList.length > 0){
+    animeWatchListItem = watchedList.data.map((anime) => (
+      <WatchList
+        key={anime.id}
+        srcImage={anime.attributes.posterImage.large}
+        title={anime.attributes.canonicalTitle}
+        handleclick={() => removeList(anime.id)}
+        onWatch={() => {
+          saveMovie(anime.id);
+          navigate("/Watch");
+        }}
+      />
+    ));
+  }
+
   return (
     <div className="container-fluid p-0">
       <SearchBar is_fixed={false} showSearchBar={false} title="WatchList" />

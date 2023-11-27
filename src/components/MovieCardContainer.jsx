@@ -5,16 +5,16 @@ const colStyle = {
 }
 export default function MovieCardContainer({animeList}){
     
-    const movies = animeList.map( movie => 
+    const movies = animeList.data.map( movie => 
         <div className="col-3" style={colStyle}>
             <Card
-                key={movie.id}
-                id={movie.id}
-                srcImage={movie.srcImage}
-                title={movie.title}
-                sinopsis={movie.sinopsis}
-                date={movie.date}
-                rate={movie.rate}
+             key={movie.id}
+             id={movie.id}
+             srcImage={movie.attributes.posterImage.large}
+             title={movie.attributes.canonicalTitle}
+             sinopsis={movie.attributes.description}
+             date={movie.attributes.createdAt.slice(0,4)}
+             rate={movie.attributes.averageRating}
             />
         </div>
 

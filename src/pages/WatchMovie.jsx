@@ -23,7 +23,7 @@ export default function WatchMovie({ animeList }) {
             </div>
             <div className="container-fluid p-0 d-flex justify-content-center align-items-center flex-column row-gap-24">
                 <VideoScreen />
-                <p className="_lead text-light">{animeList[currentMovieId].title}</p>
+                <p className="_lead text-light">{animeList.data[currentMovieId].attributes.canonicalTitle}</p>
             </div>
         </section>
     )

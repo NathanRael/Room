@@ -8,26 +8,25 @@ import { saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
 export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie }) {
-  const [randomAnime, setRandomeAnime] = useState(4);
+  const [randomAnime, setRandomeAnime] = useState(0);
   const navigate = useNavigate();
-  // useEffect(()=>{
-  //   setRandomeAnime(Math.floor( Math.random() * animeList.length -1));
-  // }, []);
 
   return (
     <section className="container-fluid p-0 w-100">
       <SearchBar is_fixed={false} />
+      
       <Hero
-        key={animeList[randomAnime].id}
-        srcImage={animeList[randomAnime].srcImage}
-        title={animeList[randomAnime].title}
-        rate={animeList[randomAnime].rate}
-        sinopsis={animeList[randomAnime].sinopsis}
+        key={animeList.data[randomAnime].id}
+        id={animeList.data[randomAnime].id}
+        srcImage={animeList.data[randomAnime].attributes.posterImage.medium}
+        title={animeList.data[randomAnime].attributes.canonicalTitle}
+        rate={animeList.data[randomAnime].attributes.averageRating}
+        sinopsis={animeList.data[randomAnime].attributes.description}
         addToWatchList={() =>
-          addToWatchList(animeList[randomAnime], animeWatchList)
+          addToWatchList(animeList.data[randomAnime], animeWatchList)
         }
         onWatch={() => {
-          saveMovie("currentMoviePlayed", animeList[randomAnime].id);
+          saveMovie("currentMoviePlayed", randomAnime);
           navigate('/Watch');
         }}
       />
