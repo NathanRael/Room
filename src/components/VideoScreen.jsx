@@ -5,6 +5,7 @@ export function VideoScreen() {
       height="315"
       src="../test/video.mkv"
       allowFullscreen
+      className="_videoScreen"
     ></iframe>
   );
 }

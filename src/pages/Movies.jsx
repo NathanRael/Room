@@ -3,8 +3,10 @@ import MovieDetails from "../components/MovieDetails";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import addToWatchList from "../components/AddToWatchList";
-import saveMovieInfo from "../components/SaveMovieInfo";
 import { useNavigate } from "react-router-dom";
+import { saveMovie } from '../components/Functions';
+
+
 export default function Movies({ animeWatchList }) {
   const navigate = useNavigate();
   return (
@@ -23,7 +25,7 @@ export default function Movies({ animeWatchList }) {
           episode={animeList[1].episode}
           addToWatchList={() => { addToWatchList(animeList[1], animeWatchList) }}
           onWatch={() => {
-            saveMovieInfo(animeList[1].id);
+            saveMovie(animeList[1].id);
             navigate('/Watch');
           }}
         />

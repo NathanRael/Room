@@ -16,34 +16,17 @@ import WatchLists from "./pages/WatchLists";
 import WatchMovie from "./pages/WatchMovie";
 import NoPage from "./pages/NoPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { loadMovie, saveMovie } from "./components/Functions.js";
+import { useEffect } from "react";
 
 export default function App() {
-  let animeWatchList = [{
-    id: 0,
-    title: "Spy X Family",
-    sinopsis:
-      "The series follows master spy Twilight, who must disguise himself as psychiatrist Loid Forger and build a mock family in order to investigate political leader Donovan Desmond",
-    rate: "+16,000",
-    srcImage: chainsawMan,
-    date: "2023",
-    episode: "1-12",
-  },
-  {
-    id: 3,
-    title: "One Punch Man",
-    sinopsis:
-      "Saitama, a hero who can defeat any opponent with a single punch, seeks to find a worthy challenge and join the Hero Association to gain recognition.",
-    rate: "+18,000",
-    srcImage: mashle,
-    date: "2015",
-    episode: "1-12",
-  }]
-
+  
+  let animeWatchList = loadMovie('watchList') || [];
   //Pages
   const HomePage = <Home animeWatchList={animeWatchList} animeList={animeList} />;
   const MoviePage = <Movies  animeWatchList={animeWatchList}/>;
   const WatchListPage = <WatchLists  animeWatchList={animeWatchList}/>;
-  const WatchMoviePage = <WatchMovie />;
+  const WatchMoviePage = <WatchMovie  animeList={animeList}/>;
 
   return (
     <>

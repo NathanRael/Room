@@ -276,6 +276,9 @@ body::-webkit-scrollbar{
     height: max-content;
     border-radius: 0;
   }
+  ._videoScreen{
+    width: 90%;
+  }
 
 }
 
