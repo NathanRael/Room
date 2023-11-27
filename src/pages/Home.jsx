@@ -13,7 +13,7 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
 
   return (
     <section className="container-fluid p-0 w-100">
-      <SearchBar is_fixed={false} />
+      <SearchBar is_fixed={false} showSearchBar={false} />
       
       <Hero
         key={animeList.data[randomAnime].id}

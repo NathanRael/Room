@@ -35,7 +35,7 @@ export default function MovieDetails({
             <p className="card-text text-altlight _body">{sinopsis}</p>
           </div>
           <div className="card-body d-flex gap-32 text-light">
-            <p className="card-text _link text-light">{date}</p>
+            <p className="card-text _link text-light">{date.slice(0,4)}</p>
             <Rate rate={rate} heartColor="text-warning" isFill={true} />
             <p className="card-text _link text-light">Episode {episode}</p>
           </div>
