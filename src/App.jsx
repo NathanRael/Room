@@ -17,13 +17,40 @@ import WatchMovie from "./pages/WatchMovie";
 import NoPage from "./pages/NoPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  
+  const [selectedCategorie, setSelectedCategorie] = useState('Shonen');
+
+  function handleCategorieSelected(e){
+    setSelectedCategorie(e.target.value);
+  }
+  useEffect(() => { 
+    async function getSelectedAnime() {
+      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
+      const requestOption = {
+        method : 'GET',
+        headers : {
+          'Accept' : 'application/vnd.api+json',
+          'Content-Type' : 'application/vnd.api+json'
+        }
+      }
+      const response = await fetch(API_URL, requestOption);
+
+      const anime = await response.json();
+      console.log(anime);
+    }
+
+    getSelectedAnime();
+  }, [selectedCategorie])
   let animeWatchList = loadMovie('watchList') || [];
   //Pages
-  const HomePage = <Home animeWatchList={animeWatchList} animeList={animeList} />;
+  const HomePage = <Home 
+    animeWatchList={animeWatchList} 
+    animeList={animeList} 
+    handleCategorie={handleCategorieSelected}
+    selectedCategorie={selectedCategorie}
+  />;
   const MoviePage = <Movies  animeWatchList={animeWatchList}/>;
   const WatchListPage = <WatchLists  animeWatchList={animeWatchList}/>;
   const WatchMoviePage = <WatchMovie  animeList={animeList}/>;

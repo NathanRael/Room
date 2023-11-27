@@ -21,7 +21,6 @@ export default function MovieCardContainer({animeList}){
     )
     return (
         <section className="container-fluid px-0 bg-secondary pt-40">
-            <MovieFilter/>
             <div className="container-fluid mt-24  ps-lg-156 pe-32">
                 <div className="row  justify-content-center align-item-center gap-24">
                     {movies}

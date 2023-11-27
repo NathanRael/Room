@@ -14,7 +14,7 @@ export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, 
   };
   return (
     <div
-      className="container-fluid d-flex flex-column w-100    pt-32  ps-sm-24 ps-md-128 ps-lg-156 pe-md-128 pb-40 _hero"
+      className="container-fluid d-flex flex-column w-100    pt-32  ps-sm-24 ps-md-128 ps-lg-156 pe-md-128 pb-64 _hero"
       style={heroStyle}
     >
       <div className="d-flex flex-column" style={container}>
