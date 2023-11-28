@@ -17,13 +17,19 @@ export default function WatchMovie({ animeList }) {
                     link='/Movie'
                     handleClick={ () => navigate(-1)}
                 />
+                
             </div>
             <div className="container-fluid p-0 d-flex justify-content-center align-items-center flex-column row-gap-24">
+                
                 <VideoScreen
                     youtubeVideoSrc={youtubeVideo}
                  />
                 <p className="_lead text-light">{currentMoviePlayed.attributes.canonicalTitle}</p>
-                {/* <p className="_lead text-light">Youtube id : {youtubeVideoId}</p> */}
+                <a href={youtubeVideo} target="_blank" className="_lead text-light">  Watch trailer on youtube</a>
+                <div className="container-fluid">
+                    
+                </div>
+
             </div>
         </section>
     )
