@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Rate from "./Rate";
 
 const cardImageStyle = {
@@ -7,8 +7,9 @@ const cardImageStyle = {
   objectFit: "cover",
 };
 
-export default function Card({ id, srcImage, title, sinopsis, date, rate }) {
+export default function Card({ id, srcImage, title, sinopsis, date, rate, handleclick }) {
   const [favorite, setFavorite] = useState(false);
+  const navigate = useNavigate();
 
   function toggleFavorite() {
     setFavorite((prevFav) => !prevFav);
@@ -28,7 +29,11 @@ export default function Card({ id, srcImage, title, sinopsis, date, rate }) {
         style={cardImageStyle}
       />
       <div className="card-body  p-16 text-light">
-        <Link to=''  className="card-title _lead">
+        <Link 
+        to='/Movie'  
+        className="card-title _lead"
+        onClick={handleclick}
+        >
           {title}
         </Link>
         <h2 className="card-text _link text-altlight mt-16">{splitedSinopsis}</h2>

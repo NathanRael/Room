@@ -8,7 +8,7 @@ import { loadMovie, saveMovie } from '../components/Functions';
 import { useEffect } from "react";
 
 
-export default function Movies({ animeSearchList, setSearchValue, searchValue, handleclick }) {
+export default function Movies({ animeSearchList, setSearchValue, searchValue, handleClick }) {
   const navigate = useNavigate();
   let animeSearchListItem;
   if (animeSearchList.data && animeSearchList.data.length > 0){
@@ -39,7 +39,7 @@ export default function Movies({ animeSearchList, setSearchValue, searchValue, h
         is_fixed={true} 
         setSearchValue={setSearchValue}
         searchValue={searchValue}
-        handleClick={handleclick}
+        handleClick={handleClick}
       />
       <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 py-256 py-sm-128">
         { animeSearchList.data && animeSearchList.data.length > 0 ? (

@@ -1,7 +1,5 @@
 import "../css/custom.css"; //bootsrtap sass
 
-import { animeList } from './data.js';
-
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
@@ -11,6 +9,12 @@ import NoPage from "./pages/NoPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
+
+/*
+  -redirect the user into watchMovie when he click a specific card
+  -save the watchListIcon status in the localstorage
+
+*/
 
 export default function App() {
   const [selectedCategorie, setSelectedCategorie] = useState( loadMovie('selected') || 'Shonen');
@@ -89,13 +93,28 @@ export default function App() {
     getSelectedAnime();
   }, [selectedCategorie]);
 
+  useEffect(() => {
+    const lastSearch = loadMovie('lastSearch')
+    searchAnime(lastSearch);
+  }, [])
+
   function handleSearch(){
     if (search != '' && search != null){
       searchAnime(search);
+      saveMovie('lastSearch', search);
       setSearch('');
     }
-
   }
+
+  function Search(searchKey){
+    if (searchKey != '' && searchKey != null){
+      searchAnime(searchKey);
+      saveMovie('lastSearch', searchKey);
+      setSearch('');
+    }
+  }
+
+
 
   let animeWatchList = loadMovie('watchList') || [];
 
@@ -113,6 +132,7 @@ export default function App() {
           animeList={filteredAnimeList} 
           handleCategorie={handleCategorieSelected}
           selectedCategorie={selectedCategorie}
+          handleCardClick={Search}
         />
       )}
       {error && (
@@ -131,11 +151,11 @@ export default function App() {
         </div>
       )}
       {!loading && !error && (
-        <Movies 
-          animeSearchList={searchList} 
-          setSearchValue={setSearch}
-          searchValue={search}
-          handleclick={handleSearch}
+        <Movies
+        animeSearchList={searchList}
+        handleClick={handleSearch}
+        searchValue={search}
+        setSearchValue={setSearch}
         />
       )}
       {error && (

@@ -19,6 +19,8 @@ export default function MovieDetails({
     setAddedToWatchList(true);
   }
 
+  const maxChar = 650;
+
 
   return (
     <div className="card bg-tertiary rounded-4 text-light  _movieCard _shadow">
@@ -32,7 +34,7 @@ export default function MovieDetails({
         <div className="col-12 col-lg-8">
           <div className="card-body text-light">
             <h5 className="card-title _subtitle">{title}</h5>
-            <p className="card-text text-altlight _body">{sinopsis}</p>
+            <p className="card-text text-altlight _body"> { sinopsis.length > maxChar ? sinopsis.slice(0,maxChar) + ' . . .' : sinopsis}</p>
           </div>
           <div className="card-body d-flex gap-32 text-light">
             <p className="card-text _link text-light">{date.slice(0,4)}</p>

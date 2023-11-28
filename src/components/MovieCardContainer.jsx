@@ -3,7 +3,7 @@ import Card from "./Card";
 const colStyle = {
     width : 'max-content'
 }
-export default function MovieCardContainer({animeList}){
+export default function MovieCardContainer({animeList, handleclick}){
     
     const movies = animeList.data.map( movie => 
         <div className="col-3" style={colStyle}>
@@ -15,6 +15,7 @@ export default function MovieCardContainer({animeList}){
              sinopsis={movie.attributes.description}
              date={movie.attributes.createdAt.slice(0,4)}
              rate={movie.attributes.averageRating}
+             handleclick={() => handleclick(movie.attributes.canonicalTitle)}
             />
         </div>
 

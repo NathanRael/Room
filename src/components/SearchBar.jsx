@@ -14,7 +14,6 @@ export default function SearchBar({
     height: "47px",
   };
 
-
   return (
     <>
       <nav
@@ -53,6 +52,7 @@ export default function SearchBar({
                 <SearchInput
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
+                  handleClick={handleClick}
                 />
               </form>
             ) : (
@@ -77,7 +77,7 @@ function SearchInput({ searchValue, setSearchValue, handleClick }) {
         setSearchValue(e.target.value);
       }}
     />
-    <i className="bi bi-search text-primary _searchIcon" type="submit" onClick={handleClick}></i>
+    <i className="bi bi-search text-primary _searchIcon" type="button" onClick={handleClick}></i>
   </>
   )
 }

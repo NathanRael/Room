@@ -158,14 +158,13 @@ body::-webkit-scrollbar{
 ._movieCard{
   max-width: 1120px;
   max-height: 600px;
-  
 }
 
 ._MovieCardImage{
-  background-size: contain;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 1rem 0 0 1rem;
-  max-height: 600px;
+  max-height: 400px;
 }
 
 ._playList{
@@ -233,7 +232,7 @@ body::-webkit-scrollbar{
     height: 80vh;
   }
   ._movieCard{
-    max-width: 640px;
+    max-width: 540px;
     max-height: max-content;
   }
   

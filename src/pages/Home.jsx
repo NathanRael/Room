@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
-export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie }) {
+export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick }) {
   const [randomAnime, setRandomeAnime] = useState(0);
   const navigate = useNavigate();
 
@@ -29,12 +29,16 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
           saveMovie("currentMoviePlayed", randomAnime);
           navigate('/Watch');
         }}
+        
       />
       <MovieFilter 
       handleCategorie={handleCategorie}
       selectedCategorie={selectedCategorie}
       />
-      <MovieCardContainer animeList={animeList} />
+      <MovieCardContainer 
+        animeList={animeList} 
+        handleclick={handleCardClick}
+      />
       <Footer></Footer>
     </section>
   );
