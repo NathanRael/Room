@@ -25,76 +25,77 @@ export default function App() {
     saveMovie('selected', category );
   }
 
-  // function setSearchValue(value){
-  //   setSearch(value);
-  // }
+  async function getSelectedAnime() {
+    try {
+      setLoading(true);
+      setError(null);
+      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie.toLowerCase()}`;
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.api+json',
+          'Content-Type': 'application/vnd.api+json'
+        }
+      };
+
+      const response = await fetch(API_URL, requestOptions);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
+      }
+
+      const anime = await response.json();
+      setfilteredAnimeList(anime);
+
+    } catch (error) {
+      setError(error.message);
+      console.error('Error fetching anime data:', error);
+    }finally {
+      setLoading(false);
+    }
+  }
+
+  async function searchAnime(searchKey){
+    searchKey = searchKey.toLowerCase();
+    try {
+      setLoading(true);
+      setError(null);
+      const API_URL = `https://kitsu.io/api/edge/anime?filter[text]=${searchKey}`;
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.api+json',
+          'Content-Type': 'application/vnd.api+json'
+        }
+      };
+
+      const response = await fetch(API_URL, requestOptions);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
+      }
+
+      const anime = await response.json();
+      setSearchList(anime);
+    } catch (error) {
+      setError(error.message);
+      console.error('Error fetching anime data:', error);
+    }finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function getSelectedAnime() {
-      try {
-        setLoading(true);
-        setError(null);
-        const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie.toLowerCase()}`;
-        const requestOptions = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/vnd.api+json',
-            'Content-Type': 'application/vnd.api+json'
-          }
-        };
-
-        const response = await fetch(API_URL, requestOptions);
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
-        }
-
-        const anime = await response.json();
-        setfilteredAnimeList(anime);
-
-      } catch (error) {
-        setError(error.message);
-        console.error('Error fetching anime data:', error);
-      }finally {
-        setLoading(false);
-      }
-    }
-
     getSelectedAnime();
   }, [selectedCategorie]);
 
-  useEffect(()=>{
-    async function searchAnime(){
-      try {
-        setLoading(true);
-        setError(null);
-        const API_URL = `https://kitsu.io/api/edge/anime?filter[text]=${search}`;
-        const requestOptions = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/vnd.api+json',
-            'Content-Type': 'application/vnd.api+json'
-          }
-        };
-
-        const response = await fetch(API_URL, requestOptions);
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
-        }
-
-        const anime = await response.json();
-        setSearchList(anime);
-      } catch (error) {
-        setError(error.message);
-        console.error('Error fetching anime data:', error);
-      }finally {
-        setLoading(false);
-      }
+  function handleSearch(){
+    if (search != '' && search != null){
+      searchAnime(search);
+      setSearch('');
     }
 
-    // searchAnime();
-  }, [search])
+  }
 
   let animeWatchList = loadMovie('watchList') || [];
 
@@ -131,9 +132,10 @@ export default function App() {
       )}
       {!loading && !error && (
         <Movies 
-          animeSearchList={filteredAnimeList} 
+          animeSearchList={searchList} 
           setSearchValue={setSearch}
           searchValue={search}
+          handleclick={handleSearch}
         />
       )}
       {error && (
@@ -152,7 +154,7 @@ export default function App() {
         </div>
       )}
       {!loading && !error && (
-        <WatchLists animeWatchList={filteredAnimeList} />
+        <WatchLists animeWatchList={animeWatchList} />
       )}
       {error && (
         <div className="text-danger text-center position-absolute top-50 start-50">

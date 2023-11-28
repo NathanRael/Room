@@ -37,7 +37,7 @@ export default function MovieDetails({
           <div className="card-body d-flex gap-32 text-light">
             <p className="card-text _link text-light">{date.slice(0,4)}</p>
             <Rate rate={rate} heartColor="text-warning" isFill={true} />
-            <p className="card-text _link text-light">Episode {episode}</p>
+            <p className="card-text _link text-light">Episode number {episode}</p>
           </div>
           <div className="card-body row  align-items-center justify-content-evenly justify-content-lg-start row-gap-24 pb-24">
             <div className="col-md-6" style={{ width: "max-content" }}>
