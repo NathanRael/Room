@@ -18,7 +18,7 @@ export default function Movies({ animeSearchList, setSearchValue, searchValue, h
      <MovieDetails
       id={anime.id}
       key={anime.id}
-      srcImage={anime.attributes.posterImage.small}
+      srcImage={anime.attributes.posterImage.large}
       title={anime.attributes.canonicalTitle}
       sinopsis={anime.attributes.description}
       rate={anime.attributes.averageRating}
