@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function WatchLists({ animeWatchList }) {
   const [watchedList, setWatchedList] = useState(animeWatchList);
-  useEffect(() => console.log(watchedList), [])
   const navigate = useNavigate();
   let animeWatchListItem;
   function removeList(id) {
@@ -26,7 +25,7 @@ export default function WatchLists({ animeWatchList }) {
         title={anime.attributes.canonicalTitle}
         handleclick={() => removeList(anime.id)}
         onWatch={() => {
-          saveMovie(anime.id);
+          saveMovie( "currentMoviePlayed", anime);
           navigate("/Watch");
         }}
       />

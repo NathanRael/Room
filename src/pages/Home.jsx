@@ -26,7 +26,7 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
           addToWatchList(animeList.data[randomAnime], animeWatchList)
         }
         onWatch={() => {
-          saveMovie("currentMoviePlayed", randomAnime);
+          saveMovie("currentMoviePlayed", animeList.data[randomAnime]);
           navigate('/Watch');
         }}
         

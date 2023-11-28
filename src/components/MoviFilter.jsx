@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function MovieFilter({handleCategorie, selectedCategorie}) {
-    const movieCategories = ['Shonen', 'Shojo', 'Adventure', 'Seinen', 'Isekai', 'Fantasy', 'Science-Fiction'];
+    const movieCategories = ['Shonen', 'Shoujo', 'Adventure', 'Seinen', 'Isekai', 'Fantasy', 'Science-Fiction'];
     // const [selectedCategorie, setSelectedCategorie] = useState('Shonen');
 
     // function handleCategorieSelected(e){

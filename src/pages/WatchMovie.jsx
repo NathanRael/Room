@@ -5,11 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { loadMovie } from "../components/Functions";
 
 export default function WatchMovie({ animeList }) {
-    const [currentMovieId, setCurrentMovieId] = useState(0)
+    const currentMoviePlayed = loadMovie("currentMoviePlayed");
     const navigate = useNavigate();
-    useEffect(() =>{
-        setCurrentMovieId(loadMovie("currentMoviePlayed"));
-    }, [])
     const id = 'qig4KOK2R2g'
     const youtubeVideo = `https://www.youtube.com/watch?v=${id}`;
     return(
@@ -23,7 +20,8 @@ export default function WatchMovie({ animeList }) {
             </div>
             <div className="container-fluid p-0 d-flex justify-content-center align-items-center flex-column row-gap-24">
                 <VideoScreen />
-                <p className="_lead text-light">{animeList.data[currentMovieId].attributes.canonicalTitle}</p>
+                <p className="_lead text-light">{currentMoviePlayed.attributes.canonicalTitle}</p>
+                <p className="_lead text-light">Yt id : {currentMoviePlayed.attributes.youtubeVideoId}</p>
             </div>
         </section>
     )
