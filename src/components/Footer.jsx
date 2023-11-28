@@ -14,7 +14,7 @@ export default function Footer() {
             </div>
             <div className="d-flex gap-8">
                 <i className="bi bi-facebook"></i>
-                <a href="#">Ralaivoavy Natanael</a>
+                <a href="https://www.facebook.com/profile.php?id=100087957505977">Ralaivoavy Natanael</a>
             </div>
         </div>
     </footer>
