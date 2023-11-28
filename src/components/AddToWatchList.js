@@ -1,6 +1,6 @@
 import { saveMovie } from "./Functions";
 function addToWatchList(newAnime, animeWatchList) {
-    const exists = animeWatchList.some(anime => anime.id === newAnime.id);
+    const exists = animeWatchList  ?  animeWatchList.some(anime => anime.id === newAnime.id) : false;
   
     if (!exists) {
       animeWatchList.push(newAnime);

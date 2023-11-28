@@ -100,8 +100,8 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    setAnimeWatchList(loadMovie('watchList'));
-  }, [loadMovie('watchList')])
+    setAnimeWatchList(loadMovie('watchList') || []);
+  }, [animeWatchList])
 
   function handleSearch(){
     if (search != '' && search != null){
