@@ -1,7 +1,7 @@
 # Room
 A simple movie website of which uses React js.In this website you can : search a specific movie (only anime), filter it by popularity, trend ..., add to watch list and even download it.
 
-## Intallation
+## Installation
 To install the project, you need to follow these few steps :
   1. Clone the project `git clone`
   2. Move to the project folder
