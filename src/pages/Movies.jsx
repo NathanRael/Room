@@ -8,7 +8,7 @@ import { loadMovie, saveMovie } from '../components/Functions';
 import { useEffect } from "react";
 
 
-export default function Movies({ animeSearchList, setSearchValue, searchValue, handleClick }) {
+export default function Movies({ animeSearchList, animeWatchList, setSearchValue, searchValue, handleClick }) {
   const navigate = useNavigate();
   let animeSearchListItem;
   if (animeSearchList.data && animeSearchList.data.length > 0){
@@ -24,7 +24,7 @@ export default function Movies({ animeSearchList, setSearchValue, searchValue, h
       rate={anime.attributes.averageRating}
       date={anime.attributes.createdAt}
       episode={anime.attributes.episodeCount}
-      addToWatchList={() => { addToWatchList(anime, loadMovie('watchList') || []) }}
+      addToWatchList={() => { addToWatchList(anime, animeWatchList) }}
       onWatch={() => {
         saveMovie('currentMoviePlayed', anime);
         navigate('/Watch');

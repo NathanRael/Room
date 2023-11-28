@@ -29,7 +29,7 @@ export default function SearchBar({
           {showSearchBar ? (
             <form
               onSubmit={(e) => e.preventDefault()}
-              className=" d-none d-sm-flex text-light bg-altlight rounded-5 justify-content-between a _shadow px-32 py-16 _searchBar"
+              className=" d-none d-sm-flex text-light bg-altlight rounded-5 justify-content-between  _shadow px-32 py-16 _searchBar"
             >
                 <SearchInput
                   searchValue={searchValue}

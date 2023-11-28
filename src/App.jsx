@@ -22,7 +22,8 @@ export default function App() {
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
 
   function handleCategorieSelected(category){
     setSelectedCategorie(category);
@@ -98,6 +99,10 @@ export default function App() {
     searchAnime(lastSearch);
   }, [])
 
+  useEffect(() => {
+    setAnimeWatchList(loadMovie('watchList'));
+  }, [loadMovie('watchList')])
+
   function handleSearch(){
     if (search != '' && search != null){
       searchAnime(search);
@@ -116,7 +121,8 @@ export default function App() {
 
 
 
-  let animeWatchList = loadMovie('watchList') || [];
+  
+
 
   //Pages
   const HomePage = (
@@ -156,6 +162,7 @@ export default function App() {
         handleClick={handleSearch}
         searchValue={search}
         setSearchValue={setSearch}
+        animeWatchList={animeWatchList}
         />
       )}
       {error && (

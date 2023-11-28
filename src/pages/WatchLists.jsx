@@ -9,13 +9,8 @@ export default function WatchLists({ animeWatchList }) {
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
   let animeWatchListItem;
-  function removeList(id) {
-    setWatchedList((prevWatchedList) => {
-      let newWatchedList = prevWatchedList.filter((movie) => id != movie.id);
-      saveMovie("watchList", newWatchedList);
-      return newWatchedList;
-    });
-  }
+
+
 
   if (watchedList.length > 0){
     animeWatchListItem = watchedList.map((anime) => (
@@ -32,9 +27,17 @@ export default function WatchLists({ animeWatchList }) {
     ));
   }
 
+  function removeList(id) {
+    setWatchedList((prevWatchedList) => {
+      let newWatchedList = prevWatchedList.filter((movie) => id != movie.id);
+      saveMovie("watchList", newWatchedList);
+      return newWatchedList;
+    });
+  }
+
   return (
     <div className="container-fluid p-0">
-      <SearchBar is_fixed={false} showSearchBar={false} title="WatchList" />
+      <SearchBar is_fixed={false} showSearchBar={false} title="Watch List" />
       <div className="d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-128 py-md-128">
         {watchedList.length > 0 ? (
           [animeWatchListItem]
