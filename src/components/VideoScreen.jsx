@@ -1,9 +1,9 @@
-export function VideoScreen() {
+export function VideoScreen({youtubeVideoSrc}) {
   return (
     <iframe
       width="560"
       height="315"
-      src="../test/video.mkv"
+      src={youtubeVideoSrc}
       allowFullscreen
       className="_videoScreen"
     ></iframe>
