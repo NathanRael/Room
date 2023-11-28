@@ -16,3 +16,5 @@ Your return and your help would be appreciated
 
 ## Design
 Here is the associated [figma design](https://www.figma.com/file/pEIjBURXq2Ca0ZBesatiut/Room?type=design&node-id=25%3A142&mode=design&t=S3ZJPADml2cx9L0C-1)
+## Deploy
+The website is deployed on [netlify](https://main--incomparable-crumble-58b2bd.netlify.app)
