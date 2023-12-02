@@ -10,11 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 
-/*
-  -redirect the user into watchMovie when he click a specific card
-  -save the watchListIcon status in the localstorage
-
-*/
 
 export default function App() {
   const [selectedCategorie, setSelectedCategorie] = useState( loadMovie('selected') || 'Shonen');
@@ -30,11 +25,27 @@ export default function App() {
     saveMovie('selected', category );
   }
 
+  function handleSearch(){
+    if (search != '' && search != null){
+      searchAnime(search);
+      saveMovie('lastSearch', search);
+      setSearch('');
+    }
+  }
+
+  function Search(searchKey){
+    if (searchKey != '' && searchKey != null){
+      searchAnime(searchKey);
+      saveMovie('lastSearch', searchKey);
+      setSearch('');
+    }
+  }
+
   async function getSelectedAnime() {
     try {
       setLoading(true);
       setError(null);
-      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie.toLowerCase()}`;
+      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
       const requestOptions = {
         method: 'GET',
         headers: {
@@ -61,7 +72,6 @@ export default function App() {
   }
 
   async function searchAnime(searchKey){
-    searchKey = searchKey.toLowerCase();
     try {
       setLoading(true);
       setError(null);
@@ -91,37 +101,16 @@ export default function App() {
   }
 
   useEffect(() => {
-    getSelectedAnime();
-  }, [selectedCategorie]);
-
-  useEffect(() => {
-    const lastSearch = loadMovie('lastSearch')
+    setSelectedCategorie(loadMovie('selected') || []);
+    setAnimeWatchList(loadMovie('watchList') || []);
+    const lastSearch = loadMovie('lastSearch');
     searchAnime(lastSearch);
+    getSelectedAnime();
   }, [])
 
   useEffect(() => {
-    setAnimeWatchList(loadMovie('watchList') || []);
-  }, [animeWatchList])
-
-  function handleSearch(){
-    if (search != '' && search != null){
-      searchAnime(search);
-      saveMovie('lastSearch', search);
-      setSearch('');
-    }
-  }
-
-  function Search(searchKey){
-    if (searchKey != '' && searchKey != null){
-      searchAnime(searchKey);
-      saveMovie('lastSearch', searchKey);
-      setSearch('');
-    }
-  }
-
-
-
-  
+    getSelectedAnime();
+  }, [selectedCategorie]);
 
 
   //Pages
