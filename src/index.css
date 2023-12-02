@@ -245,6 +245,10 @@ body::-webkit-scrollbar{
   ._hero{
     height: 100vh;
   }
+  ._navbar{
+    top: 128px;
+    left: 8px;
+  }
 }
 
 @media screen and (max-width : 698px) {

@@ -2,10 +2,10 @@ import WatchList from "../components/WatchList";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import { saveMovie } from "../components/Functions";
+import { loadMovie, saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 
-export default function WatchLists({ animeWatchList }) {
+export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
   let animeWatchListItem;
@@ -18,7 +18,10 @@ export default function WatchLists({ animeWatchList }) {
         key={anime.id}
         srcImage={anime.attributes.posterImage.large}
         title={anime.attributes.canonicalTitle}
-        handleclick={() => removeList(anime.id)}
+        handleclick={() => {
+          removeList(anime.id);
+          setAnimeWatchList(loadMovie('watchList') || []);
+        }}
         onWatch={() => {
           saveMovie( "currentMoviePlayed", anime);
           navigate("/Watch");

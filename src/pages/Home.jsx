@@ -4,10 +4,10 @@ import MovieCardContainer from "../components/MovieCardContainer";
 import Footer from "../components/Footer";
 import addToWatchList from "../components/AddToWatchList";
 import { useEffect, useState } from "react";
-import { saveMovie } from "../components/Functions";
+import { loadMovie, saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
-export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick }) {
+export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick}) {
   const [randomAnime, setRandomeAnime] = useState(0);
   const navigate = useNavigate();
 
@@ -22,9 +22,9 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
         title={animeList.data[randomAnime].attributes.canonicalTitle}
         rate={animeList.data[randomAnime].attributes.averageRating}
         sinopsis={animeList.data[randomAnime].attributes.description}
-        addToWatchList={() =>
-          addToWatchList(animeList.data[randomAnime], animeWatchList)
-        }
+        addToWatchList={() =>{
+          addToWatchList(animeList.data[randomAnime], animeWatchList);
+        }}
         onWatch={() => {
           saveMovie("currentMoviePlayed", animeList.data[randomAnime]);
           navigate('/Watch');

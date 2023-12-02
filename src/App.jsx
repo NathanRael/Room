@@ -12,13 +12,15 @@ import { useEffect, useState } from "react";
 
 
 export default function App() {
-  const [selectedCategorie, setSelectedCategorie] = useState( loadMovie('selected') || 'Shonen');
+  const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
   const [filteredAnimeList, setfilteredAnimeList ]= useState([]);
-  const [searchList, setSearchList] = useState([]);
+  const [animesearchList, setAnimeSearchList] = useState([]);
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
+  const [loading, setLoading] = useState(true);
+  const [selectedLoading, setSelectedLoading] = useState(true);
+  const [error, setError] = useState(null);
+
 
   function handleCategorieSelected(category){
     setSelectedCategorie(category);
@@ -41,9 +43,10 @@ export default function App() {
     }
   }
 
+
   async function getSelectedAnime() {
     try {
-      setLoading(true);
+      setSelectedLoading(true);
       setError(null);
       const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
       const requestOptions = {
@@ -67,7 +70,7 @@ export default function App() {
       setError(error.message);
       console.error('Error fetching anime data:', error);
     }finally {
-      setLoading(false);
+      setSelectedLoading(false);
     }
   }
 
@@ -91,7 +94,7 @@ export default function App() {
       }
 
       const anime = await response.json();
-      setSearchList(anime);
+      setAnimeSearchList(anime);
     } catch (error) {
       setError(error.message);
       console.error('Error fetching anime data:', error);
@@ -101,27 +104,27 @@ export default function App() {
   }
 
   useEffect(() => {
-    setSelectedCategorie(loadMovie('selected') || []);
-    setAnimeWatchList(loadMovie('watchList') || []);
-    const lastSearch = loadMovie('lastSearch');
-    searchAnime(lastSearch);
     getSelectedAnime();
-  }, [])
+    setSelectedCategorie(loadMovie('selected') || 'Shonen');
+    searchAnime(loadMovie('lastSearch'));
+    setAnimeSearchList(loadMovie('watchList') || []);
+  }, []);
 
   useEffect(() => {
     getSelectedAnime();
   }, [selectedCategorie]);
 
 
+
   //Pages
   const HomePage = (
     <>
-      {loading && (
+      {selectedLoading && (
         <div className="text-light text-center position-absolute top-50 start-50 _loader">
           <p>Loading...</p>
         </div>
       )}
-      {!loading && !error && (
+      {!selectedLoading && !error && (
         <Home 
           animeWatchList={animeWatchList} 
           animeList={filteredAnimeList} 
@@ -147,7 +150,7 @@ export default function App() {
       )}
       {!loading && !error && (
         <Movies
-        animeSearchList={searchList}
+        animeSearchList={animesearchList}
         handleClick={handleSearch}
         searchValue={search}
         setSearchValue={setSearch}
@@ -170,7 +173,10 @@ export default function App() {
         </div>
       )}
       {!loading && !error && (
-        <WatchLists animeWatchList={animeWatchList} />
+        <WatchLists 
+          animeWatchList={animeWatchList}
+          setAnimeWatchList={setAnimeWatchList} 
+        />
       )}
       {error && (
         <div className="text-danger text-center position-absolute top-50 start-50">
