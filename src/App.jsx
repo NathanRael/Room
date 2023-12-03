@@ -10,13 +10,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 
+/*
+1. Refactor the fetch API
+2. Addign show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
+3. Creating a dynamic popup that show some information like whether the anime is in the watchList or not
+
+*/
 
 export default function App() {
   const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
   const [filteredAnimeList, setfilteredAnimeList ]= useState([]);
   const [animesearchList, setAnimeSearchList] = useState([]);
-  const [search, setSearch] = useState("");
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [selectedLoading, setSelectedLoading] = useState(true);
   const [error, setError] = useState(null);
