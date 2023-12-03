@@ -85,7 +85,6 @@ export default function App() {
   
         const anime = await response.json();
         setData(anime);
-        console.log(anime);
       } catch (error) {
         setError(error.message);
         console.error('Error fetching anime data:', error);
