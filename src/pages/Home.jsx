@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
 export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick}) {
   const [randomAnime, setRandomeAnime] = useState(0);
+  const [addedToWatchList, setAddedToWatchList] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -24,7 +25,9 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
         sinopsis={animeList.data[randomAnime].attributes.description}
         addToWatchList={() =>{
           addToWatchList(animeList.data[randomAnime], animeWatchList);
+          setAddedToWatchList(true);
         }}
+        addedToWatchList={addedToWatchList}
         onWatch={() => {
           saveMovie("currentMoviePlayed", animeList.data[randomAnime]);
           navigate('/Watch');

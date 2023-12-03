@@ -1,7 +1,7 @@
 import { Button } from "./Buttons";
 import Rate from "./Rate";
 
-export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, onWatch}) {
+export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, addedToWatchList, onWatch}) {
   const container = {
     width: "fit-content",
     rowGap: "25px",
@@ -29,7 +29,7 @@ export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, 
           handleClick={onWatch}
         />
         <Button
-          name="See later"
+          name={ !addedToWatchList ? 'See later' : 'In watch list' }
           icon="bi bi-bookmark"
           color="btn-secondary"
           handleClick={addToWatchList}

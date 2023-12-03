@@ -18,7 +18,7 @@ export default function Navbar() {
     },
     {
       id: 2,
-      icon: "bi bi-collection-play",
+      icon: "bi bi-bookmark-check",
       link: "/WatchList",
       active: false,
     },
