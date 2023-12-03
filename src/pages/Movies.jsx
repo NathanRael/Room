@@ -11,9 +11,6 @@ import { useEffect } from "react";
 export default function Movies({ animeSearchList, animeWatchList, setSearchValue, searchValue, handleClick }) {
   const navigate = useNavigate();
 
-  function addedToWatchList(id){
-    
-  }
   let animeSearchListItem;
   if (animeSearchList.data && animeSearchList.data.length > 0){
     animeSearchListItem = animeSearchList.data.
@@ -33,7 +30,6 @@ export default function Movies({ animeSearchList, animeWatchList, setSearchValue
         navigate('/Watch');
       }}
       animeWatchList={animeWatchList}
-      addedToWatchList = {addedToWatchList}
       
     />
       )
