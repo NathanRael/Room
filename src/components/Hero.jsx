@@ -30,7 +30,7 @@ export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, 
         />
         <Button
           name="See later"
-          icon="bi bi-collection-play"
+          icon="bi bi-bookmark"
           color="btn-secondary"
           handleClick={addToWatchList}
         />

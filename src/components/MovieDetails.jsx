@@ -1,6 +1,7 @@
 import Rate from "./Rate";
 import { ButtonMd, IconButton } from "./Buttons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loadMovie, saveMovie } from "./Functions";
 
 export default function MovieDetails({
   srcImage,
@@ -12,6 +13,7 @@ export default function MovieDetails({
   addToWatchList,
   onWatch,
 }) {
+
   const [addedToWatchList, setAddedToWatchList] = useState(false);
 
   function handleAddToWatchListClick() {
@@ -52,7 +54,7 @@ export default function MovieDetails({
             </div>
             <div className="col-md-6" style={{ width: "max-content" }}>
               <IconButton
-                icon="bi bi-collection-play"
+                icon="bi bi-bookmark"
                 active={addedToWatchList}
                 handleClick={handleAddToWatchListClick}
               />

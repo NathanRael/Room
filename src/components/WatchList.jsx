@@ -21,7 +21,7 @@ export default function WatchList({ srcImage, title, handleclick, onWatch }) {
             <ButtonMd name="Watch" icon="bi bi-play" color="bg-primary" handleclick={onWatch} />
             <ButtonMd
               name="Remove"
-              icon="bi bi-trash"
+              icon="bi bi-bookmark-dash"
               color="bg-primary"
               handleclick={handleclick}
             />
