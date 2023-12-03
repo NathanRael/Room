@@ -292,7 +292,7 @@ body::-webkit-scrollbar{
 }
 @media screen and (max-width : 375px) {
   ._hero{
-    height: 150vh;
+    height: 180vh;
   }
 
 }
