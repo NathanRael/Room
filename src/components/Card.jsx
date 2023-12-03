@@ -8,12 +8,7 @@ const cardImageStyle = {
 };
 
 export default function Card({ id, srcImage, title, sinopsis, date, rate, handleclick }) {
-  const [favorite, setFavorite] = useState(false);
   const navigate = useNavigate();
-
-  function toggleFavorite() {
-    setFavorite((prevFav) => !prevFav);
-  }
 
   let splitedSinopsis = sinopsis.length > 180 ? sinopsis.slice(0,180) + ' . . .' : sinopsis;
 
@@ -42,9 +37,8 @@ export default function Card({ id, srcImage, title, sinopsis, date, rate, handle
         <p>{date}</p>
         <Rate
           rate={rate}
-          isFill={favorite}
-          toggleFavorite={toggleFavorite}
-          heartColor="text-primary"
+          isFill={true}
+          heartColor="text-warning"
           type="button"
         />
       </div>

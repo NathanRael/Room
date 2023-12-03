@@ -6,27 +6,29 @@ import Movies from "./pages/Movies";
 import WatchLists from "./pages/WatchLists";
 import WatchMovie from "./pages/WatchMovie";
 import NoPage from "./pages/NoPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 
 /*
 1. Refactor the fetch API
-2. Addign show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
-3. Creating a dynamic popup that show some information like whether the anime is in the watchList or not
-
+2. Adding show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
+3. implementing a dynamic popup that shows some information like whether the anime is in the watchList or not
 */
 
 export default function App() {
+  const location = useLocation;
+  const pathName = location.pathname;  
+  const baseUrl = 'https://kitsu.io/api/edge/anime?';
+  const [data, setData] = useState([]);
+  const [fetchType, setFetchType] = useState('');
   const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
-  const [filteredAnimeList, setfilteredAnimeList ]= useState([]);
-  const [animesearchList, setAnimeSearchList] = useState([]);
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
+  // const [animeSearchList, setAnimeSearchList] = useState([]);
+  // const [animeFilterList, setAnimeFilterList] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [selectedLoading, setSelectedLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   function handleCategorieSelected(category){
     setSelectedCategorie(category);
@@ -41,7 +43,7 @@ export default function App() {
     }
   }
 
-  function Search(searchKey){
+  function searchMovieSelected(searchKey){
     if (searchKey != '' && searchKey != null){
       searchAnime(searchKey);
       saveMovie('lastSearch', searchKey);
@@ -49,98 +51,80 @@ export default function App() {
     }
   }
 
-
-  async function getSelectedAnime() {
-    try {
-      setSelectedLoading(true);
-      setError(null);
-      const API_URL = `https://kitsu.io/api/edge/anime?filter[categories]=${selectedCategorie}`;
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.api+json',
-          'Content-Type': 'application/vnd.api+json'
-        }
-      };
-
-      const response = await fetch(API_URL, requestOptions);
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
-      }
-
-      const anime = await response.json();
-      setfilteredAnimeList(anime);
-
-    } catch (error) {
-      setError(error.message);
-      console.error('Error fetching anime data:', error);
-    }finally {
-      setSelectedLoading(false);
-    }
-  }
-
-  async function searchAnime(searchKey){
-    try {
-      setLoading(true);
-      setError(null);
-      const API_URL = `https://kitsu.io/api/edge/anime?filter[text]=${searchKey}`;
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.api+json',
-          'Content-Type': 'application/vnd.api+json'
-        }
-      };
-
-      const response = await fetch(API_URL, requestOptions);
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
-      }
-
-      const anime = await response.json();
-      setAnimeSearchList(anime);
-    } catch (error) {
-      setError(error.message);
-      console.error('Error fetching anime data:', error);
-    }finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getSelectedAnime();
+  function loadComponents(){
     setSelectedCategorie(loadMovie('selected') || 'Shonen');
-    searchAnime(loadMovie('lastSearch'));
-    setAnimeSearchList(loadMovie('watchList') || []);
-  }, []);
+  }
+
+  function searchAnime(searchKey){
+    setFetchType(`filter[text]=${searchKey}`);
+  }
+
+  function filterAnime(category){
+    setFetchType(`filter[categories]=${category}`)
+  }
 
   useEffect(() => {
-    getSelectedAnime();
+    async function fetchApi(){
+      try {
+        setLoading(true);
+        setError(null);
+        const API_URL = `${baseUrl}${fetchType}`;
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json'
+          }
+        };
+  
+        const response = await fetch(API_URL, requestOptions);
+  
+        if (!response.ok) {
+          throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
+        }
+  
+        const anime = await response.json();
+        setData(anime);
+        console.log(anime);
+      } catch (error) {
+        setError(error.message);
+        console.error('Error fetching anime data:', error);
+      }finally {
+        setLoading(false);
+      }
+    }
+
+    fetchApi();
+  }, [fetchType]);
+
+  useEffect(() =>{
+    loadComponents();
+  }, [])
+
+
+  useEffect(() => {
+    filterAnime(selectedCategorie);
   }, [selectedCategorie]);
-
-
 
   //Pages
   const HomePage = (
     <>
-      {selectedLoading && (
+      {loading && (
         <div className="text-light text-center position-absolute top-50 start-50 _loader">
           <p>Loading...</p>
         </div>
       )}
-      {!selectedLoading && !error && (
+      {!loading && !error && (
         <Home 
           animeWatchList={animeWatchList} 
-          animeList={filteredAnimeList} 
+          animeList={data} 
           handleCategorie={handleCategorieSelected}
           selectedCategorie={selectedCategorie}
-          handleCardClick={Search}
+          handleCardClick={searchMovieSelected}
         />
       )}
       {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50">
+        <div className="text-danger text-center position-absolute top-50 start-50 _loader">
           <p>{error}</p>
         </div>
       )}
@@ -149,22 +133,22 @@ export default function App() {
   
   const MoviePage = (
     <>
-      {loading && (
-        <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <p>Loading...</p>
-        </div>
-      )}
-      {!loading && !error && (
-        <Movies
-        animeSearchList={animesearchList}
-        handleClick={handleSearch}
-        searchValue={search}
-        setSearchValue={setSearch}
-        animeWatchList={animeWatchList}
-        />
-      )}
+    {loading && (
+      <div className="text-light text-center position-absolute top-50 start-50 _loader">
+        <p>Loading...</p>
+      </div>
+    )}
+    {!loading && !error && (
+    <Movies
+    animeSearchList={data}
+    handleClick={handleSearch}
+    searchValue={search}
+    setSearchValue={setSearch}
+    animeWatchList={animeWatchList}
+    />
+    )}
       {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50">
+        <div className="text-danger text-center position-absolute top-50 start-50 _loader">
           <p>{error}</p>
         </div>
       )}
@@ -172,24 +156,10 @@ export default function App() {
   );
   
   const WatchListPage = (
-    <>
-      {loading && (
-        <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <p>Loading...</p>
-        </div>
-      )}
-      {!loading && !error && (
-        <WatchLists 
-          animeWatchList={animeWatchList}
-          setAnimeWatchList={setAnimeWatchList} 
-        />
-      )}
-      {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50">
-          <p>{error}</p>
-        </div>
-      )}
-    </>
+    <WatchLists 
+      animeWatchList={animeWatchList}
+      setAnimeWatchList={setAnimeWatchList} 
+    />
   );
   
   const WatchMoviePage = (
@@ -200,7 +170,7 @@ export default function App() {
         </div>
       )}
       {!loading && !error && (
-        <WatchMovie animeList={filteredAnimeList} />
+        <WatchMovie animeList={data} />
       )}
       {error && (
         <div className="text-danger text-center position-absolute top-50 start-50">
@@ -213,7 +183,10 @@ export default function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar
+          filterAnime={ () => filterAnime(selectedCategorie)}
+          searchAnime={() => searchAnime(loadMovie('lastSearch') || search)}
+         />
         <Routes>
           <Route path="/" element={HomePage} />
           <Route path="/Movie" element={MoviePage} />

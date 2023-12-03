@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavButton } from "./Buttons";
+import { useLocation } from "react-router-dom";
 
-export default function Navbar() {
-  const pathName = window.location.pathname;
+export default function Navbar({filterAnime, searchAnime}) {
+  const location = useLocation();
+  const pathName = location.pathname;
   const [navItems, setNavItem] = useState([
     {
       id: 0,
@@ -25,6 +27,11 @@ export default function Navbar() {
   ]);
   
   useEffect(()=>{
+    if (pathName === '/'){
+      filterAnime();
+    }else if (pathName === '/Movie'){
+      searchAnime();
+    }
     toggleActive(pathName);
   }, [pathName] );
 
