@@ -11,10 +11,8 @@ import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 import InfoPopup from "./components/Popups.jsx";
 import Footer from "./components/Footer.jsx";
-/*
-- Adding show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
-- implementing a dynamic popup that shows some information like whether the anime is in the watchList or not
-*/
+
+
 
 export default function App() {
   const baseUrl = 'https://kitsu.io/api/edge/anime?';
