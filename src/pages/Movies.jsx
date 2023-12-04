@@ -42,7 +42,7 @@ export default function Movies({ animeSearchList, animeWatchList, setSearchValue
         searchValue={searchValue}
         handleClick={handleClick}
       />
-      <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 py-256 py-sm-128">
+      <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
         { animeSearchList.data && animeSearchList.data.length > 0 ? (
           [animeSearchListItem]
         ) : (

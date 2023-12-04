@@ -39,7 +39,6 @@ export default function Card({ id, srcImage, title, sinopsis, date, rate, handle
           rate={rate}
           isFill={true}
           heartColor="text-warning"
-          type="button"
         />
       </div>
     </div>

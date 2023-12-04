@@ -1,8 +1,7 @@
 export default function Footer() {
   let years = new Date().getFullYear();
   return (
-    <footer className="mt-128 mb-128 mb-md-16 container-fluid d-flex justify-content-center align-items-center flex-column text-altlight w-100 row-gap-16">
-        <div className="copyright">Copyright 2023 Natanael Ralaivoavy</div>
+    <footer className=" mb-128 mb-md-16 container-fluid d-flex justify-content-center align-items-center flex-column text-altlight w-100 row-gap-16">
         <div className="container-fluid d-flex flex-column flex-sm-row align-items-center justify-content-evenly  w-100">
             <div className="d-flex gap-8">
                 <i className="bi bi-envelope-at-fill"></i>
@@ -17,6 +16,7 @@ export default function Footer() {
                 <a href="https://www.facebook.com/profile.php?id=100087957505977">Ralaivoavy Natanael</a>
             </div>
         </div>
+        <div className="copyright _link">Copyright 2023 Natanael Ralaivoavy</div>
     </footer>
   );
 }

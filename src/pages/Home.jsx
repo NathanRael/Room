@@ -3,11 +3,13 @@ import SearchBar from "../components/SearchBar";
 import MovieCardContainer from "../components/MovieCardContainer";
 import Footer from "../components/Footer";
 import addToWatchList from "../components/AddToWatchList";
-import { useEffect, useState } from "react";
-import { loadMovie, saveMovie } from "../components/Functions";
+import { useState } from "react";
+import {  saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
-export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick}) {
+import { ButtonMd } from "../components/Buttons";
+
+export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick, handleSeeMore, pageChanged}) {
   const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
   const navigate = useNavigate();
@@ -42,6 +44,14 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
         animeList={animeList} 
         handleclick={handleCardClick}
       />
+      <div className="container-fluid ps-lg-156 d-flex justify-content-center align-items-center mb-64">
+        <ButtonMd
+          name={ !pageChanged ? 'Show more' : 'Reduce'}
+          icon={ !pageChanged ? 'bi bi-caret-down' : 'bi bi-caret-up' }
+          isIconLeft={false}
+          handleclick={handleSeeMore}
+        />
+      </div>
       <Footer></Footer>
     </section>
   );

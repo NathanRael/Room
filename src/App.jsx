@@ -17,7 +17,12 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   const baseUrl = 'https://kitsu.io/api/edge/anime?';
-  const [pageLimit, setPageLimit] = useState(10);
+  const [page, setPage] = useState({
+    pageLimit : 10,
+    pageChanged : false
+
+  });
+
   const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
   const [animeSearchList, setAnimeSearchList] = useState([]);
@@ -46,6 +51,14 @@ export default function App() {
       saveMovie('lastSearch', searchKey);
       setSearch('');
     }
+  }
+
+  function toogleSeeMore(){
+    setPage((prevPage) => ({
+      pageLimit: prevPage.pageLimit === 10 ? 20 : 10,
+      pageChanged: !prevPage.pageChanged
+    }));
+    // saveMovie('page', [ {pageLimit : page.pageLimit, pageChanged : page.pageChanged}]);
   }
 
   async function searchAnime(searchKey){
@@ -82,7 +95,7 @@ export default function App() {
       try {
         setFilterAnimeLoading(true);
         setError(null);
-        const API_URL = `${baseUrl}filter[categories]=${selectedCategorie}&page[limit]=${pageLimit}`;
+        const API_URL = `${baseUrl}filter[categories]=${selectedCategorie}&page[limit]=${page.pageLimit}`;
         const requestOptions = {
           method: 'GET',
           headers: {
@@ -108,7 +121,7 @@ export default function App() {
     }
 
     filterAnime();
-  }, [selectedCategorie, pageLimit]);
+  }, [selectedCategorie, page.pageLimit]);
   
   useEffect(() =>{
     setSelectedCategorie(loadMovie('selected') || 'Shonen');
@@ -133,6 +146,8 @@ export default function App() {
           handleCategorie={handleCategorieSelected}
           selectedCategorie={selectedCategorie}
           handleCardClick={searchMovieSelected}
+          handleSeeMore={toogleSeeMore}
+          pageChanged={page.pageChanged}
         />
       )}
       {error && (
