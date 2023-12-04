@@ -8,7 +8,7 @@ import { loadMovie, saveMovie } from '../components/Functions';
 import { useEffect } from "react";
 
 
-export default function Movies({ animeSearchList, animeWatchList, setSearchValue, searchValue, handleClick }) {
+export default function Movies({ animeSearchList, animeWatchList, setSearchValue, searchValue, handleClick, renderPopupInfo }) {
   const navigate = useNavigate();
 
   let animeSearchListItem;
@@ -24,7 +24,7 @@ export default function Movies({ animeSearchList, animeWatchList, setSearchValue
       rate={anime.attributes.averageRating}
       date={anime.attributes.createdAt}
       episode={anime.attributes.episodeCount}
-      addToWatchList={() => { addToWatchList(anime, animeWatchList) }}
+      addToWatchList={() => { addToWatchList(anime, animeWatchList, renderPopupInfo) }}
       onWatch={() => {
         saveMovie('currentMoviePlayed', anime);
         navigate('/Watch');
@@ -35,7 +35,7 @@ export default function Movies({ animeSearchList, animeWatchList, setSearchValue
       )
   }
       return (
-    <section className="container-fluid p-0 bg-secondary text-light ">
+    <section className="container-fluid p-0 bg-secondary text-light mb-32 ">
       <SearchBar 
         is_fixed={true} 
         setSearchValue={setSearchValue}
@@ -49,7 +49,9 @@ export default function Movies({ animeSearchList, animeWatchList, setSearchValue
           <p className="_lead text-primary text-center">No anime match</p>
         )}
       </div>
-      <Footer></Footer>
+      <div className="container-fluid mt-32">
+        <Footer></Footer>
+      </div>
     </section>
   );
 }

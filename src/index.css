@@ -75,6 +75,16 @@ body::-webkit-scrollbar{
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
+/*  */
+
+._signIcon{
+  font-size: 56px;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
 
 ._searchInput{
   background-color: transparent;

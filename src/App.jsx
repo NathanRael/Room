@@ -9,7 +9,8 @@ import NoPage from "./pages/NoPage";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
-
+import InfoPopup from "./components/Popups.jsx";
+import Footer from "./components/Footer.jsx";
 /*
 - Adding show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
 - implementing a dynamic popup that shows some information like whether the anime is in the watchList or not
@@ -22,7 +23,11 @@ export default function App() {
     pageChanged : false
 
   });
-
+  const [popupInfo, setPopupInfo] = useState({
+    success : true,
+    isPopupVisible : false,
+    popupText : 'Text',
+  });
   const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
   const [animeSearchList, setAnimeSearchList] = useState([]);
@@ -59,6 +64,18 @@ export default function App() {
       pageChanged: !prevPage.pageChanged
     }));
     // saveMovie('page', [ {pageLimit : page.pageLimit, pageChanged : page.pageChanged}]);
+  }
+
+    function renderPopupInfo(text, success = true){
+    setPopupInfo({
+    isPopupVisible : true,
+    success : success,
+    popupText : text
+  });
+  }
+
+  function hidePopupInfo(){
+    setPopupInfo( (item) => ({...item, isPopupVisible : false}));
   }
 
   async function searchAnime(searchKey){
@@ -114,6 +131,7 @@ export default function App() {
         setAnimeFilterList(anime);
       } catch (error) {
         setError(error.message);
+        
         console.error('Error fetching anime data:', error);
       }finally {
         setFilterAnimeLoading(false);
@@ -148,6 +166,7 @@ export default function App() {
           handleCardClick={searchMovieSelected}
           handleSeeMore={toogleSeeMore}
           pageChanged={page.pageChanged}
+          renderPopupInfo={renderPopupInfo}
         />
       )}
       {error && (
@@ -172,6 +191,7 @@ export default function App() {
     searchValue={search}
     setSearchValue={setSearch}
     animeWatchList={animeWatchList}
+    renderPopupInfo={renderPopupInfo}
     />
     )}
       {error && (
@@ -199,6 +219,12 @@ export default function App() {
     <>
       <Router>
         <Navbar/>
+        <InfoPopup
+        text={popupInfo.popupText}
+        success={popupInfo.success}
+        isPopupVisible={popupInfo.isPopupVisible}
+        setIsPopupIsVisible={hidePopupInfo}
+        />
         <Routes>
           <Route path="/" element={HomePage} />
           <Route path="/Movie" element={MoviePage} />
@@ -206,6 +232,7 @@ export default function App() {
           <Route path="/Watch" element={WatchMoviePage}></Route>
           <Route path="*" element={<NoPage />}></Route>
         </Routes>
+        {/* <Footer></Footer> */}
       </Router>
     </>
   );

@@ -24,6 +24,17 @@ export function ButtonMd({ name = 'button', icon = 'bi-circle', color='bg-primar
   );
 }
 
+export function ButtonText({name = 'button', color='bg-primary', handleclick }){
+  return (
+  <button
+      className={`btn  px-48  d-flex text-light align-items-center justify-content-center justify-content-md-start   _body _shadow ${color}`}
+      onClick={handleclick}
+  >
+        {name}
+  </button>
+  );
+}
+
 export function NavButton({ icon, active, handleClick, link }) {
   return (
     <Link to={link} style={{ textDecoration: "none" }}>

@@ -4,12 +4,21 @@ import MovieCardContainer from "../components/MovieCardContainer";
 import Footer from "../components/Footer";
 import addToWatchList from "../components/AddToWatchList";
 import { useState } from "react";
-import {  saveMovie } from "../components/Functions";
+import { saveMovie } from "../components/Functions";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
 import { ButtonMd } from "../components/Buttons";
 
-export default function Home({ animeWatchList, animeList, handleCategorie, selectedCategorie, handleCardClick, handleSeeMore, pageChanged}) {
+export default function Home({
+  animeWatchList,
+  animeList,
+  handleCategorie,
+  selectedCategorie,
+  handleCardClick,
+  handleSeeMore,
+  pageChanged,
+  renderPopupInfo,
+}) {
   const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
   const navigate = useNavigate();
@@ -17,7 +26,6 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
   return (
     <section className="container-fluid p-0 w-100">
       <SearchBar is_fixed={false} showSearchBar={false} />
-      
       <Hero
         key={animeList.data[randomAnime].id}
         id={animeList.data[randomAnime].id}
@@ -25,29 +33,25 @@ export default function Home({ animeWatchList, animeList, handleCategorie, selec
         title={animeList.data[randomAnime].attributes.canonicalTitle}
         rate={animeList.data[randomAnime].attributes.averageRating}
         sinopsis={animeList.data[randomAnime].attributes.description}
-        addToWatchList={() =>{
-          addToWatchList(animeList.data[randomAnime], animeWatchList);
+        addToWatchList={() => {
+          addToWatchList(animeList.data[randomAnime], animeWatchList, renderPopupInfo);
           setAddedToWatchList(true);
         }}
         addedToWatchList={addedToWatchList}
         onWatch={() => {
           saveMovie("currentMoviePlayed", animeList.data[randomAnime]);
-          navigate('/Watch');
+          navigate("/Watch");
         }}
-        
       />
-      <MovieFilter 
-      handleCategorie={handleCategorie}
-      selectedCategorie={selectedCategorie}
+      <MovieFilter
+        handleCategorie={handleCategorie}
+        selectedCategorie={selectedCategorie}
       />
-      <MovieCardContainer 
-        animeList={animeList} 
-        handleclick={handleCardClick}
-      />
+      <MovieCardContainer animeList={animeList} handleclick={handleCardClick} />
       <div className="container-fluid ps-lg-156 d-flex justify-content-center align-items-center mb-64">
         <ButtonMd
-          name={ !pageChanged ? 'Show more' : 'Reduce'}
-          icon={ !pageChanged ? 'bi bi-caret-down' : 'bi bi-caret-up' }
+          name={!pageChanged ? "Show more" : "Reduce"}
+          icon={!pageChanged ? "bi bi-caret-down" : "bi bi-caret-up"}
           isIconLeft={false}
           handleclick={handleSeeMore}
         />
