@@ -27,11 +27,11 @@ export default function Navbar({filterAnime, searchAnime}) {
   ]);
   
   useEffect(()=>{
-    if (pathName === '/'){
-      filterAnime();
-    }else if (pathName === '/Movie'){
-      searchAnime();
-    }
+    // if (pathName === '/'){
+    //   filterAnime();
+    // }else if (pathName === '/Movie'){
+    //   searchAnime();
+    // }
     toggleActive(pathName);
   }, [pathName] );
 

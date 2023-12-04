@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadMovie } from "../components/Functions";
 
-export default function WatchMovie({ animeList }) {
+export default function WatchMovie() {
     const currentMoviePlayed = loadMovie("currentMoviePlayed");
     const navigate = useNavigate();
     const youtubeVideoId = currentMoviePlayed.attributes.youtubeVideoId || '';

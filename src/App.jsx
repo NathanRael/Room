@@ -11,24 +11,21 @@ import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 
 /*
-1. Refactor the fetch API
-2. Adding show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
-3. implementing a dynamic popup that shows some information like whether the anime is in the watchList or not
+- Adding show more button in the Home section down in the card, and in the movieSearch section both in the card and outside
+- implementing a dynamic popup that shows some information like whether the anime is in the watchList or not
 */
 
 export default function App() {
-  const location = useLocation;
-  const pathName = location.pathname;  
   const baseUrl = 'https://kitsu.io/api/edge/anime?';
-  const [data, setData] = useState([]);
-  const [fetchType, setFetchType] = useState('');
+  const [pageLimit, setPageLimit] = useState(10);
   const [selectedCategorie, setSelectedCategorie] = useState(loadMovie('selected') || 'Shonen');
   const [animeWatchList, setAnimeWatchList] = useState(loadMovie('watchList') || []); 
-  // const [animeSearchList, setAnimeSearchList] = useState([]);
-  // const [animeFilterList, setAnimeFilterList] = useState([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [animeSearchList, setAnimeSearchList] = useState([]);
+  const [animeFilterList, setAnimeFilterList] = useState([]);
+  const [filterAnimeLoading, setFilterAnimeLoading] = useState(true);
+  const [animeSearchListLoading, setAnimeSearchListLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
 
   function handleCategorieSelected(category){
     setSelectedCategorie(category);
@@ -51,24 +48,41 @@ export default function App() {
     }
   }
 
-  function loadComponents(){
-    setSelectedCategorie(loadMovie('selected') || 'Shonen');
-  }
+  async function searchAnime(searchKey){
+    try {
+      setAnimeSearchListLoading(true);
+      setError(null);
+      const API_URL = `${baseUrl}filter[text]=${searchKey}`;
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.api+json',
+          'Content-Type': 'application/vnd.api+json'
+        }
+      };
 
-  function searchAnime(searchKey){
-    setFetchType(`filter[text]=${searchKey}`);
-  }
+      const response = await fetch(API_URL, requestOptions);
 
-  function filterAnime(category){
-    setFetchType(`filter[categories]=${category}`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch anime data. Status: ${response.status}`);
+      }
+
+      const anime = await response.json();
+      setAnimeSearchList(anime)
+    } catch (error) {
+      setError(error.message);
+      console.error('Error fetching anime data:', error);
+    }finally {
+      setAnimeSearchListLoading(false);
+    }
   }
 
   useEffect(() => {
-    async function fetchApi(){
+    async function filterAnime(){
       try {
-        setLoading(true);
+        setFilterAnimeLoading(true);
         setError(null);
-        const API_URL = `${baseUrl}${fetchType}`;
+        const API_URL = `${baseUrl}filter[categories]=${selectedCategorie}&page[limit]=${pageLimit}`;
         const requestOptions = {
           method: 'GET',
           headers: {
@@ -84,39 +98,38 @@ export default function App() {
         }
   
         const anime = await response.json();
-        setData(anime);
+        setAnimeFilterList(anime);
       } catch (error) {
         setError(error.message);
         console.error('Error fetching anime data:', error);
       }finally {
-        setLoading(false);
+        setFilterAnimeLoading(false);
       }
     }
 
-    fetchApi();
-  }, [fetchType]);
-
+    filterAnime();
+  }, [selectedCategorie, pageLimit]);
+  
   useEffect(() =>{
-    loadComponents();
+    setSelectedCategorie(loadMovie('selected') || 'Shonen');
+    searchAnime(loadMovie('lastSearch') || search);
   }, [])
 
 
-  useEffect(() => {
-    filterAnime(selectedCategorie);
-  }, [selectedCategorie]);
+  
 
   //Pages
   const HomePage = (
     <>
-      {loading && (
+      {filterAnimeLoading && (
         <div className="text-light text-center position-absolute top-50 start-50 _loader">
           <p>Loading...</p>
         </div>
       )}
-      {!loading && !error && (
+      {!filterAnimeLoading && !error && (
         <Home 
           animeWatchList={animeWatchList} 
-          animeList={data} 
+          animeList={animeFilterList} 
           handleCategorie={handleCategorieSelected}
           selectedCategorie={selectedCategorie}
           handleCardClick={searchMovieSelected}
@@ -132,14 +145,14 @@ export default function App() {
   
   const MoviePage = (
     <>
-    {loading && (
+    {animeSearchListLoading && (
       <div className="text-light text-center position-absolute top-50 start-50 _loader">
         <p>Loading...</p>
       </div>
     )}
-    {!loading && !error && (
+    {!animeSearchListLoading && !error && (
     <Movies
-    animeSearchList={data}
+    animeSearchList={animeSearchList}
     handleClick={handleSearch}
     searchValue={search}
     setSearchValue={setSearch}
@@ -163,29 +176,14 @@ export default function App() {
   
   const WatchMoviePage = (
     <>
-      {loading && (
-        <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <p>Loading...</p>
-        </div>
-      )}
-      {!loading && !error && (
-        <WatchMovie animeList={data} />
-      )}
-      {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50">
-          <p>{error}</p>
-        </div>
-      )}
+      <WatchMovie/>
     </>
   );
   
   return (
     <>
       <Router>
-        <Navbar
-          filterAnime={ () => filterAnime(selectedCategorie)}
-          searchAnime={() => searchAnime(loadMovie('lastSearch') || search)}
-         />
+        <Navbar/>
         <Routes>
           <Route path="/" element={HomePage} />
           <Route path="/Movie" element={MoviePage} />
