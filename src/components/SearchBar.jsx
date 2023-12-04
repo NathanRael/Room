@@ -19,7 +19,7 @@ export default function SearchBar({
       <nav
         className={`navbar _searchNav ${
           is_fixed ? "position-fixed" : "position-absolute"
-        } mt-0 mt-md-8 px-8 px-lg-32 py-24 py-sm-0`}
+        } mt-0 px-8 px-lg-32 py-24 py-sm-8 _shadow`}
         style={{ width: "100%", zIndex: "3" }}
       >
         <div className="container-fluid d-flex justify-content-center justify-content-between row-gap-24 align-item-center w-100">

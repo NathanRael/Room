@@ -56,8 +56,8 @@ export default function Navbar({filterAnime, searchAnime}) {
   ));
 
   return (
-    <div className="_navbar  d-sm-flex flex-row flex-sm-column py-16 px-0  py-md-40 px-md-8 bg-tertiary gap-16 gap-md-80 gap-xl-128  text-light _shadow">
-      <div className=" px-8  d-flex flex-row flex-sm-column justify-content-evenly gap-56">
+    <div className="_navbar  d-sm-flex flex-row flex-sm-column py-16 px-0  py-md-40 px-md-8  gap-16 gap-md-80 gap-xl-128  text-light _shadow">
+      <div className=" px-8  d-flex flex-row flex-sm-column justify-content-evenly gap-48 gap-md-56">
         {navItemElement}
         <div className="d-block d-md-none">
           <NavButton

@@ -71,7 +71,9 @@ body::-webkit-scrollbar{
 }
 
 ._searchNav{
-  background-color: transparent;
+  background-color:rgba(22, 24, 39, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 ._searchInput{
@@ -135,6 +137,7 @@ body::-webkit-scrollbar{
   left: 50px;
   border-radius: 64px;
   align-items: center;
+  background-color:var(--bg-tertiary);
   z-index: 4;
 }
 
@@ -273,17 +276,16 @@ body::-webkit-scrollbar{
   ._hero{
     height: 120vh;
   }
-  ._searchNav{
-    background-color: var(--bg-tertiary);
-  }
 
   ._navbar{
     top: auto;
-    bottom: 0;
-    left: 0;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     height: max-content;
-    border-radius: 0;
+    border-radius: 32px;
+    width: 95%;
   }
   ._videoScreen{
     width: 90%;
