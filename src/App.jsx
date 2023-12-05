@@ -1,5 +1,3 @@
-
-
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
@@ -19,7 +17,6 @@ import Load from "./components/Load.jsx";
 import fetchJSON from "./functions/fetchJson.js";
 
 export default function App() {
-
   const baseUrl = "https://kitsu.io/api/edge/anime?";
   const [page, setPage] = useState({
     pageLimit: 10,
