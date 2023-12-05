@@ -1,7 +1,7 @@
 export default function Footer() {
   let years = new Date().getFullYear();
   return (
-    <footer className=" mb-128 mb-md-16 container-fluid d-flex justify-content-center align-items-center flex-column text-altlight w-100 row-gap-16 ">
+    <footer className="bg-secondary mb-128 mb-md-16 container-fluid d-flex justify-content-center align-items-center flex-column text-altlight w-100 row-gap-16 ">
         <div className="container-fluid d-flex flex-column flex-sm-row align-items-center justify-content-evenly  w-100">
             <div className="d-flex gap-8 _link">
                 <i className="bi bi-envelope-at-fill"></i>

@@ -202,7 +202,7 @@ export default function App() {
           isPopupVisible={popupInfo.isPopupVisible}
           setIsPopupIsVisible={hidePopupInfo}
         />
-        <Routes>
+        <Routes className>
           <Route path="/" element={HomePage} />
           <Route path="/Movie" element={MoviePage} />
           <Route path="/WatchList" element={WatchListPage}></Route>

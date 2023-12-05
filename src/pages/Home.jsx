@@ -24,7 +24,7 @@ export default function Home({
   const navigate = useNavigate();
 
   return (
-    <section className="container-fluid p-0 w-100">
+    <section className="bg-secondary container-fluid p-0 w-100">
       <SearchBar is_fixed={false} showSearchBar={false} />
       <Hero
         key={animeList.data[randomAnime].id}
