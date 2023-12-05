@@ -10,8 +10,14 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { loadMovie, saveMovie } from "./components/Functions.js";
 import { useEffect, useState } from "react";
 import InfoPopup from "./components/Popups.jsx";
-import Footer from "./components/Footer.jsx";
+import Load from "./components/Load.jsx";
+import fetchJSON from "./function/fetchJson.js";
 
+/**
+- Animate the loading text
+- Imporve some js code 
+-  
+ */
 
 
 export default function App() {
@@ -152,7 +158,7 @@ export default function App() {
     <>
       {filterAnimeLoading && (
         <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <p>Loading...</p>
+          <Load></Load>
         </div>
       )}
       {!filterAnimeLoading && !error && (
@@ -179,7 +185,7 @@ export default function App() {
     <>
     {animeSearchListLoading && (
       <div className="text-light text-center position-absolute top-50 start-50 _loader">
-        <p>Loading...</p>
+        <Load></Load>
       </div>
     )}
     {!animeSearchListLoading && !error && (
@@ -230,7 +236,6 @@ export default function App() {
           <Route path="/Watch" element={WatchMoviePage}></Route>
           <Route path="*" element={<NoPage />}></Route>
         </Routes>
-        {/* <Footer></Footer> */}
       </Router>
     </>
   );
