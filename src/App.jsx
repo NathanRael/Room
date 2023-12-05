@@ -14,7 +14,8 @@ import { loadMovie, saveMovie } from "./functions/saveInfo.js";
 import { useEffect, useState } from "react";
 import InfoPopup from "./components/Popups.jsx";
 import Load from "./components/Load.jsx";
-import fetchJSON from "./functions/fetchJson.js";
+// import fetchJSON from "./functions/fetchJson.js";
+
 
 export default function App() {
   const baseUrl = "https://kitsu.io/api/edge/anime?";
@@ -78,6 +79,22 @@ export default function App() {
 
   function hidePopupInfo() {
     setPopupInfo((item) => ({ ...item, isPopupVisible: false }));
+  }
+  
+  async function fetchJSON (apiUrl, requestOption = {}) {
+    const headers = {
+        'Accept': 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json',
+        ...requestOption.headers
+    }
+  
+    requestOption = {headers, ...requestOption};
+    const response = await fetch(apiUrl, requestOption);
+  
+    if (!response.ok){
+        throw new Error('Failed to fetch the data')
+    }
+    return response.json();
   }
 
   async function searchAnime(searchKey) {
