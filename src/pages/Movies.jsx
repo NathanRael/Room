@@ -1,11 +1,9 @@
-import { animeList } from "../data";
 import MovieDetails from "../components/MovieDetails";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import addToWatchList from "../functions/AddToWatchList";
 import { useNavigate } from "react-router-dom";
 import { loadMovie, saveMovie } from "../functions/saveInfo";
-import { useEffect } from "react";
 
 export default function Movies({
   animeSearchList,

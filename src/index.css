@@ -27,9 +27,13 @@
   --text-secondary : #DEDEDE;
   --text-tertiary : #777777;
   --yellow : #CD9019;
-    background-color: var(--bg-secondary);
 
+  background-color: var(--bg-secondary);
   font-size: var(--body-fs);
+}
+
+#root{
+  background-color: var(--bg-secondary) ;
 }
 
 body{
