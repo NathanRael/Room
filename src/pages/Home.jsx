@@ -2,9 +2,9 @@ import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
 import MovieCardContainer from "../components/MovieCardContainer";
 import Footer from "../components/Footer";
-import addToWatchList from "../components/AddToWatchList";
+import addToWatchList from "../functions/AddToWatchList";
 import { useState } from "react";
-import { saveMovie } from "../components/Functions";
+import { saveMovie } from "../functions/saveInfo";
 import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
 import { ButtonMd } from "../components/Buttons";
@@ -34,7 +34,11 @@ export default function Home({
         rate={animeList.data[randomAnime].attributes.averageRating}
         sinopsis={animeList.data[randomAnime].attributes.description}
         addToWatchList={() => {
-          addToWatchList(animeList.data[randomAnime], animeWatchList, renderPopupInfo);
+          addToWatchList(
+            animeList.data[randomAnime],
+            animeWatchList,
+            renderPopupInfo
+          );
           setAddedToWatchList(true);
         }}
         addedToWatchList={addedToWatchList}

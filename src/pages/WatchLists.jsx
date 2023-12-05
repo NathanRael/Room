@@ -2,7 +2,7 @@ import WatchList from "../components/WatchList";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import { loadMovie, saveMovie } from "../components/Functions";
+import { loadMovie, saveMovie } from "../functions/saveInfo";
 import { useNavigate } from "react-router-dom";
 
 export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
@@ -11,8 +11,7 @@ export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
   let animeWatchListItem;
 
 
-
-  if (watchedList.length > 0){
+  if (watchedList.length > 0) {
     animeWatchListItem = watchedList.map((anime) => (
       <WatchList
         key={anime.id}
@@ -20,10 +19,10 @@ export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
         title={anime.attributes.canonicalTitle}
         handleclick={() => {
           removeList(anime.id);
-          setAnimeWatchList(loadMovie('watchList') || []);
+          setAnimeWatchList(loadMovie("watchList") || []);
         }}
         onWatch={() => {
-          saveMovie( "currentMoviePlayed", anime);
+          saveMovie("currentMoviePlayed", anime);
           navigate("/Watch");
         }}
       />
@@ -45,10 +44,12 @@ export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
         {watchedList.length > 0 ? (
           [animeWatchListItem]
         ) : (
-          <p className="_lead  text-primary text-center me-md-128">Empty watch list</p>
+          <p className="_lead  text-primary text-center me-md-128">
+            Empty watch list
+          </p>
         )}
       </div>
-      <Footer></Footer> 
+      <Footer></Footer>
     </div>
   );
 }

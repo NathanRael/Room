@@ -1,7 +1,7 @@
 import Rate from "./Rate";
 import { ButtonMd, IconButton } from "./Buttons";
 import { useEffect, useState } from "react";
-import { loadMovie, saveMovie } from "./Functions";
+import { loadMovie, saveMovie } from "../functions/saveInfo";
 
 export default function MovieDetails({
   srcImage,
@@ -13,7 +13,6 @@ export default function MovieDetails({
   addToWatchList,
   onWatch,
 }) {
-
   const [addedToWatchList, setAddedToWatchList] = useState(false);
 
   function handleAddToWatchListClick() {
@@ -22,7 +21,6 @@ export default function MovieDetails({
   }
 
   const maxChar = 650;
-
 
   return (
     <div className="card bg-tertiary rounded-4 text-light  _movieCard _shadow">
@@ -36,12 +34,19 @@ export default function MovieDetails({
         <div className="col-12 col-lg-8">
           <div className="card-body text-light">
             <h5 className="card-title _subtitle">{title}</h5>
-            <p className="card-text text-altlight _body"> { sinopsis.length > maxChar ? sinopsis.slice(0,maxChar) + ' . . .' : sinopsis}</p>
+            <p className="card-text text-altlight _body">
+              {" "}
+              {sinopsis.length > maxChar
+                ? sinopsis.slice(0, maxChar) + " . . ."
+                : sinopsis}
+            </p>
           </div>
           <div className="card-body d-flex gap-32 text-light">
-            <p className="card-text _link text-light">{date.slice(0,4)}</p>
+            <p className="card-text _link text-light">{date.slice(0, 4)}</p>
             <Rate rate={rate} heartColor="text-warning" isFill={true} />
-            <p className="card-text _link text-light">Episode number {episode}</p>
+            <p className="card-text _link text-light">
+              Episode number {episode}
+            </p>
           </div>
           <div className="card-body row  align-items-center justify-content-evenly justify-content-lg-start row-gap-24 pb-24">
             <div className="col-md-6" style={{ width: "max-content" }}>

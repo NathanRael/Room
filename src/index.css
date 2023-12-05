@@ -294,7 +294,7 @@ body::-webkit-scrollbar{
     transform: translateX(-50%);
     width: 100%;
     height: max-content;
-    border-radius: 32px;
+    border-radius: 40px;
     width: 95%;
   }
   ._videoScreen{

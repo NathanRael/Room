@@ -1,4 +1,4 @@
-import { saveMovie } from "./Functions";
+import { saveMovie } from "./saveInfo";
 function addToWatchList(newAnime, animeWatchList, renderPopupInfo) {
     const exists = animeWatchList?.some(anime => anime.id === newAnime.id);
   
