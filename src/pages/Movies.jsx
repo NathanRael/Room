@@ -4,8 +4,11 @@ import Footer from "../components/Footer";
 import addToWatchList from "../functions/AddToWatchList";
 import { useNavigate } from "react-router-dom";
 import { loadMovie, saveMovie } from "../functions/saveInfo";
+import Load from "../components/Load";
 
 export default function Movies({
+  animeSearchListLoading,
+  error,
   animeSearchList,
   animeWatchList,
   setSearchValue,
@@ -16,7 +19,7 @@ export default function Movies({
   const navigate = useNavigate();
 
   let animeSearchListItem;
-  if (animeSearchList.data && animeSearchList.data.length > 0) {
+  if (animeSearchList?.data && animeSearchList?.data?.length > 0) {
     animeSearchListItem = animeSearchList.data.map((anime) => (
       <MovieDetails
         id={anime.id}
@@ -48,7 +51,15 @@ export default function Movies({
       />
       <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
         {animeSearchList.data && animeSearchList.data.length > 0 ? (
-          [animeSearchListItem]
+
+          !animeSearchListLoading  && !error ? (
+            [animeSearchListItem]
+          ) : (
+            <div className="container-fluid d-flex justify-content-center align-items-center w-100">
+              <Load/>
+            </div>
+          )
+
         ) : (
           <p className="_lead text-primary text-center">No anime match</p>
         )}

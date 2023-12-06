@@ -1,24 +1,23 @@
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import WatchLists from "./pages/WatchLists";
 import WatchMovie from "./pages/WatchMovie";
 import NoPage from "./pages/NoPage";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
-import { loadMovie, saveMovie } from "./functions/saveInfo.js";
-import { useEffect, useState } from "react";
 import InfoPopup from "./components/Popups.jsx";
 import Load from "./components/Load.jsx";
-// import fetchJSON from "./functions/fetchJson.js";
+import { DataProvider } from "./context/DataContext";
+import { loadMovie, saveMovie } from "./functions/saveInfo.js";
 
+const baseUrl = "https://kitsu.io/api/edge/anime?";
 
 export default function App() {
-  const baseUrl = "https://kitsu.io/api/edge/anime?";
   const [page, setPage] = useState({
     pageLimit: 10,
     pageChanged: false,
@@ -28,92 +27,20 @@ export default function App() {
     isPopupVisible: false,
     popupText: "Text",
   });
-  const [selectedCategorie, setSelectedCategorie] = useState(
-    loadMovie("selected") || "Shonen"
-  );
-  const [animeWatchList, setAnimeWatchList] = useState(
-    loadMovie("watchList") || []
-  );
+  const [selectedCategorie, setSelectedCategorie] = useState('');
+  const [search, setSearch] = useState("");
+  const [animeWatchList, setAnimeWatchList] = useState([]);
   const [animeSearchList, setAnimeSearchList] = useState([]);
   const [animeFilterList, setAnimeFilterList] = useState([]);
   const [filterAnimeLoading, setFilterAnimeLoading] = useState(true);
   const [animeSearchListLoading, setAnimeSearchListLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState("");
 
-  function handleCategorieSelected(category) {
-    setSelectedCategorie(category);
-    saveMovie("selected", category);
-  }
-
-  function handleSearch() {
-    if (search != "" && search != null) {
-      searchAnime(search);
-      saveMovie("lastSearch", search);
-      setSearch("");
-    }
-  }
-
-  function searchMovieSelected(searchKey) {
-    if (searchKey != "" && searchKey != null) {
-      searchAnime(searchKey);
-      saveMovie("lastSearch", searchKey);
-      setSearch("");
-    }
-  }
-
-  function toogleSeeMore() {
-    setPage((prevPage) => ({
-      pageLimit: prevPage.pageLimit === 10 ? 20 : 10,
-      pageChanged: !prevPage.pageChanged,
-    }));
-  }
-
-  function renderPopupInfo(text, success = true) {
-    setPopupInfo({
-      isPopupVisible: true,
-      success: success,
-      popupText: text,
-    });
-  }
-
-  function hidePopupInfo() {
-    setPopupInfo((item) => ({ ...item, isPopupVisible: false }));
-  }
-  
-  async function fetchJSON (apiUrl, requestOption = {}) {
-    const headers = {
-        'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json',
-        ...requestOption.headers
-    }
-  
-    requestOption = {headers, ...requestOption};
-    const response = await fetch(apiUrl, requestOption);
-  
-    if (!response.ok){
-        throw new Error('Failed to fetch the data')
-    }
-    return response.json();
-  }
-
-  async function searchAnime(searchKey) {
-    try {
-      setAnimeSearchListLoading(true);
-      setError(null);
-      const API_URL = `${baseUrl}filter[text]=${searchKey}`;
-      const requestOptions = {
-        method: "GET",
-      };
-      const anime = await fetchJSON(API_URL, requestOptions);
-      setAnimeSearchList(anime);
-    } catch (error) {
-      setError(error.message);
-      console.error("Error fetching anime data:", error);
-    } finally {
-      setAnimeSearchListLoading(false);
-    }
-  }
+  useEffect(() => {
+    setSelectedCategorie(loadMovie("selected"));
+    searchAnime(loadMovie("lastSearch") || search);
+    setAnimeWatchList(loadMovie("watchList") || []);
+  }, []);
 
   useEffect(() => {
     async function filterAnime() {
@@ -138,80 +65,83 @@ export default function App() {
     filterAnime();
   }, [selectedCategorie, page.pageLimit]);
 
-  useEffect(() => {
-    setSelectedCategorie(loadMovie("selected") || "Shonen");
-    searchAnime(loadMovie("lastSearch") || search);
-  }, []);
+  async function fetchJSON(apiUrl, requestOption = {}) {
+    const headers = {
+      'Accept': 'application/vnd.api+json',
+      'Content-Type': 'application/vnd.api+json',
+      ...requestOption.headers
+    }
 
-  //Pages
-  const HomePage = (
-    <>
-      {filterAnimeLoading && (
-        <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <Load></Load>
-        </div>
-      )}
-      {!filterAnimeLoading && !error && (
-        <Home
-          animeWatchList={animeWatchList}
-          animeList={animeFilterList}
-          handleCategorie={handleCategorieSelected}
-          selectedCategorie={selectedCategorie}
-          handleCardClick={searchMovieSelected}
-          handleSeeMore={toogleSeeMore}
-          pageChanged={page.pageChanged}
-          renderPopupInfo={renderPopupInfo}
-        />
-      )}
-      {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50 _loader">
-          <p>{error}</p>
-        </div>
-      )}
-    </>
-  );
+    requestOption = { headers, ...requestOption };
+    const response = await fetch(apiUrl, requestOption);
 
-  const MoviePage = (
-    <>
-      {animeSearchListLoading && (
-        <div className="text-light text-center position-absolute top-50 start-50 _loader">
-          <Load></Load>
-        </div>
-      )}
-      {!animeSearchListLoading && !error && (
-        <Movies
-          animeSearchList={animeSearchList}
-          handleClick={handleSearch}
-          searchValue={search}
-          setSearchValue={setSearch}
-          animeWatchList={animeWatchList}
-          renderPopupInfo={renderPopupInfo}
-        />
-      )}
-      {error && (
-        <div className="text-danger text-center position-absolute top-50 start-50 _loader">
-          <p>{error}</p>
-        </div>
-      )}
-    </>
-  );
+    if (!response.ok) {
+      throw new Error('Failed to fetch the data')
+    }
+    return response.json();
+  }
 
-  const WatchListPage = (
-    <WatchLists
-      animeWatchList={animeWatchList}
-      setAnimeWatchList={setAnimeWatchList}
-    />
-  );
+  async function searchAnime(searchKey) {
+    try {
+      setAnimeSearchListLoading(true);
+      setError(null);
+      const API_URL = `${baseUrl}filter[text]=${searchKey}`;
+      const requestOptions = {
+        method: "GET",
+      };
+      const anime = await fetchJSON(API_URL, requestOptions);
+      setAnimeSearchList(anime);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error fetching anime data:", error);
+    } finally {
+      setAnimeSearchListLoading(false);
+    }
+  }
 
-  const WatchMoviePage = (
-    <>
-      <WatchMovie />
-    </>
-  );
+  function handleCategorieSelected(category) {
+    setSelectedCategorie(category);
+    saveMovie("selected", category);
+  }
+
+  function handleSearch() {
+    if (search !== "" && search !== null) {
+      searchAnime(search);
+      saveMovie("lastSearch", search);
+      setSearch("");
+    }
+  }
+
+  function searchMovieSelected(searchKey) {
+    if (searchKey !== "" && searchKey !== null) {
+      searchAnime(searchKey);
+      saveMovie("lastSearch", searchKey);
+      setSearch("");
+    }
+  }
+
+  function toogleSeeMore() {
+    setPage((prevPage) => ({
+      pageLimit: prevPage.pageLimit === 10 ? 20 : 10,
+      pageChanged: !prevPage.pageChanged,
+    }));
+  }
+
+  function renderPopupInfo(text, success = true) {
+    setPopupInfo({
+      isPopupVisible: true,
+      success: success,
+      popupText: text,
+    });
+  }
+
+  function hidePopupInfo() {
+    setPopupInfo((item) => ({ ...item, isPopupVisible: false }));
+  }
 
   return (
-    <>
-      <Router>
+    <Router>
+      <DataProvider>
         <Navbar />
         <InfoPopup
           text={popupInfo.popupText}
@@ -219,14 +149,44 @@ export default function App() {
           isPopupVisible={popupInfo.isPopupVisible}
           setIsPopupIsVisible={hidePopupInfo}
         />
-        <Routes className>
-          <Route path="/" element={HomePage} />
-          <Route path="/Movie" element={MoviePage} />
-          <Route path="/WatchList" element={WatchListPage}></Route>
-          <Route path="/Watch" element={WatchMoviePage}></Route>
-          <Route path="*" element={<NoPage />}></Route>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                animeWatchList={animeWatchList}
+                animeFilterList={animeFilterList}
+                handleCategorie={handleCategorieSelected}
+                selectedCategorie={selectedCategorie}
+                handleCardClick={searchMovieSelected}
+                handleSeeMore={toogleSeeMore}
+                pageChanged={page.pageChanged}
+                renderPopupInfo={renderPopupInfo}
+                filterAnimeLoading={filterAnimeLoading}
+                error={error}
+              />
+            }
+          />
+          <Route
+            path="/Movie"
+            element={
+              <Movies
+                animeSearchList={animeSearchList}
+                handleClick={handleSearch}
+                searchValue={search}
+                setSearchValue={setSearch}
+                animeWatchList={animeWatchList}
+                renderPopupInfo={renderPopupInfo}
+                animeSearchListLoading={animeSearchListLoading}
+                error={error}
+              />
+            }
+          />
+          <Route path="/WatchList" element={<WatchLists animeWatchList={animeWatchList} setAnimeWatchList={setAnimeWatchList} />} />
+          <Route path="/Watch" element={<WatchMovie />} />
+          <Route path="*" element={<NoPage />} />
         </Routes>
-      </Router>
-    </>
+      </DataProvider>
+    </Router>
   );
 }

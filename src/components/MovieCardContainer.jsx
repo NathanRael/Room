@@ -3,9 +3,9 @@ import Card from "./Card";
 const colStyle = {
     width : 'max-content'
 }
-export default function MovieCardContainer({animeList, handleclick}){
+export default function MovieCardContainer({animeFilterList, handleclick}){
     
-    const movies = animeList.data.map( movie => 
+    const movies = animeFilterList.data.map( movie => 
         <div className="col-3" style={colStyle}>
             <Card
              key={movie.id}
