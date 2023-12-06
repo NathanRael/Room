@@ -5,19 +5,17 @@ import addToWatchList from "../functions/AddToWatchList";
 import { useNavigate } from "react-router-dom";
 import { loadMovie, saveMovie } from "../functions/saveInfo";
 import Load from "../components/Load";
+import DataContext from "../context/DataContext";
+import { useContext } from "react";
 
-export default function Movies({
-  animeSearchListLoading,
-  error,
-  animeSearchList,
-  animeWatchList,
-  setSearchValue,
-  searchValue,
-  handleClick,
-  renderPopupInfo,
-}) {
+export default function Movies({}) {
+  const { 
+    error, animeSearchList, animeSearchListLoading, animeWatchList, search, setSearch, handleSearch,
+    renderPopupInfo
+   } =
+  useContext(DataContext);
+
   const navigate = useNavigate();
-
   let animeSearchListItem;
   if (animeSearchList?.data && animeSearchList?.data?.length > 0) {
     animeSearchListItem = animeSearchList.data.map((anime) => (
@@ -30,9 +28,7 @@ export default function Movies({
         rate={anime.attributes.averageRating}
         date={anime.attributes.createdAt}
         episode={anime.attributes.episodeCount}
-        addToWatchList={() => {
-          addToWatchList(anime, animeWatchList, renderPopupInfo);
-        }}
+        addToWatchList={() => addToWatchList(anime, animeWatchList, renderPopupInfo)}
         onWatch={() => {
           saveMovie("currentMoviePlayed", anime);
           navigate("/Watch");
@@ -45,21 +41,19 @@ export default function Movies({
     <section className="container-fluid p-0 bg-secondary text-light mb-32 ">
       <SearchBar
         is_fixed={true}
-        setSearchValue={setSearchValue}
-        searchValue={searchValue}
-        handleClick={handleClick}
+        setSearchValue={search}
+        searchValue={setSearch}
+        handleClick={handleSearch}
       />
       <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
         {animeSearchList.data && animeSearchList.data.length > 0 ? (
-
-          !animeSearchListLoading  && !error ? (
+          !animeSearchListLoading && !error ? (
             [animeSearchListItem]
           ) : (
             <div className="container-fluid d-flex justify-content-center align-items-center w-100">
-              <Load/>
+              <Load />
             </div>
           )
-
         ) : (
           <p className="_lead text-primary text-center">No anime match</p>
         )}

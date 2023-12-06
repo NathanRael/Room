@@ -1,16 +1,16 @@
 import WatchList from "../components/WatchList";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { loadMovie, saveMovie } from "../functions/saveInfo";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../context/DataContext";
 
-export default function WatchLists({ animeWatchList, setAnimeWatchList }) {
+export default function WatchLists() {
+  const {animeWatchList, setAnimeWatchList} = useContext(DataContext);
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
   let animeWatchListItem;
-
-
   if (watchedList.length > 0) {
     animeWatchListItem = watchedList.map((anime) => (
       <WatchList

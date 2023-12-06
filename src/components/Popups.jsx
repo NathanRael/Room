@@ -1,33 +1,32 @@
 import { ButtonText } from "./Buttons";
 import "./Popup.css";
-export default function InfoPopup({
-  text,
-  success = true,
-  isPopupVisible,
-  setIsPopupIsVisible,
-}) {
-  document.body.style.overflow = !isPopupVisible ? "auto" : "hidden";
+import DataContext from "../context/DataContext";
+import { useContext } from "react";
+export default function InfoPopup({}) {
+  const {popupInfo, hidePopupInfo} = useContext(DataContext);
+
+  document.body.style.overflow = !popupInfo.isPopupVisible ? "auto" : "hidden";
   return (
     <>
-      <div className={`_fade ${isPopupVisible ? "_popupVisible" : ""}`}></div>
+      <div className={`_fade ${popupInfo.isPopupVisible ? "_popupVisible" : ""}`}></div>
       <div
         className={`card position-fixed bg-tertiary _shadow rounded-3 _popup p-24 ${
-          isPopupVisible ? "_popupVisible" : ""
+          popupInfo.isPopupVisible ? "_popupVisible" : ""
         }`}
       >
         <i
           className={`bi ${
-            success ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill"
-          } text-${success ? "success" : "warning"} _signIcon`}
+            popupInfo.success ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill"
+          } text-${popupInfo.success ? "success" : "warning"} _signIcon`}
         ></i>
         <div className="card-body text-light text-center _lead">
-          {success ? "Success" : "Warning"}
+          {popupInfo.success ? "Success" : "Warning"}
         </div>
         <div className="card-body text-altlight">
-          <h3 className="_body text-center">{text}</h3>
+          <h3 className="_body text-center">{popupInfo.popupText}</h3>
         </div>
         <div className="card-footer d-flex justify-content-center  ">
-          <ButtonText name="Ok" handleclick={setIsPopupIsVisible} />
+          <ButtonText name="Ok" handleclick={hidePopupInfo} />
         </div>
       </div>
     </>

@@ -13,18 +13,14 @@ import MovieFilter from "../components/MoviFilter";
 import { ButtonMd } from "../components/Buttons";
 import Load from "../components/Load";
 
-export default function Home({
-  filterAnimeLoading,
-  error,
-  animeWatchList,
-  animeFilterList,
-  handleCategorie,
-  selectedCategorie,
-  handleCardClick,
-  handleSeeMore,
-  pageChanged,
-  renderPopupInfo,
-}) {
+
+export default function Home({}) {
+  const {
+    animeWatchList, renderPopupInfo, animeFilterList,
+    page, filterAnimeLoading, error, toogleSeeMore,
+    searchMovieSelected
+  } = useContext(DataContext);
+
   const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
   const navigate = useNavigate();
@@ -45,9 +41,9 @@ export default function Home({
             addToWatchList={() => {
               addToWatchList(
                 animeFilterList.data[randomAnime],
-                animeWatchList,
-                renderPopupInfo
+                animeWatchList, renderPopupInfo
               );
+              
               setAddedToWatchList(true);
             }}
             addedToWatchList={addedToWatchList}
@@ -56,23 +52,20 @@ export default function Home({
               navigate("/Watch");
             }}
           />
-          <MovieFilter
-            handleCategorie={handleCategorie}
-            selectedCategorie={selectedCategorie}
-          />
-          <MovieCardContainer animeFilterList={animeFilterList} handleclick={handleCardClick} />
+          <MovieFilter/>
+          <MovieCardContainer animeFilterList={animeFilterList} handleclick={searchMovieSelected} />
           <div className="container-fluid ps-lg-156 d-flex justify-content-center align-items-center mb-64">
             <ButtonMd
-              name={!pageChanged ? "Show more" : "Reduce"}
-              icon={!pageChanged ? "bi bi-caret-down" : "bi bi-caret-up"}
+              name={!page.pageChanged ? "Show more" : "Reduce"}
+              icon={!page.pageChanged ? "bi bi-caret-down" : "bi bi-caret-up"}
               isIconLeft={false}
-              handleclick={handleSeeMore}
+              handleclick={toogleSeeMore}
             />
           </div>
           <Footer></Footer>
         </section>
       ) : (
-        <div className="container-fluid position-fixed top-50 start-50">
+        <div className=" position-fixed top-50 start-50 translate-middle">
           <Load/>
         </div>
       )
@@ -80,3 +73,4 @@ export default function Home({
     </>
   );
 }
+

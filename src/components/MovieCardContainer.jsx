@@ -1,10 +1,11 @@
 import MovieFilter from "./MoviFilter";
+import DataContext from "../context/DataContext";
 import Card from "./Card";
+import { useContext } from "react";
 const colStyle = {
     width : 'max-content'
 }
 export default function MovieCardContainer({animeFilterList, handleclick}){
-    
     const movies = animeFilterList.data.map( movie => 
         <div className="col-3" style={colStyle}>
             <Card
