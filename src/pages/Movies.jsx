@@ -41,8 +41,8 @@ export default function Movies({}) {
     <section className="container-fluid p-0 bg-secondary text-light mb-32 ">
       <SearchBar
         is_fixed={true}
-        setSearchValue={search}
-        searchValue={setSearch}
+        setSearchValue={setSearch}
+        searchValue={search}
         handleClick={handleSearch}
       />
       <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
