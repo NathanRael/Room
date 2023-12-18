@@ -1,9 +1,10 @@
 import Rate from "./Rate";
 import { ButtonMd, IconButton } from "./Buttons";
-import { useEffect, useState } from "react";
-import { loadMovie, saveMovie } from "../functions/saveInfo";
+import { useContext, useEffect, useState } from "react";
+import DataContext from "../context/DataContext";
 
 export default function MovieDetails({
+  id,
   srcImage,
   title,
   sinopsis,
@@ -13,8 +14,11 @@ export default function MovieDetails({
   addToWatchList,
   onWatch,
 }) {
-  const [addedToWatchList, setAddedToWatchList] = useState(false);
 
+  const {animeWatchList} = useContext(DataContext);
+  const exists = animeWatchList?.some(anime => anime.id === id);
+  const [addedToWatchList, setAddedToWatchList] = useState(exists ? true : false);
+  
   function handleAddToWatchListClick() {
     addToWatchList();
     setAddedToWatchList(true);
@@ -53,7 +57,7 @@ export default function MovieDetails({
               <ButtonMd
                 name="Watch"
                 icon="bi bi-play"
-                color="bg-primary"
+                color="btn-primary"
                 handleclick={onWatch}
               />
             </div>

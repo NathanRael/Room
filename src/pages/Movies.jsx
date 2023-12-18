@@ -55,7 +55,7 @@ export default function Movies({}) {
             </div>
           )
         ) : (
-          <p className="_lead text-primary text-center">No anime match</p>
+          <p className="_lead text-primary text-center">No anime found</p>
         )}
       </div>
       <div className="container-fluid mt-32">

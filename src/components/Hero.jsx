@@ -1,7 +1,7 @@
 import { Button } from "./Buttons";
 import Rate from "./Rate";
 
-export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, addedToWatchList, onWatch}) {
+export default function Hero({ id, srcImage, title, sinopsis, rate, addToWatchList, addedToWatchList, onWatch, animeWatchList}) {
   const container = {
     width: "fit-content",
     rowGap: "25px",
@@ -11,6 +11,8 @@ export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, 
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };
+  const exists = animeWatchList?.some(anime => anime.id === id);
+
   return (
     <div
       className="container-fluid d-flex flex-column w-100   pt-32  ps-sm-24 ps-md-128 ps-lg-156 pe-md-128 pb-64 _hero"
@@ -29,7 +31,7 @@ export default function Hero({ srcImage, title, sinopsis, rate, addToWatchList, 
           handleClick={onWatch}
         />
         <Button
-          name={ !addedToWatchList ? 'See later' : 'In watch list' }
+          name={ !exists ? 'See later' : 'In watch list' }
           icon="bi bi-bookmark"
           color="btn-secondary"
           handleClick={addToWatchList}

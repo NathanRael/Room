@@ -27,11 +27,6 @@ export default function Navbar({filterAnime, searchAnime}) {
   ]);
   
   useEffect(()=>{
-    // if (pathName === '/'){
-    //   filterAnime();
-    // }else if (pathName === '/Movie'){
-    //   searchAnime();
-    // }
     toggleActive(pathName);
   }, [pathName] );
 
@@ -59,21 +54,21 @@ export default function Navbar({filterAnime, searchAnime}) {
     <div className="_navbar  d-sm-flex flex-row flex-sm-column py-16 px-0  py-md-40 px-md-8  gap-16 gap-md-80 gap-xl-128  text-light _shadow">
       <div className=" px-8  d-flex flex-row flex-sm-column justify-content-evenly gap-48 gap-md-56">
         {navItemElement}
-        <div className="d-block d-md-none">
+        {/* <div className="d-block d-md-none">
           <NavButton
             key={navItems.length}
             icon="bi  bi-box-arrow-left"
             link="/login"
           />
-        </div>
+        </div> */}
       </div>
-      <div className="d-none d-md-block">
+      {/* <div className="d-none d-md-block">
         <NavButton
           key={navItems.length}
           icon="bi  bi-box-arrow-left"
           link="/login"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

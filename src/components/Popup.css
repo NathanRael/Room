@@ -6,7 +6,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 5;
-    min-width: 325px;
+    width: 325px;
     transition: all 0.3s ease-in-out;
 }
 

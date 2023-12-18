@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function Button({ name = 'button', icon = 'bi-circle', color='bg-primary', handleClick }) {
+export function Button({ name = 'button', icon = 'bi-circle', color='btn-primary', handleClick }) {
   return (
       <button
         className={`btn  d-inline-flex text-light align-items-center  justify-content-center justify-content-md-start btn-md-lg _button  px-sm-32 py-sm-16 _shadow ${color}`}
@@ -11,7 +11,7 @@ export function Button({ name = 'button', icon = 'bi-circle', color='bg-primary'
       </button>
   );
 }
-export function ButtonMd({ name = 'button', icon = 'bi-circle', color='bg-primary', isIconLeft = true , handleclick }) {
+export function ButtonMd({ name = 'button', icon = 'bi-circle', color='btn-primary', isIconLeft = true , handleclick }) {
   return (
       <button
         className={`btn  px-16  d-flex text-light align-items-center justify-content-center justify-content-md-start   _body _shadow ${color}`}
@@ -24,7 +24,7 @@ export function ButtonMd({ name = 'button', icon = 'bi-circle', color='bg-primar
   );
 }
 
-export function ButtonText({name = 'button', color='bg-primary', handleclick }){
+export function ButtonText({name = 'button', color='btn-primary', handleclick }){
   return (
   <button
       className={`btn  px-48  d-flex text-light align-items-center justify-content-center justify-content-md-start   _body _shadow ${color}`}

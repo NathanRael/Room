@@ -13,7 +13,7 @@ export default function WatchList({ srcImage, title, handleclick, onWatch }) {
         </div>
         <div className="col-12 col-lg-8">
           <div className="card-body text-light">
-            <h5 className="card-title _subtitle text-center text-md-start">
+            <h5 className="card-title _lead text-center text-md-start">
               {title}
             </h5>
           </div>
@@ -22,7 +22,7 @@ export default function WatchList({ srcImage, title, handleclick, onWatch }) {
             <ButtonMd
               name="Remove"
               icon="bi bi-bookmark-dash"
-              color="bg-primary"
+              color="btn-primary"
               handleclick={handleclick}
             />
           </div>

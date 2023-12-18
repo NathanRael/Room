@@ -46,6 +46,7 @@ export default function Home({}) {
               
               setAddedToWatchList(true);
             }}
+            animeWatchList={animeWatchList}
             addedToWatchList={addedToWatchList}
             onWatch={() => {
               saveMovie("currentMoviePlayed", animeFilterList.data[randomAnime]);
