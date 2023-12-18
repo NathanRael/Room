@@ -5,7 +5,7 @@ export function VideoScreen({youtubeVideoSrc}) {
       height="315"
       src={youtubeVideoSrc}
       allowFullscreen
-      className="_videoScreen"
+      className="_videoScreen rounded-2"
     ></iframe>
   );
 }

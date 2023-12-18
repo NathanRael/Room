@@ -10,25 +10,26 @@ export default function WatchMovie() {
   const youtubeVideoId = currentMoviePlayed.attributes.youtubeVideoId || "";
   const youtubeVideo = `https://www.youtube.com/embed/${youtubeVideoId}`;
   return (
-    <section className="container-fluid  d-flex justify-content-between p-0 ps-md-156 pe-md-32 pt-128 text-light">
-      <div className="position-fixed top-0 left-0">
+    <>
+    <div className=" _backBtn">
         <NavButton
           icon="bi bi-arrow-left"
           link="/Movie"
           handleClick={() => navigate(-1)}
         />
       </div>
+    <section className="container-fluid  d-flex justify-content-between p-0 ps-md-156 pe-md-32 pt-128 text-light pb-128">
       <div className="container-fluid p-0 d-flex justify-content-center align-items-center flex-column row-gap-24">
-        <VideoScreen youtubeVideoSrc={youtubeVideo} />
-        <p className="_lead text-light">
+        <p className="_subtitle text-light  mb-0">
           {currentMoviePlayed.attributes.canonicalTitle}
         </p>
-        <a href={youtubeVideo} target="_blank" className="_lead text-light">
-          {" "}
-          Watch trailer on youtube
-        </a>
-        <div className="container-fluid"></div>
+        <VideoScreen youtubeVideoSrc={youtubeVideo} />
+        <div className="container-fluid mt-16 bg-tertiary rounded-2 p-32">
+        <h1 className="_lead mb-24">Synopsis : </h1>
+          <p className="_body">{currentMoviePlayed.attributes.synopsis}</p>
+        </div>
       </div>
     </section>
+    </>
   );
 }

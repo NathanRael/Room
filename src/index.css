@@ -213,6 +213,12 @@ body::-webkit-scrollbar{
   width: 0;
 }
 
+._backBtn{
+  position: absolute;
+  top: 24px;
+  left: 64px;
+}
+
 
 @media screen  and (max-width: 1200px){
   ._searchBar{
@@ -239,6 +245,11 @@ body::-webkit-scrollbar{
 @media screen and (max-width : 992px) {
   ._navbar{
     top: 128px;
+    left: 8px;
+  }
+
+  ._backBtn{
+    top: 24px;
     left: 8px;
   }
 
@@ -277,6 +288,11 @@ body::-webkit-scrollbar{
 @media screen and (max-width : 595px) {
   ._searchBar{
     max-width: 350px;
+  }
+
+  ._backBtn{
+    top: 16px;
+    left: 8px;
   }
 }
 
