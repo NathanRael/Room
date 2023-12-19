@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
@@ -10,6 +10,8 @@ import InfoPopup from "./components/Popups.jsx";
 import { DataProvider } from "./context/DataContext";
 
 export default function App() {
+
+
   return (
     <Router>
       <DataProvider>

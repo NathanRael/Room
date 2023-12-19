@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { NavButton } from "./Buttons";
 import { useLocation } from "react-router-dom";
 
-export default function Navbar({filterAnime, searchAnime}) {
+export default function Navbar({}) {
+  
   const location = useLocation();
   const pathName = location.pathname;
+
   const [navItems, setNavItem] = useState([
     {
       id: 0,

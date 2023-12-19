@@ -131,7 +131,7 @@ export async function fetchJSON(apiUrl, requestOption = { method : 'GET'}) {
   const response = await fetch(`${baseUrl}${apiUrl}`, requestOption);
 
   if (!response.ok) {
-    throw new Error('Failed to fetch the data')
+    throw new Error('Failed to fetch the data');
   }
   return response.json();
 }
