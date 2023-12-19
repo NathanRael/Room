@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import MovieFilter from "../components/MoviFilter";
 import { ButtonMd } from "../components/Buttons";
 import Load from "../components/Load";
+import Navbar from "../components/Navbar";
 
 
 export default function Home({}) {
@@ -28,6 +29,7 @@ export default function Home({}) {
 
   return (
     <>
+            <Navbar />
     {
       !filterAnimeLoading && !error ? (
         <section className="bg-secondary container-fluid p-0 w-100">

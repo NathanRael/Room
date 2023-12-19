@@ -44,10 +44,7 @@ export default function WatchMovie() {
             <VideoScreen
               youtubeVideoSrc={currentAnime?.attributes?.youtubeVideoId}
             />
-            <div className="container-fluid  bg-tertiary rounded-2 p-16 m-16 mt-16">
-              <h1 className="_lead mb-24">Synopsis : </h1>
-              <p className="_body">{currentAnime?.attributes?.synopsis}</p>
-            </div>
+
           </div>
         )}
 

@@ -5,9 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import { loadMovie, saveMovie } from "../functions/saveInfo";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
+import Navbar from "../components/Navbar";
 
 export default function WatchLists() {
-  const {animeWatchList, setAnimeWatchList} = useContext(DataContext);
+  const { animeWatchList, setAnimeWatchList } = useContext(DataContext);
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
   let animeWatchListItem;
@@ -38,18 +39,21 @@ export default function WatchLists() {
   }
 
   return (
-    <div className="container-fluid p-0">
-      <SearchBar is_fixed={false} showSearchBar={false} title="Watch List" />
-      <div className="d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-128 py-md-128">
-        {watchedList.length > 0 ? (
-          [animeWatchListItem]
-        ) : (
-          <p className="_lead  text-primary text-center me-md-128">
-            Empty watch list
-          </p>
-        )}
+    <>
+      <Navbar />
+      <div className="container-fluid p-0">
+        <SearchBar is_fixed={false} showSearchBar={false} title="Watch List" />
+        <div className="d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-128 py-md-128">
+          {watchedList.length > 0 ? (
+            [animeWatchListItem]
+          ) : (
+            <p className="_lead  text-primary text-center me-md-128">
+              Empty watch list
+            </p>
+          )}
+        </div>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
-    </div>
+    </>
   );
 }

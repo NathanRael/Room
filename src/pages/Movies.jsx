@@ -7,6 +7,7 @@ import { loadMovie, saveMovie } from "../functions/saveInfo";
 import Load from "../components/Load";
 import DataContext from "../context/DataContext";
 import { useContext } from "react";
+import Navbar from "../components/Navbar";
 
 export default function Movies({}) {
   const { 
@@ -38,6 +39,8 @@ export default function Movies({}) {
     ));
   }
   return (
+    <>
+            <Navbar />
     <section className="container-fluid p-0 bg-secondary text-light mb-32 ">
       <SearchBar
         is_fixed={true}
@@ -63,5 +66,6 @@ export default function Movies({}) {
         <Footer></Footer>
       </div>
     </section>
+    </>
   );
 }

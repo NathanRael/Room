@@ -24,9 +24,12 @@ export default function Card({
   return (
     <div
       type="button"
-      onClick={handleclick}
-      className="card rounded-4 bg-tertiary m-0 _shadow"
-      style={{ width: "280px" }}
+      onClick={() => {
+        handleclick();
+        navigate('/Movie');
+      }}
+      className="card rounded-4  m-0 shadow-sm bg-secondary border border-dark "
+      style={{ width: "280px"}}
     >
       <img
         src={srcImage}
@@ -34,7 +37,7 @@ export default function Card({
         className="img-top rounded-top-4"
         style={cardImageStyle}
       />
-      <div className="card-body  p-16 text-light">
+      <div className="card-body  p-16 text-light ">
         <p className="card-title _lead">
           {title}
         </p>

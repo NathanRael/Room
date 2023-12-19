@@ -27,7 +27,7 @@ export default function MovieDetails({
   const maxChar = 650;
 
   return (
-    <div className="card bg-tertiary rounded-4 text-light  _movieCard _shadow">
+    <div className="card bg-secondary rounded-4 text-light  border border-dark _movieCard shadow-sm">
       <div className="row  g-0">
         <div className="col-12 col-lg-4">
           <img

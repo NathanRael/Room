@@ -1,13 +1,14 @@
 // Default variable overrides
 $primary : #C1071E;
-$secondary : #131834;
+$secondary : #121212;
 $light : #fff;
 $warning : #CD9019;
-$gray : #777777;
+$gray : #3A3636;
+
 
 //button
     //large
-$btn-border-radius-lg: 32px;
+// $btn-border-radius-lg: 32px;
 $btn-padding-y-lg:16px; 
 $btn-padding-x-lg: 16px; 
     //medium
@@ -48,8 +49,8 @@ $spacers: (
 
 //theme colors
 $custom-colors: (
-  "tertiary": #171928,
-  "altlight" : #DEDEDE
+  "tertiary": #14131B,
+  "altlight" : #DEDEDE,
 );
 
 // Merge the maps

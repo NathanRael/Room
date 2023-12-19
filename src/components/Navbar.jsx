@@ -53,7 +53,7 @@ export default function Navbar({}) {
   ));
 
   return (
-    <div className="_navbar  d-sm-flex flex-row flex-sm-column py-16 px-0  py-md-40 px-md-8  gap-16 gap-md-80 gap-xl-128  text-light _shadow">
+    <div className="_navbar  d-sm-flex flex-row flex-sm-column py-16 px-0  py-md-40 px-md-8  gap-16 gap-md-80 gap-xl-128  text-light shadow-sm">
       <div className=" px-8  d-flex flex-row flex-sm-column justify-content-evenly gap-48 gap-md-56">
         {navItemElement}
         {/* <div className="d-block d-md-none">
