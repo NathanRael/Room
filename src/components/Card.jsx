@@ -7,13 +7,24 @@ const cardImageStyle = {
   objectFit: "cover",
 };
 
-export default function Card({ id, srcImage, title, sinopsis, date, rate, handleclick }) {
+export default function Card({
+  id,
+  srcImage,
+  title,
+  sinopsis,
+  date,
+  rate,
+  handleclick,
+}) {
   const navigate = useNavigate();
 
-  let splitedSinopsis = sinopsis.length > 180 ? sinopsis.slice(0,180) + ' . . .' : sinopsis;
+  let splitedSinopsis =
+    sinopsis.length > 180 ? sinopsis.slice(0, 180) + " . . ." : sinopsis;
 
   return (
     <div
+      type="button"
+      onClick={handleclick}
       className="card rounded-4 bg-tertiary m-0 _shadow"
       style={{ width: "280px" }}
     >
@@ -24,22 +35,16 @@ export default function Card({ id, srcImage, title, sinopsis, date, rate, handle
         style={cardImageStyle}
       />
       <div className="card-body  p-16 text-light">
-        <Link 
-        to='/Movie'  
-        className="card-title _lead"
-        onClick={handleclick}
-        >
+        <p className="card-title _lead">
           {title}
-        </Link>
-        <h2 className="card-text _link text-altlight mt-16">{splitedSinopsis}</h2>
+        </p>
+        <h2 className="card-text _link text-altlight mt-16">
+          {splitedSinopsis}
+        </h2>
       </div>
       <div className="card-footer border-0  d-flex justify-content-between align-item-center text-light _link p-16 pt-0">
         <p>{date}</p>
-        <Rate
-          rate={rate}
-          isFill={true}
-          heartColor="text-warning"
-        />
+        <Rate rate={rate} isFill={true} heartColor="text-warning" />
       </div>
     </div>
   );

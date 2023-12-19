@@ -19,7 +19,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Movie" element={<Movies />} />
           <Route path="/WatchList" element={<WatchLists />} />
-          <Route path="/Watch" element={<WatchMovie />} />
+          <Route path="/Watch/:name/:id" element={<WatchMovie />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </DataProvider>

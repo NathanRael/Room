@@ -30,8 +30,8 @@ export default function Movies({}) {
         episode={anime.attributes.episodeCount}
         addToWatchList={() => addToWatchList(anime, animeWatchList, renderPopupInfo)}
         onWatch={() => {
-          saveMovie("currentMoviePlayed", anime);
-          navigate("/Watch");
+          // saveMovie("currentMoviePlayed", anime);
+          navigate(`/Watch/${anime.attributes.slug}/${anime.id}`);
         }}
         animeWatchList={animeWatchList}
       />
@@ -43,7 +43,8 @@ export default function Movies({}) {
         is_fixed={true}
         setSearchValue={setSearch}
         searchValue={search}
-        handleClick={handleSearch}
+        handleSearch={handleSearch}
+        removeSearchValue={ () => setSearch("")}
       />
       <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
         {animeSearchList.data && animeSearchList.data.length > 0 ? (

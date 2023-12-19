@@ -54,6 +54,7 @@ body::-webkit-scrollbar{
 ._body{font-size: var(--body-fs);  font-family: 'poppins-regular';}
 ._button{font-size: var(--body-fs); font-family: 'poppins-medium';}
 ._link{font-size: var(--link-fs); font-family: 'poppins-regular';}
+._icon{font-size: 24px;}
 
 
 /**other**/
@@ -71,12 +72,13 @@ body::-webkit-scrollbar{
 }
 
 ._searchBar{
-  width: 915px;
-
+  width: 715px;
+  border: 0;
+  border-bottom: solid 2px #C1071E;
 }
 
 ._searchNav{
-  background-color:rgba(22, 24, 39, 0.1);
+  background-color:rgba(22, 24, 39, 0.9);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -97,7 +99,7 @@ body::-webkit-scrollbar{
   outline: 0;
   border: 0;
   color: var(--text-tertiary);
-  font-size: var(--body-fs);
+  font-size: var(--lead-fs);
 
 }
 

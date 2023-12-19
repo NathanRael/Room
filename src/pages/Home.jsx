@@ -23,6 +23,7 @@ export default function Home({}) {
 
   const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
+  // const anime = animeFilterList.data[randomAnime];
   const navigate = useNavigate();
 
   return (
@@ -49,8 +50,8 @@ export default function Home({}) {
             animeWatchList={animeWatchList}
             addedToWatchList={addedToWatchList}
             onWatch={() => {
-              saveMovie("currentMoviePlayed", animeFilterList.data[randomAnime]);
-              navigate("/Watch");
+              // saveMovie("currentMoviePlayed", animeFilterList.data[randomAnime]);
+              navigate(`/Watch/${animeFilterList.data[randomAnime].attributes.slug}/${animeFilterList.data[randomAnime].id}`);
             }}
           />
           <MovieFilter/>

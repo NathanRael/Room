@@ -5,6 +5,7 @@ export default function MovieFilter() {
   const {handleCategorieSelected, selectedCategorie} = useContext(DataContext);
 
   const movieCategories = ['Shonen', 'Shoujo', 'Adventure', 'Seinen', 'Isekai', 'Fantasy', 'Science-Fiction'];
+  
   const movieItems = movieCategories.map((movie) => (
     <option key={movie} value={movie}>
       {movie}

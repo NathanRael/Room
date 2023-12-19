@@ -7,7 +7,8 @@ export default function SearchBar({
   title,
   setSearchValue,
   searchValue,
-  handleClick,
+  handleSearch,
+  removeSearchValue,
 }) {
   const logoStyle = {
     width: "88px",
@@ -22,20 +23,21 @@ export default function SearchBar({
         } mt-0 px-8 px-lg-32 py-24 py-sm-8 `}
         style={{ width: "100%", zIndex: "3" }}
       >
-        <div className="container-fluid d-flex justify-content-center justify-content-between row-gap-24 align-item-center w-100">
+        <div className="container-fluid d-flex justify-content-center justify-content-between row-gap-24 align-items-center w-100">
           <a href="" className="navbar-brand">
             <img src={logo} alt="" style={logoStyle} />
           </a>
           {showSearchBar ? (
             <form
               onSubmit={(e) => e.preventDefault()}
-              className=" d-none d-sm-flex text-light bg-altlight rounded-5 justify-content-between  shadow-sm px-32 py-16 _searchBar"
+              className=" d-none d-sm-flex text-light  justify-content-between align-items-center ps-16 pe-32 py-8 _searchBar"
             >
-                <SearchInput
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                  handleClick={handleClick}
-                />
+              <SearchInput
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                handleChange={handleSearch}
+                handleClick={removeSearchValue}
+              />
             </form>
           ) : (
             <h1 className=" d-none d-sm-block title-3 text-light">{title}</h1>
@@ -47,12 +49,14 @@ export default function SearchBar({
             {showSearchBar ? (
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className=" d-flex text-light bg-altlight rounded-5 justify-content-between a shadow-sm px-32 py-16 _searchBar"
+                className=" d-flex text-light 
+                  justify-content-between ps-16 pe-32 py-8 _searchBar"
               >
                 <SearchInput
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
-                  handleClick={handleClick}
+                  handleChange={handleSearch}
+                  handleClick={removeSearchValue}
                 />
               </form>
             ) : (
@@ -65,19 +69,26 @@ export default function SearchBar({
   );
 }
 
-function SearchInput({ searchValue, setSearchValue, handleClick }) {
+function SearchInput({ searchValue, setSearchValue, handleChange,handleClick }) {
   return (
     <>
-    <input
-      type="text"
-      placeholder="search your movie ..."
-      className="_searchInput text-dark"
-      value={searchValue}
-      onChange={(e) => {
-        setSearchValue(e.target.value);
-      }}
-    />
-    <i className="bi bi-search text-primary _searchIcon" type="button" onClick={handleClick}></i>
-  </>
-  )
+      <input
+        type="text"
+        placeholder="Search your anime ..."
+        className="_searchInput text-altlight"
+        value={searchValue}
+        onChange={(e) => {
+          setSearchValue(e.target.value);
+          handleChange();
+        }}
+      />
+      {searchValue != '' && (
+              <i
+              className="bi bi-x-lg text-light  _icon"
+              type="button"
+              onClick={handleClick}
+            ></i>
+      )}
+    </>
+  );
 }

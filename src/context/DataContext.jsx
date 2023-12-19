@@ -5,7 +5,6 @@ import { loadMovie, saveMovie } from "../functions/saveInfo";
 const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
-  const baseUrl = "https://kitsu.io/api/edge/anime?";
   const [page, setPage] = useState({
     pageLimit: 10,
     pageChanged: false,
@@ -35,12 +34,8 @@ export const DataProvider = ({children}) => {
       try {
         setFilterAnimeLoading(true);
         setError(null);
-        const API_URL = `${baseUrl}filter[categories]=${selectedCategorie}&page[limit]=${page.pageLimit}`;
-        const requestOptions = {
-          method: "GET",
-        };
-
-        const anime = await fetchJSON(API_URL, requestOptions);
+        // const API_URL = `${baseUrl}filter[categories]=${selectedCategorie}&page[limit]=${page.pageLimit}`;
+        const anime = await fetchJSON(`?filter[categories]=${selectedCategorie}&page[limit]=${page.pageLimit}`);
         setAnimeFilterList(anime);
       } catch (error) {
         setError(error.message);
@@ -53,32 +48,15 @@ export const DataProvider = ({children}) => {
     filterAnime();
   }, [selectedCategorie, page.pageLimit]);
 
-  async function fetchJSON(apiUrl, requestOption = {}) {
-    const headers = {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-      ...requestOption.headers
-    }
-
-    requestOption = { headers, ...requestOption };
-    const response = await fetch(apiUrl, requestOption);
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch the data')
-    }
-    return response.json();
-  }
-
   async function searchAnime(searchKey) {
     try {
       setAnimeSearchListLoading(true);
       setError(null);
-      const API_URL = `${baseUrl}filter[text]=${searchKey}`;
-      const requestOptions = {
-        method: "GET",
-      };
-      const anime = await fetchJSON(API_URL, requestOptions);
+      // const API_URL = `${baseUrl}filter[text]=${searchKey}`;
+
+      const anime = await fetchJSON(`?filter[text]=${searchKey}`);
       setAnimeSearchList(anime);
+
     } catch (error) {
       setError(error.message);
       console.error("Error fetching anime data:", error);
@@ -96,7 +74,7 @@ export const DataProvider = ({children}) => {
     if (search !== "" && search !== null) {
       searchAnime(search);
       saveMovie("lastSearch", search);
-      setSearch("");
+      // setSearch("");
     }
   }
 
@@ -140,3 +118,20 @@ export const DataProvider = ({children}) => {
 }
 
 export default DataContext;
+
+export async function fetchJSON(apiUrl, requestOption = { method : 'GET'}) {
+  const baseUrl = "https://kitsu.io/api/edge/anime";
+  const headers = {
+    'Accept': 'application/vnd.api+json',
+    'Content-Type': 'application/vnd.api+json',
+    ...requestOption.headers
+  }
+
+  requestOption = { headers, ...requestOption };
+  const response = await fetch(`${baseUrl}${apiUrl}`, requestOption);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch the data')
+  }
+  return response.json();
+}

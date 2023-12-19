@@ -22,8 +22,8 @@ export default function WatchLists() {
           setAnimeWatchList(loadMovie("watchList") || []);
         }}
         onWatch={() => {
-          saveMovie("currentMoviePlayed", anime);
-          navigate("/Watch");
+          // saveMovie("currentMoviePlayed", anime);
+          navigate(`/Watch/${anime.attributes.slug}/${anime.id}`);
         }}
       />
     ));
