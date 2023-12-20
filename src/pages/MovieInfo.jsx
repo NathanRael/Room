@@ -13,22 +13,20 @@ import Rate from "../components/Rate";
 
 export default function MovieInfo({}) {
   const navigate = useNavigate();
+  const { name, id } = useParams();
   const [animeInfo, setAnimeInfo] = useState(null);
   const [error, setError] = useState(null);
-  const { name, id } = useParams();
   const { animeWatchList, renderPopupInfo } = useContext(DataContext);
   const [load, setLoad] = useState(true);
-  const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
-  // const anime = animeFilterList.data[randomAnime
-  const exists = animeWatchList?.some((anime) => anime.id === id);
 
   useEffect(() => {
     setLoad(true);
     fetchJSON(`?filter[text]=${name}`)
       .then((datas) => {
         const animes = datas?.data;
-        const filteredAnime = animes.filter((anime) => anime.id === id);
+        const filteredAnime = animes?.filter((anime) => anime.id === id);
+        console.log(filteredAnime[0]);
         setAnimeInfo(filteredAnime[0]);
       })
       .catch((error) => {
@@ -50,8 +48,8 @@ export default function MovieInfo({}) {
             />
           </div>
           <MovieDetails
-            key={animeInfo?.id}
-            id={animeInfo?.id}
+            key={animeInfo.id}
+            id={animeInfo.id}
             srcImage={animeInfo.attributes.coverImage.original}
             date={animeInfo.attributes.createdAt}
             status={animeInfo.attributes.status}

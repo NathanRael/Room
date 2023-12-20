@@ -42,7 +42,7 @@ export default function Movies({}) {
           // saveMovie("currentMoviePlayed", anime);
           navigate(`/Watch/${anime.attributes.slug}/${anime.id}`);
         }}
-        onNavigate={ () => navigate(`/MovieInfo/${anime.attributes.slug}/${anime.id}`)}
+        onNavigate={ () => navigate(`/MovieInfo/${encodeURIComponent(anime.attributes.canonicalTitle)}/${anime.id}`)}
         animeWatchList={animeWatchList}
       />
     ));
