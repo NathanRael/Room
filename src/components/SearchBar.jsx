@@ -20,16 +20,15 @@ export default function SearchBar({
       <nav
         className={`navbar _searchNav bg-secondary ${
           is_fixed ? "position-fixed" : "position-absolute"
-        } mt-0 px-8 px-lg-32 py-24 py-sm-8 `}
+        } mt-0 px-8 ps-8 ps-sm-80 pe-lg-32  pt-16 pt-sm-8 py-8 `}
         style={{ width: "100%", zIndex: "3" }}
       >
-        <div className="container-fluid d-flex justify-content-center justify-content-between row-gap-24 align-items-center w-100">
+        <div className="container-fluid d-flex  justify-content-between row-gap-24 align-items-center w-100">
           <a href="" className="navbar-brand">
             <img src={logo} alt="" style={logoStyle} />
           </a>
-          {showSearchBar ? (
+          {showSearchBar ? ( //desktop view
             <form
-              onSubmit={(e) => e.preventDefault()}
               className=" d-none d-sm-flex text-light  justify-content-between align-items-center ps-16 pe-32 py-8 _searchBar"
             >
               <SearchInput
@@ -40,17 +39,18 @@ export default function SearchBar({
               />
             </form>
           ) : (
-            <h1 className=" d-none d-sm-block title-3 text-light">{title}</h1>
+            <h1 className=" d-none d-sm-block _subtitle text-light">{title}</h1>
           )}
           <div className="bg-tertiary _lead text-light _userProfile _shadow">
             R
           </div>
-          <div className="container-fluid justify-content-center d-sm-none d-flex ">
-            {showSearchBar ? (
+
+          {showSearchBar ? ( //mobile view
+            <div className="container-fluid justify-content-center d-sm-none d-flex ">
               <form
                 onSubmit={(e) => e.preventDefault()}
                 className=" d-flex text-light 
-                  justify-content-between ps-16 pe-32 py-8 _searchBar"
+                  justify-content-between ps-16 pe-32 py-8 mb-8 _searchBar"
               >
                 <SearchInput
                   searchValue={searchValue}
@@ -59,17 +59,24 @@ export default function SearchBar({
                   handleClick={removeSearchValue}
                 />
               </form>
-            ) : (
-              <h1 className="title-3 text-light">{title}</h1>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="container-fluid justify-content-center d-sm-none d-flex ">
+              <h1 className="_subtitle text-light">{title}</h1>
+            </div>
+          )}
         </div>
       </nav>
     </>
   );
 }
 
-function SearchInput({ searchValue, setSearchValue, handleChange,handleClick }) {
+function SearchInput({
+  searchValue,
+  setSearchValue,
+  handleChange,
+  handleClick,
+}) {
   return (
     <>
       <input
@@ -82,12 +89,12 @@ function SearchInput({ searchValue, setSearchValue, handleChange,handleClick }) 
           handleChange();
         }}
       />
-      {searchValue != '' && (
-              <i
-              className="bi bi-x-lg text-light  _icon"
-              type="button"
-              onClick={handleClick}
-            ></i>
+      {searchValue != "" && (
+        <i
+          className="bi bi-x-lg text-light  _icon"
+          type="button"
+          onClick={handleClick}
+        ></i>
       )}
     </>
   );

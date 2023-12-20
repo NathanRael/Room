@@ -23,6 +23,7 @@
   --bg-primary : #C1071E;
   --bg-secondary : #141414;
   --bg-tertiary : #282828;
+  --bg-dark : #212529;
   --text-primary : #ffffff;
   --text-secondary : #DEDEDE;
   --text-tertiary : #777777;
@@ -56,6 +57,7 @@ body::-webkit-scrollbar{
 ._link{font-size: var(--link-fs); font-family: 'poppins-regular';}
 ._icon{font-size: 24px;}
 ._border{border: solid 1px #3A3636;}
+._transColor{ transition: all 0.5s ease;}
 
 
 /**other**/
@@ -83,6 +85,7 @@ body::-webkit-scrollbar{
   border-bottom: solid 1px #3A3636;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  
 }
 /*  */
 
@@ -115,8 +118,8 @@ body::-webkit-scrollbar{
 
 ._userProfile{
   cursor: pointer;
-  width:  64px;
-  height:   64px;
+  width:  48px;
+  height:   48px;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -152,9 +155,11 @@ body::-webkit-scrollbar{
 
 ._navbar{
   position: fixed;
-  top: 112px;
-  left: 50px;
-  border-radius: 64px;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  /* border-radius: 64px; */
+  border-right: solid 1px var(--bg-dark) ;
   align-items: center;
   z-index: 4;
 }
@@ -238,19 +243,12 @@ body::-webkit-scrollbar{
     max-width: 720px;
   }
 
-  ._navbar{
-    top: 96px;
-  }
   ._hero{
     height: 90vh;
   }
 }
 
 @media screen and (max-width : 992px) {
-  ._navbar{
-    top: 128px;
-    left: 8px;
-  }
 
   ._backBtn{
     top: 24px;
@@ -278,10 +276,7 @@ body::-webkit-scrollbar{
   ._hero{
     height: 100vh;
   }
-  ._navbar{
-    top: 128px;
-    left: 8px;
-  }
+
 }
 
 @media screen and (max-width : 698px) {
@@ -314,13 +309,14 @@ body::-webkit-scrollbar{
 
   ._navbar{
     top: auto;
-    bottom: 8px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     height: max-content;
-    border-radius: 40px;
-    width: 95%;
+    padding: 0px auto;
+    border-radius: 0;
+    border-top: solid 1px var(--bg-dark);
   }
   ._videoScreen{
     width: 90%;

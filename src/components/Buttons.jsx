@@ -39,19 +39,19 @@ export function NavButton({ icon, active, handleClick, link }) {
   return (
     <Link to={link} style={{ textDecoration: "none" }}>
       <i
-        className={`btn text-light rounded-5 p-8 d-flex justify-content-center align-items-center ${
-          active ? "btn-primary" : ""
-        } ${icon}`}
+        className={`btn  rounded-5 p-8 d-flex justify-content-center align-items-center _transColor  ${
+          active ?  ` btn-primary ${icon}-fill ` : `${icon} text-light`
+        } `}
         style={{ width: "52px", height: "52px", fontSize: "24px" }}
         onClick={handleClick}
       ></i>
     </Link>
   );
 }
-export function IconButton({ icon, active, handleClick, setActive }) {
+export function IconButton({ icon, active, handleClick, color = 'text-primary',setActive }) {
   return (
     <i
-      className={`btn  rounded-5 p-8 d-flex justify-content-center align-items-center text-primary ${icon}${
+      className={`btn  rounded-5 p-8 d-flex justify-content-center align-items-center text-primary _transColor ${color} ${icon}${
         active ? "-fill" : ""
       } `}
       style={{ fontSize: "24px" }}
