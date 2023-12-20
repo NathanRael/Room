@@ -81,7 +81,7 @@ function SearchInput({
     <>
       <input
         type="text"
-        placeholder="Search your anime ..."
+        placeholder="Search  anime ..."
         className="_searchInput text-altlight"
         value={searchValue}
         onChange={(e) => {
