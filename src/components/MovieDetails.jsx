@@ -2,6 +2,7 @@ import Rate from "./Rate";
 import { ButtonMd, IconButton } from "./Buttons";
 import { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
+import { Status } from "./details";
 
 export default function MovieDetails({
   id,
@@ -11,6 +12,7 @@ export default function MovieDetails({
   date,
   rate,
   episode,
+  status,
   addToWatchList,
   onWatch,
 }) {
@@ -45,12 +47,13 @@ export default function MovieDetails({
                 : sinopsis}
             </p>
           </div>
-          <div className="card-body d-flex gap-32 text-light">
-            <p className="card-text _link text-light">{date.slice(0, 4)}</p>
+          <div className="card-body d-flex align-items-center justify-content-center justify-content-sm-start   gap-32 text-light">
+            <div className="card-text _link text-light">{date.slice(0, 4)}</div>
             <Rate rate={rate} heartColor="text-warning" isFill={true} />
-            <p className="card-text _link text-light">
-              Episode number {episode}
-            </p>
+            <div className="card-text _link text-light">
+              {episode} episode
+            </div>
+            <Status status={status}></Status>
           </div>
           <div className="card-body row  align-items-center justify-content-evenly justify-content-lg-start row-gap-24 pb-24">
             <div className="col-md-6" style={{ width: "max-content" }}>
