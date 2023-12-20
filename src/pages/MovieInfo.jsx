@@ -20,8 +20,8 @@ export default function MovieInfo({}) {
   const [load, setLoad] = useState(true);
   const [randomAnime, setRandomeAnime] = useState(0);
   const [addedToWatchList, setAddedToWatchList] = useState(false);
-  // const anime = animeFilterList.data[randomAnime];
-
+  // const anime = animeFilterList.data[randomAnime
+  const exists = animeWatchList?.some((anime) => anime.id === id);
 
   useEffect(() => {
     setLoad(true);
@@ -42,7 +42,7 @@ export default function MovieInfo({}) {
       <SearchBar is_fixed={false} showSearchBar={false} title="Movie Details" />
       {!load && !error ? (
         <section className="bg-secondary container-fluid p-0 w-100">
-          <div className=" _movieInfoBackBtn">
+          <div className=" _movieInfoBackBtn bg-secondary rounded-5">
             <NavButton
               icon="bi bi-arrow-left"
               link="/Movie"
@@ -50,8 +50,8 @@ export default function MovieInfo({}) {
             />
           </div>
           <MovieDetails
-            key={animeInfo.id}
-            id={animeInfo.id}
+            key={animeInfo?.id}
+            id={animeInfo?.id}
             srcImage={animeInfo.attributes.coverImage.original}
             date={animeInfo.attributes.createdAt}
             status={animeInfo.attributes.status}
@@ -67,7 +67,6 @@ export default function MovieInfo({}) {
             animeWatchList={animeWatchList}
             addedToWatchList={addedToWatchList}
             onWatch={() => {
-              // saveMovie("currentMoviePlayed", animeInfo);
               navigate(`/Watch/${animeInfo.attributes.slug}/${animeInfo.id}`);
             }}
           />
@@ -77,6 +76,8 @@ export default function MovieInfo({}) {
           <Load />
         </div>
       )}
+      
+      {error && <h1 className="text-danger text-center _lead">{error}</h1>}
     </>
   );
 }
@@ -89,7 +90,6 @@ function MovieDetails({
   episode,
   rate,
   addToWatchList,
-  addedToWatchList,
   onWatch,
   animeWatchList,
   status,
@@ -117,7 +117,7 @@ function MovieDetails({
         <div className="card-body d-flex flex-sm-row flex-column align-items-center justify-content-start gap-32 text-light _body">
           <div className="card-text  text-altlight">
             <span className="_lead text-light">Release Date : </span>
-            {date?.slice(0,4)}
+            {date?.slice(0, 4)}
           </div>
           <div className="d-flex align-items-center  gap-8">
             <span className="_lead text-light">Rate : </span>
@@ -148,14 +148,14 @@ function MovieDetails({
             name="Watch"
             icon="bi bi-play"
             color="btn-primary"
-            handleClick={onWatch}
+            handleclick={onWatch}
           />
 
           <ButtonMd
             name={!exists ? "See later" : "In watch list"}
             icon="bi bi-bookmark"
             color="btn-tertiary"
-            handleClick={addToWatchList}
+            handleclick={addToWatchList}
           />
         </div>
       </div>

@@ -3,6 +3,7 @@ import { ButtonMd, IconButton } from "./Buttons";
 import { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import { Status } from "./details";
+import { useNavigate } from "react-router-dom";
 
 export default function MovieDetails({
   id,
@@ -15,8 +16,9 @@ export default function MovieDetails({
   status,
   addToWatchList,
   onWatch,
+  onNavigate
 }) {
-
+  const navigate = useNavigate();
   const {animeWatchList} = useContext(DataContext);
   const exists = animeWatchList?.some(anime => anime.id === id);
   const [addedToWatchList, setAddedToWatchList] = useState(exists ? true : false);
@@ -35,11 +37,12 @@ export default function MovieDetails({
           <img
             src={srcImage}
             className="img-fluid  h-100 w-100  _MovieCardImage"
+            onClick={onNavigate}
           />
         </div>
         <div className="col-12 col-lg-8">
           <div className="card-body text-light">
-            <h5 className="card-title _subtitle">{title}</h5>
+            <h5 className="card-title _subtitle" onClick={onNavigate}>{title}</h5>
             <p className="card-text text-altlight _body">
               {" "}
               {sinopsis.length > maxChar
