@@ -30,7 +30,7 @@ export default function WatchLists() {
           }}
           onWatch={() => {
             // saveMovie("currentMoviePlayed", anime);
-            navigate(`/Watch/${anime.attributes.slug}/${anime.id}`);
+            navigate(`/Watch/${encodeURIComponent(anime.attributes.canonicalTitle)}/${anime.id}`);
           }}
         />
       </div>

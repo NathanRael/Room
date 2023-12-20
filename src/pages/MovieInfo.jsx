@@ -26,7 +26,6 @@ export default function MovieInfo({}) {
       .then((datas) => {
         const animes = datas?.data;
         const filteredAnime = animes?.filter((anime) => anime.id === id);
-        console.log(filteredAnime[0]);
         setAnimeInfo(filteredAnime[0]);
       })
       .catch((error) => {
@@ -50,7 +49,7 @@ export default function MovieInfo({}) {
           <MovieDetails
             key={animeInfo.id}
             id={animeInfo.id}
-            srcImage={animeInfo.attributes.coverImage.original}
+            srcImage={animeInfo.attributes.coverImage ? animeInfo.attributes.coverImage.original : animeInfo.attributes.posterImage.original}
             date={animeInfo.attributes.createdAt}
             status={animeInfo.attributes.status}
             episode={animeInfo.attributes.episodeCount}
@@ -106,7 +105,7 @@ function MovieDetails({
         src={srcImage}
         className="border-3"
         alt=""
-        style={{ objectFit: "cover", height: "50vh" }}
+        style={{ objectFit: "cover", height: '70vh', objectPosition : 'top' }}
       />
       <div className="container-fluid d-flex flex-column gap-32 pb-16">
         <h1 className="_title-2 text-light text-center text-sm-start">

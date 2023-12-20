@@ -60,7 +60,7 @@ export default function Home({}) {
             onWatch={() => {
               // saveMovie("currentMoviePlayed", animeFilterList.data[randomAnime]);
               navigate(
-                `/Watch/${animeFilterList.data[randomAnime].attributes.slug}/${animeFilterList.data[randomAnime].id}`
+                `/Watch/${encodeURIComponent(animeFilterList.data[randomAnime].attributes.canonicalTitle)}/${animeFilterList.data[randomAnime].id}`
               );
             }}
           />
