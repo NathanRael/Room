@@ -7,7 +7,7 @@ const colStyle = {
 }
 export default function MovieCardContainer({animeFilterList, handleclick}){
     const movies = animeFilterList.data.map( movie => 
-        <div className="col-3" style={colStyle}>
+        <div className="col-auto" style={colStyle}>
             <Card
              key={movie.id}
              id={movie.id}
@@ -16,15 +16,16 @@ export default function MovieCardContainer({animeFilterList, handleclick}){
              sinopsis={movie.attributes.description}
              date={movie.attributes.createdAt.slice(0,4)}
              rate={movie.attributes.averageRating}
+             status={movie.attributes.status}
              handleclick={() => handleclick(movie.attributes.canonicalTitle)}
             />
         </div>
 
     )
     return (
-        <section className="container-fluid px-0 bg-secondary pt-40 mb-32">
-            <div className="container-fluid mt-24  ps-lg-156 pe-32">
-                <div className="row  justify-content-center align-item-center gap-24">
+        <section className="container-fluid px-0 bg-secondary pt-40 mb-32 ps-sm-128 ps-lg-156 pe-sm-32">
+            <div className="container-fluid mt-24 ">
+                <div className="row justify-content-center align-item-center gap-32">
                     {movies}
                 </div>
             </div>

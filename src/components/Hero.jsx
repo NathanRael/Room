@@ -17,7 +17,7 @@ export default function Hero({
     rowGap: "25px",
   };
   const heroStyle = {
-    background: `linear-gradient(rgba(0, 0, 0,0.6), rgba(0, 0, 0,0.6)),  url(${srcImage})`,
+    background: `linear-gradient(rgba(0, 0, 0,0.5), rgba(0, 0, 0,0.5)),  url(${srcImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };

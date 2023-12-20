@@ -10,11 +10,16 @@ import { useContext } from "react";
 import Navbar from "../components/Navbar";
 
 export default function Movies({}) {
-  const { 
-    error, animeSearchList, animeSearchListLoading, animeWatchList, search, setSearch, handleSearch,
-    renderPopupInfo
-   } =
-  useContext(DataContext);
+  const {
+    error,
+    animeSearchList,
+    animeSearchListLoading,
+    animeWatchList,
+    search,
+    setSearch,
+    handleSearch,
+    renderPopupInfo,
+  } = useContext(DataContext);
 
   const navigate = useNavigate();
   let animeSearchListItem;
@@ -29,7 +34,9 @@ export default function Movies({}) {
         rate={anime.attributes.averageRating}
         date={anime.attributes.createdAt}
         episode={anime.attributes.episodeCount}
-        addToWatchList={() => addToWatchList(anime, animeWatchList, renderPopupInfo)}
+        addToWatchList={() =>
+          addToWatchList(anime, animeWatchList, renderPopupInfo)
+        }
         onWatch={() => {
           // saveMovie("currentMoviePlayed", anime);
           navigate(`/Watch/${anime.attributes.slug}/${anime.id}`);
@@ -40,32 +47,34 @@ export default function Movies({}) {
   }
   return (
     <>
-            <Navbar />
-    <section className="container-fluid p-0 bg-secondary text-light mb-32 ">
-      <SearchBar
-        is_fixed={true}
-        setSearchValue={setSearch}
-        searchValue={search}
-        handleSearch={handleSearch}
-        removeSearchValue={ () => setSearch("")}
-      />
-      <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-16 pt-sm-128">
-        {animeSearchList.data && animeSearchList.data.length > 0 ? (
-          !animeSearchListLoading && !error ? (
-            [animeSearchListItem]
+      <Navbar />
+      <div className="container-fluid">
+        <SearchBar
+          is_fixed={true}
+          setSearchValue={setSearch}
+          searchValue={search}
+          handleSearch={handleSearch}
+          removeSearchValue={() => setSearch("")}
+        />
+      </div>
+      <section className="container-fluid p-0 bg-secondary text-light mb-32 ps-md-80 pe-md-16 pt-256 pb-16 pt-sm-128 ">
+        <div className=" container-fluid d-flex flex-column row-gap-32 justify-content-center align-items-center ">
+          {animeSearchList.data && animeSearchList.data.length > 0 ? (
+            !animeSearchListLoading && !error ? (
+              [animeSearchListItem]
+            ) : (
+              <div className="container-fluid d-flex justify-content-center align-items-center w-100">
+                <Load />
+              </div>
+            )
           ) : (
-            <div className="container-fluid d-flex justify-content-center align-items-center w-100">
-              <Load />
-            </div>
-          )
-        ) : (
-          <p className="_lead text-primary text-center">No anime found</p>
-        )}
-      </div>
-      <div className="container-fluid mt-32">
-        <Footer></Footer>
-      </div>
-    </section>
+            <p className="_lead text-primary text-center">No anime found</p>
+          )}
+        </div>
+        <div className="container-fluid mt-32">
+          <Footer></Footer>
+        </div>
+      </section>
     </>
   );
 }

@@ -41,7 +41,7 @@ export default function Home({}) {
             key={animeFilterList.data[randomAnime].id}
             id={animeFilterList.data[randomAnime].id}
             srcImage={
-              animeFilterList.data[randomAnime].attributes.posterImage.medium
+              animeFilterList.data[randomAnime].attributes.coverImage.original
             }
             title={animeFilterList.data[randomAnime].attributes.canonicalTitle}
             rate={animeFilterList.data[randomAnime].attributes.averageRating}

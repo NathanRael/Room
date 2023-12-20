@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Rate from "./Rate";
+import { Status } from "./details";
 
 const cardImageStyle = {
-  height: "224px",
+  maxHeight: "324px",
   objectFit: "cover",
 };
 
@@ -14,6 +15,7 @@ export default function Card({
   sinopsis,
   date,
   rate,
+  status,
   handleclick,
 }) {
   const navigate = useNavigate();
@@ -28,26 +30,29 @@ export default function Card({
         handleclick();
         navigate('/Movie');
       }}
-      className="card rounded-3  m-0 shadow-sm bg-secondary border border-dark "
+      className="card m-0 shadow-none bg-secondary border-0 p-0  "
       style={{ width: "280px"}}
     >
       <img
         src={srcImage}
         alt=""
-        className="img-top rounded-top-3"
+        className="img-top rounded-3"
         style={cardImageStyle}
       />
-      <div className="card-body  p-16 text-light ">
+      <div className="card-body px-0 py-8  text-light ">
         <p className="card-title _lead">
           {title}
         </p>
-        <h2 className="card-text _link text-altlight mt-16">
+        {/* <h2 className="card-text _link text-altlight mt-16">
           {splitedSinopsis}
-        </h2>
+        </h2> */}
       </div>
-      <div className="card-footer border-0  d-flex justify-content-between align-item-center text-light _link p-16 pt-0">
-        <p>{date}</p>
+      <div className="card-footer border-0  d-flex justify-content-between align-items-center text-light _link p-0 pb-8">
+        <div>{date}</div>
         <Rate rate={rate} isFill={true} heartColor="text-warning" />
+        <Status
+        status={status}
+        />
       </div>
     </div>
   );
