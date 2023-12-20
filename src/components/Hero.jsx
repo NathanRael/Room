@@ -44,7 +44,7 @@ export default function Hero({
         <Button
           name={ !exists ? 'See later' : 'In watch list' }
           icon="bi bi-bookmark"
-          color="btn-secondary"
+          color="btn-tertiary"
           handleClick={addToWatchList}
         />
       </div>

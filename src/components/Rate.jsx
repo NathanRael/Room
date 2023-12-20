@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function Rate({rate, heartColor, isFill, type = '', toggleFavorite}){
+export default function Rate({rate, heartColor, isFill, type = '', toggleFavorite, fontSize = '_link'}){
     return (
         <>
             <div 
-                className="d-flex gap-2 rate _link text-light" 
+                className={`d-flex gap-2 rate  text-light ${fontSize}`}
                 type={type}
                 onClick={toggleFavorite}
             >

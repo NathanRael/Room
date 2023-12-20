@@ -225,8 +225,15 @@ body::-webkit-scrollbar{
   position: absolute;
   top: 24px;
   left: 8px;
+  z-index: 5;
 }
 
+._movieInfoBackBtn{
+  position: absolute;
+  top: 72px;
+  left: 8px;
+  z-index: 5;
+}
 
 
 @media screen  and (max-width: 1200px){
@@ -285,6 +292,10 @@ body::-webkit-scrollbar{
   }
 }
 @media screen and (max-width : 595px) {
+  ._movieInfoBackBtn{
+    top: 128px;
+    left: 0px;
+  }
   ._searchBar{
     max-width: 350px;
   }

@@ -19,7 +19,8 @@ export default function MovieCardContainer({animeFilterList, handleclick}){
              date={movie.attributes.createdAt.slice(0,4)}
              rate={movie.attributes.averageRating}
              status={movie.attributes.status}
-             handleclick={() => {navigate('/Movie');handleclick(movie.attributes.canonicalTitle); }}
+             handleclick={() => {navigate(`/MovieInfo/${movie.attributes.slug}/${movie.id}`) }}
+            //  handleclick={() => {navigate('/Movie');handleclick(movie.attributes.canonicalTitle); }}
             />
         </div>
 

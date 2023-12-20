@@ -1,4 +1,4 @@
-export function Status({status}){
+export function Status({status, fontSize = '_link'}){
     let color = null;
     if (status === 'finished'){
         color = 'bg-success'
@@ -11,6 +11,6 @@ export function Status({status}){
         color = 'bg-warning'
     }
     return (
-        <div className={`rounded-3 py-1 px-2 ${color}  ${status} d-flex align-items-center _link `}>{status}</div>
+        <div className={`rounded-3 py-1 px-2 ${color}  ${status} d-flex align-items-center ${fontSize} `}>{status}</div>
     )
 }
