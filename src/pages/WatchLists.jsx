@@ -11,6 +11,7 @@ export default function WatchLists() {
   const { animeWatchList, setAnimeWatchList } = useContext(DataContext);
   const [watchedList, setWatchedList] = useState(animeWatchList);
   const navigate = useNavigate();
+  
   let animeWatchListItem;
   if (watchedList.length > 0) {
     animeWatchListItem = watchedList.map((anime) => (
