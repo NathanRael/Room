@@ -294,7 +294,7 @@ body::-webkit-scrollbar{
 @media screen and (max-width : 595px) {
   ._movieInfoBackBtn{
     top: 154px;
-    left: 0px;
+    left: 8px;
   }
   ._searchBar{
     max-width: 350px;
