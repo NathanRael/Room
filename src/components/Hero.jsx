@@ -7,7 +7,7 @@ export default function Hero({ id, srcImage, title, sinopsis, rate, addToWatchLi
     rowGap: "25px",
   };
   const heroStyle = {
-    background: `linear-gradient(rgba(19, 24, 52,0.8), rgba(19, 24, 52,0.8)),  url(${srcImage})`,
+    background: `linear-gradient(rgba(0, 0, 0,0.6), rgba(0, 0, 0,0.6)),  url(${srcImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };
