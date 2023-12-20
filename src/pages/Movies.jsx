@@ -34,6 +34,7 @@ export default function Movies({}) {
         rate={anime.attributes.averageRating}
         date={anime.attributes.createdAt}
         episode={anime.attributes.episodeCount}
+        status={anime.attributes.status}
         addToWatchList={() =>
           addToWatchList(anime, animeWatchList, renderPopupInfo)
         }

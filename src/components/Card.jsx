@@ -18,17 +18,13 @@ export default function Card({
   status,
   handleclick,
 }) {
-  const navigate = useNavigate();
 
-  let splitedSinopsis =
-    sinopsis.length > 180 ? sinopsis.slice(0, 180) + " . . ." : sinopsis;
 
   return (
     <div
       type="button"
       onClick={() => {
         handleclick();
-        navigate('/Movie');
       }}
       className="card m-0 shadow-none bg-secondary border-0 p-0  "
       style={{ width: "280px"}}

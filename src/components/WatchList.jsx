@@ -1,6 +1,10 @@
 import { ButtonMd } from "./Buttons";
 import Rate from "./Rate";
 import { Status } from "./details";
+const cardImageStyle = {
+  maxHeight: "324px",
+  objectFit: "cover",
+};
 
 export default function WatchList({
 
@@ -32,7 +36,7 @@ export default function WatchList({
         <Rate rate={rate} isFill={true} heartColor="text-warning" />
         <Status status={status} />
       </div>
-      <div className="Card-footer d-grid">
+      <div className="Card-footer d-flex justify-content-between mt-8">
         <ButtonMd
           name="Watch"
           icon="bi bi-play"
