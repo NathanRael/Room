@@ -23,7 +23,7 @@ export default function MovieFilter() {
             name=""
             id=""
             type="button"
-            className="form-select bg-tertiary text-light rounded-5 px-32 shadow-sm _body"
+            className="form-select bg-tertiary border-0 text-light rounded-3 px-32 shadow-sm _body"
             style={{ width: 'max-content' }}
             value={selectedCategorie}
             onChange={(e) => handleCategorieSelected(e.target.value)}

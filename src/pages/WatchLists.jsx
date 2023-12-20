@@ -41,7 +41,7 @@ export default function WatchLists() {
   return (
     <>
       <Navbar />
-      <div className="container-fluid p-0">
+      <div className="bg-secondary container-fluid p-0">
         <SearchBar is_fixed={false} showSearchBar={false} title="Watch List" />
         <div className="d-flex flex-column row-gap-32 justify-content-center ps-md-156 pe-md-32 pt-256 pb-128 py-md-128">
           {watchedList.length > 0 ? (

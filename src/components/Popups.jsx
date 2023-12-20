@@ -10,7 +10,7 @@ export default function InfoPopup({}) {
     <>
       <div className={`_fade ${popupInfo.isPopupVisible ? "_popupVisible" : ""}`}></div>
       <div
-        className={`card position-fixed bg-tertiary _shadow rounded-3 _popup p-24 ${
+        className={`card position-fixed bg-secondary _shadow rounded-3 _popup p-24 ${
           popupInfo.isPopupVisible ? "_popupVisible" : ""
         }`}
       >

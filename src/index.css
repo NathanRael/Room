@@ -21,8 +21,8 @@
   --link-fs : 0.8rem;
 
   --bg-primary : #C1071E;
-  --bg-secondary : #121212;
-  --bg-tertiary : #14131B;
+  --bg-secondary : #141414;
+  --bg-tertiary : #282828;
   --text-primary : #ffffff;
   --text-secondary : #DEDEDE;
   --text-tertiary : #777777;
@@ -79,7 +79,6 @@ body::-webkit-scrollbar{
 }
 
 ._searchNav{
-  background-color: rgba(18, 15, 15,0.9);
   /* background-color:rgba(22, 24, 39, 0.9); */
   border-bottom: solid 1px #3A3636;
   backdrop-filter: blur(4px);
@@ -157,7 +156,6 @@ body::-webkit-scrollbar{
   left: 50px;
   border-radius: 64px;
   align-items: center;
-  background-color:var(--bg-tertiary);
   z-index: 4;
 }
 

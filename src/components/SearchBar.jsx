@@ -18,7 +18,7 @@ export default function SearchBar({
   return (
     <>
       <nav
-        className={`navbar _searchNav ${
+        className={`navbar _searchNav bg-secondary ${
           is_fixed ? "position-fixed" : "position-absolute"
         } mt-0 px-8 px-lg-32 py-24 py-sm-8 `}
         style={{ width: "100%", zIndex: "3" }}

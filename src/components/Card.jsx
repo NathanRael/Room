@@ -28,13 +28,13 @@ export default function Card({
         handleclick();
         navigate('/Movie');
       }}
-      className="card rounded-4  m-0 shadow-sm bg-secondary border border-dark "
+      className="card rounded-3  m-0 shadow-sm bg-secondary border border-dark "
       style={{ width: "280px"}}
     >
       <img
         src={srcImage}
         alt=""
-        className="img-top rounded-top-4"
+        className="img-top rounded-top-3"
         style={cardImageStyle}
       />
       <div className="card-body  p-16 text-light ">
