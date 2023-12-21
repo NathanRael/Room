@@ -1,13 +1,15 @@
 import { ButtonMd } from "./Buttons";
 import Rate from "./Rate";
 import { Status } from "./details";
+import { motion } from "framer-motion";
+import { cardVariant } from "../animation/variants";
+
 const cardImageStyle = {
   maxHeight: "324px",
   objectFit: "cover",
 };
 
 export default function WatchList({
-
   srcImage,
   title,
   date,
@@ -15,10 +17,14 @@ export default function WatchList({
   status,
   handleclick,
   onWatch,
+  index,
 }) {
-
   return (
-    <div
+    <motion.div
+      variants={cardVariant}
+      initial="hidden"
+      whileInView="visible"
+      whileHover='hover'
       className="card m-0 shadow-none bg-secondary border-0 p-0  "
       style={{ width: "280px" }}
     >
@@ -50,7 +56,7 @@ export default function WatchList({
           handleclick={handleclick}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

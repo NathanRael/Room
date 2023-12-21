@@ -91,7 +91,7 @@ body::-webkit-scrollbar{
 
 ._signIcon{
   font-size: 56px;
-  position: fixed;
+  position: absolute;
   top: 0%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -182,7 +182,7 @@ body::-webkit-scrollbar{
 }
 
 ._movieCard{
-  max-width: 1120px;
+  width: 1120px;
   max-height: 650px;
 }
 
@@ -332,11 +332,17 @@ body::-webkit-scrollbar{
   ._videoScreen{
     width: 90%;
   }
+  ._movieCard{
+    max-width: 524px;
+  }
 
 }
 @media screen and (max-width : 375px) {
   ._hero{
     height: 180vh;
+  }
+  ._movieCard{
+    max-width: 344px;
   }
 
 }

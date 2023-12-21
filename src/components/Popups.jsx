@@ -1,24 +1,35 @@
 import { ButtonText } from "./Buttons";
 import "./Popup.css";
 import DataContext from "../context/DataContext";
-import { useContext } from "react";
-export default function InfoPopup({}) {
-  const {popupInfo, hidePopupInfo} = useContext(DataContext);
+import { useContext, useEffect } from "react";
+import { motion } from "framer-motion";
 
-  document.body.style.overflow = !popupInfo.isPopupVisible ? "auto" : "hidden";
+export default function InfoPopup({}) {
+  const { popupInfo, hidePopupInfo } = useContext(DataContext);
+    document.body.style.overflow = popupInfo.isPopupVisible ? "hidden" : "auto";
+
   return (
     <>
-      <div className={`_fade ${popupInfo.isPopupVisible ? "_popupVisible" : ""}`}></div>
-      <div
-        className={`card position-fixed bg-secondary _shadow rounded-3 _popup p-24 ${
-          popupInfo.isPopupVisible ? "_popupVisible" : ""
-        }`}
+      <motion.div
+        className={`_fade ${popupInfo.isPopupVisible ? "_popupVisible" : ""}`}
+      ></motion.div>
+      <motion.div
+        initial = {{x : "-50%", y : "-50%"}}
+        animate={{
+          scale: popupInfo.isPopupVisible ? 1 : 0.5,
+          opacity: popupInfo.isPopupVisible ? 1 : 0,
+
+        }}
+        transition={{ duration: 0.3, type : 'spring' }}
+        className={`card  bg-secondary _shadow rounded-3 _popup p-24 position-fixed top-50 start-50 `}
       >
-        <i
+        <motion.i
           className={`bi ${
-            popupInfo.success ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill"
+            popupInfo.success
+              ? "bi-check-circle-fill"
+              : "bi-exclamation-triangle-fill"
           } text-${popupInfo.success ? "success" : "warning"} _signIcon`}
-        ></i>
+        ></motion.i>
         <div className="card-body text-light text-center _lead">
           {popupInfo.success ? "Success" : "Warning"}
         </div>
@@ -28,7 +39,7 @@ export default function InfoPopup({}) {
         <div className="card-footer d-flex justify-content-center  ">
           <ButtonText name="Ok" handleclick={hidePopupInfo} />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

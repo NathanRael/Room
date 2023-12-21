@@ -8,11 +8,12 @@ const colStyle = {
 }
 export default function MovieCardContainer({animeFilterList, handleclick}){
     const navigate = useNavigate();
-    const animes = animeFilterList.data.map( anime => 
+    const animes = animeFilterList.data.map( (anime, index) => 
         <div className="col-auto" style={colStyle}>
             <Card
              key={anime.id}
              id={anime.id}
+             index={index}
              srcImage={anime.attributes.posterImage.large}
              title={anime.attributes.canonicalTitle}
              sinopsis={anime.attributes.description}

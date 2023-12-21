@@ -15,10 +15,11 @@ export default function WatchLists() {
   
   let animeWatchListItem;
 
-    animeWatchListItem = watchedList.map((anime) => (
+    animeWatchListItem = watchedList.map((anime, index) => (
       <div className="col-auto" style={{maxWidth : 'max-content'}}>
         <WatchList
           key={anime.id}
+          index = {index}
           srcImage={anime.attributes.posterImage.large}
           title={anime.attributes.canonicalTitle}
           rate={anime.attributes.averageRating}

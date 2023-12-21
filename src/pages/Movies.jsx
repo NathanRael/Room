@@ -3,7 +3,6 @@ import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import addToWatchList from "../functions/AddToWatchList";
 import { useNavigate } from "react-router-dom";
-import { loadMovie, saveMovie } from "../functions/saveInfo";
 import Load from "../components/Load";
 import DataContext from "../context/DataContext";
 import { useContext } from "react";
@@ -24,10 +23,11 @@ export default function Movies({}) {
   const navigate = useNavigate();
   let animeSearchListItem;
   if (animeSearchList?.data && animeSearchList?.data?.length > 0) {
-    animeSearchListItem = animeSearchList.data.map((anime) => (
+    animeSearchListItem = animeSearchList.data.map((anime, index) => (
       <MovieDetails
         id={anime.id}
         key={anime.id}
+        index = {index}
         srcImage={anime.attributes.posterImage.large}
         title={anime.attributes.canonicalTitle}
         sinopsis={anime.attributes.description}
