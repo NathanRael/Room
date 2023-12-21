@@ -10,7 +10,7 @@ export default function Rate({rate, heartColor, isFill, type = '', toggleFavorit
             >
 
                 <i className={`bi bi-star${ isFill ? '-fill' : ''} ${heartColor}`} ></i>
-                {rate}
+                {rate != null ? rate : 'not rated'}
             </div>
         </>
     );

@@ -9,12 +9,14 @@ import { ButtonMd, Button, NavButton } from "../components/Buttons";
 import Hero from "../components/Hero";
 import { Status } from "../components/details";
 import { fetchJSON } from "../context/DataContext";
+import Card from "../components/Card";
 import Rate from "../components/Rate";
 
 export default function MovieInfo({}) {
   const navigate = useNavigate();
   const { name, id } = useParams();
   const [animeInfo, setAnimeInfo] = useState(null);
+  const [suggestedAnime, setSuggestedAnime] = useState([]);
   const [error, setError] = useState(null);
   const { animeWatchList, renderPopupInfo } = useContext(DataContext);
   const [load, setLoad] = useState(true);
@@ -26,7 +28,9 @@ export default function MovieInfo({}) {
       .then((datas) => {
         const animes = datas?.data;
         const filteredAnime = animes?.filter((anime) => anime.id === id);
+        console.log(animes)
         setAnimeInfo(filteredAnime[0]);
+        setSuggestedAnime(animes?.filter((anime) => anime.id != id));
       })
       .catch((error) => {
         setError(error.message);
@@ -36,7 +40,7 @@ export default function MovieInfo({}) {
 
   return (
     <>
-      <SearchBar is_fixed={false} showSearchBar={false} title="Movie Details" />
+      <SearchBar is_fixed={false} showSearchBar={false} title="Anime Details" />
       {!load && !error ? (
         <section className="bg-secondary container-fluid p-0 w-100">
           <div className=" _movieInfoBackBtn bg-secondary rounded-5">
@@ -49,7 +53,11 @@ export default function MovieInfo({}) {
           <MovieDetails
             key={animeInfo.id}
             id={animeInfo.id}
-            srcImage={animeInfo.attributes.coverImage ? animeInfo.attributes.coverImage.original : animeInfo.attributes.posterImage.original}
+            srcImage={
+              animeInfo.attributes.coverImage
+                ? animeInfo.attributes.coverImage.original
+                : animeInfo.attributes.posterImage.original
+            }
             date={animeInfo.attributes.createdAt}
             status={animeInfo.attributes.status}
             episode={animeInfo.attributes.episodeCount}
@@ -67,13 +75,44 @@ export default function MovieInfo({}) {
               navigate(`/Watch/${animeInfo.attributes.slug}/${animeInfo.id}`);
             }}
           />
+          {suggestedAnime.length > 0 && (
+            <div className="container-fluid m-0 d-flex gap-32 mt-56 flex-column">
+              <h1 className="text-sm-start text-center _subtitle text-light">
+                Suggested Anime
+              </h1>
+              <div className="row justify-content-center gap-24">
+              {suggestedAnime.map((anime, index) => (
+                <div className="col-auto">
+                  <Card
+                    key={anime.id}
+                    id={anime.id}
+                    index={index}
+                    srcImage={anime.attributes.posterImage.large}
+                    title={anime.attributes.canonicalTitle}
+                    sinopsis={anime.attributes.description}
+                    date={anime.attributes.createdAt.slice(0, 4)}
+                    rate={anime.attributes.averageRating}
+                    status={anime.attributes.status}
+                    handleclick={() =>
+                      navigate(
+                        `/MovieInfo/${encodeURIComponent(
+                          anime.attributes.canonicalTitle
+                        )}/${anime.id}`
+                      )
+                    }
+                  />
+                </div>
+              ))}
+              </div>
+            </div>
+          )}
         </section>
       ) : (
         <div className=" position-fixed top-50 start-50 translate-middle">
           <Load />
         </div>
       )}
-      
+
       {error && <h1 className="text-danger text-center _lead">{error}</h1>}
     </>
   );
@@ -105,7 +144,7 @@ function MovieDetails({
         src={srcImage}
         className="border-3"
         alt=""
-        style={{ objectFit: "cover", height: '70vh', objectPosition : 'top' }}
+        style={{ objectFit: "cover", height: "70vh", objectPosition: "top" }}
       />
       <div className="container-fluid d-flex flex-column gap-32 pb-16">
         <h1 className="_title-2 text-light text-center text-sm-start">

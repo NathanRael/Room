@@ -5,7 +5,7 @@ import Rate from "./Rate";
 import { Status } from "./details";
 import { cardVariant } from "../animation/variants";
 const cardImageStyle = {
-  maxHeight: "324px",
+  height: "324px",
   objectFit: "cover",
 };
 

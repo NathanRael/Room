@@ -46,7 +46,7 @@ export default function SearchBar({
           </div>
 
           {showSearchBar ? ( //mobile view
-            <div className="container-fluid justify-content-center d-sm-none d-flex ">
+            <div className="container-fluid justify-content-center align-items-center d-sm-none d-flex ">
               <form
                 onSubmit={(e) => e.preventDefault()}
                 className=" d-flex text-light 
@@ -61,7 +61,7 @@ export default function SearchBar({
               </form>
             </div>
           ) : (
-            <div className="container-fluid justify-content-center d-sm-none d-flex ">
+            <div className="container-fluid justify-content-center align-items-center d-sm-none d-flex ">
               <h1 className="_subtitle text-light">{title}</h1>
             </div>
           )}
