@@ -25,7 +25,7 @@ export const DataProvider = ({children}) => {
 
   useEffect(() => {
     setSelectedCategorie(loadMovie("selected"));
-    searchAnime(loadMovie("lastSearch")?.trim() || search?.trim());
+    // searchAnime(loadMovie("lastSearch")?.trim() || search?.trim());
     setAnimeWatchList(loadMovie("watchList") || []);
   }, []);
 
@@ -73,7 +73,7 @@ export const DataProvider = ({children}) => {
   function handleSearch() {
     if (search !== "" && search !== null) {
       searchAnime(search);
-      saveMovie("lastSearch", search);
+      // saveMovie("lastSearch", search);
       // setSearch("");
     }
   }

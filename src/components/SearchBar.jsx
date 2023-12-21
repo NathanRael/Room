@@ -48,7 +48,6 @@ export default function SearchBar({
           {showSearchBar ? ( //mobile view
             <div className="container-fluid justify-content-center align-items-center d-sm-none d-flex ">
               <form
-                onSubmit={(e) => e.preventDefault()}
                 className=" d-flex text-light 
                   justify-content-between ps-16 pe-32 py-8 mb-8 _searchBar"
               >
