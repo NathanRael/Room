@@ -18,6 +18,7 @@ export default function InfoPopup({}) {
         animate={{
           scale: popupInfo.isPopupVisible ? 1 : 0.5,
           opacity: popupInfo.isPopupVisible ? 1 : 0,
+          visibility : popupInfo.isPopupVisible ? "visible" : "hidden",
 
         }}
         transition={{ duration: 0.3, type : 'spring' }}
