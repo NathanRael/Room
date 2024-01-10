@@ -19,11 +19,11 @@ export default function SearchBar({
     <>
       <nav
         className={`navbar _searchNav bg-secondary ${
-          is_fixed ? "position-fixed" : "position-absolute"
-        } mt-0 px-8 ps-8 ps-sm-80 pe-lg-32  pt-16 pt-sm-8 py-8 `}
+          is_fixed ? "position-fixed start-0 " : "position-absolute"
+        } mt-0 px-16 ps-sm-128 pe-lg-32  pt-16 pt-sm-8 py-8 `}
         style={{ width: "100%", zIndex: "3" }}
       >
-        <div className="container-fluid d-flex  justify-content-between row-gap-24 align-items-center w-100">
+        <div className="container-fluid p-0 d-flex  justify-content-between row-gap-24 align-items-center w-100">
           <a href="" className="navbar-brand">
             <img src={logo} alt="" style={logoStyle} />
           </a>

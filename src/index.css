@@ -270,7 +270,7 @@ body::-webkit-scrollbar{
     height: 80vh;
   }
   ._movieCard{
-    max-width: 540px;
+    max-width: 408px;
     max-height: max-content;
   }
   
@@ -297,7 +297,7 @@ body::-webkit-scrollbar{
     left: 8px;
   }
   ._searchBar{
-    max-width: 350px;
+    max-width: 584px;
   }
 
   ._backBtn{
@@ -333,7 +333,7 @@ body::-webkit-scrollbar{
     width: 90%;
   }
   ._movieCard{
-    max-width: 524px;
+    max-width: auto;
   }
 
 }

@@ -52,7 +52,7 @@ export default function Navbar({}) {
   ));
 
   return (
-    <div className="_navbar   d-sm-flex flex-row flex-sm-column py-8 py-sm-16 px-0  py-md-16 px-md-8  gap-16 gap-md-80 gap-xl-128 bg-secondary  text-light shadow-sm">
+    <div className="_navbar d-sm-flex flex-row flex-sm-column py-8 py-sm-16 px-0  py-md-16 px-md-8  gap-16 gap-md-80 gap-xl-128 bg-secondary  text-light shadow-sm">
       <div className=" px-8 d-flex flex-row flex-sm-column justify-content-evenly gap-48 gap-md-56">
         <div className="d-none d-sm-block">
           <IconButton icon="bi bi-list" active={false} color="text-light" />
